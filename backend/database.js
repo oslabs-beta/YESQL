@@ -14,11 +14,11 @@ const connectDb = async () => {
             port: process.env.PGPORT,
         }); 
         // connect to the database 
-        await pool.connect() 
+        await pool.connect(); 
         //execute a query
-        const res = await pool.query('SELECT * FROM clients'); 
+        const res = await pool.query('SELECT * FROM people'); 
 
-        console.log(res.rows); // access the rows  
+        console.log("connected to database"); // access the rows  
 
         //release the client back to the pool 
 
@@ -28,6 +28,6 @@ const connectDb = async () => {
     }
 }
  
-//connectDb()
+connectDb()
 
-module.exports(connectDb);
+module.exports = connectDb;
