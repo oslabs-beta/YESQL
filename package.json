@@ -14,7 +14,6 @@
   "devDependencies": {
     "@babel/preset-env": "^7.24.0",
     "@babel/preset-react": "^7.23.3",
-    "concurrently": "^8.2.2",
     "css-loader": "^6.10.0",
     "eslint": "^8.47.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -28,8 +27,7 @@
     "nodemon": "^3.1.0",
     "sass-loader": "^14.1.1",
     "style-loader": "^3.3.4",
-    "typescript": "^5.3.3",
-    "webpack-cli": "^5.1.4"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "babel-loader": "^9.1.3",
