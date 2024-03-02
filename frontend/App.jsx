@@ -1,8 +1,14 @@
 import React from 'react';
+import Landing from './react/containers/Landing.jsx';
 
 const App = () => {
   return (
-    <h1>This is our React Appi</h1>
+    <div>
+      <h1>This is our React Appi</h1>
+      <div className="container">
+        <Landing/>
+      </div>
+    </div>
   )
 }
 
