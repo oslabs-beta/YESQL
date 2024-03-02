@@ -15,10 +15,15 @@ body {
 .container {
   background: #fff;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 800px;
   margin: 0px 50px;
   border-radius: 18px;
   color: $primary-blue;
+}
+
+.db-flow-wrapper  {
+  border: 1px solid $primary-blue;
 }

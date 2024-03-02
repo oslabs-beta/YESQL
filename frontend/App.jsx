@@ -1,5 +1,7 @@
 import React from 'react';
 import Landing from './react/containers/Landing.jsx';
+import DBFlowContainer from './react/containers/DBFlowContainer.jsx';
+
 
 const App = () => {
   return (
@@ -7,6 +9,7 @@ const App = () => {
       <h1>This is our React Appi</h1>
       <div className="container">
         <Landing/>
+        <DBFlowContainer/>
       </div>
     </div>
   )
