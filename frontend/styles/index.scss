@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
+$primary-blue: #556AFF;
+
+body {
+  background: rgb(223, 227, 255);
+  background: linear-gradient(180deg, rgba(223, 227, 255, 1) 0%, rgba(234, 220, 255, 1) 100%);
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  height: 100vh;
+}
+
+.container {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+  margin: 0px 50px;
+  border-radius: 18px;
+  color: $primary-blue;
+}
