@@ -5,13 +5,13 @@ dotenv.config()
 
 const { Pool } = require("pg");
 
-const connectDb = async () => {
+const connectDb = async (user, host, database, port) => {
     try {
         const pool = new Pool({
-            user: process.env.PGUSER,
-            host: process.env.PGHOST,
-            database: process.env.PGDATABASE,
-            port: process.env.PGPORT,
+            user,
+            host,
+            database,
+            port,
         }); 
         // connect to the database 
         await pool.connect(); 
@@ -28,6 +28,6 @@ const connectDb = async () => {
     }
 }
  
-connectDb()
+//connectDb()
 
 module.exports = connectDb;
