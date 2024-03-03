@@ -1,9 +1,9 @@
 const path = require('path');
-const html = require('');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './index.js',
+  entry: './frontend/index.js',
   output: {
     path: path.join(__dirname, 'build'),
     publicPath: '/',
@@ -12,15 +12,17 @@ module.exports = {
   mode: process.env.NODE_ENV,
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './frontend/index.html',
     })
   ],
   devServer: {
     port: 8080,
     hot: true,
-    // static: {
-
-    // }
+    proxy: [
+      {
+        '/api': 'http://localhost:3000',
+      }
+    ],
   },
   module: {
     rules: [
