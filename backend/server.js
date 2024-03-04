@@ -4,16 +4,16 @@ const app = express();
 const database = require('./database');
 const PORT = process.env.PORT || 3000;
 
-//const userController = require('./controllers/userController.js');
+const userController = require('./controllers/userController.js');
 
 app.use(express.json());
 //app.use(cors());
 
 // route for connecting to user's local db:
-// app.post('/connect', userController.connect, (req, res) =>{
-//     if (res.connect) res.status(200).send('connected to user local db');
-//     else res.status(400).send('error connecting to the db');
-// });
+app.post('/connect', userController.connect, (req, res) =>{
+    if (res.locals.connected) res.status(200).send('connected to user local db');
+    else res.status(400).send('error connecting to the db');
+});
 
 //error handling used when return next(error) 
 
