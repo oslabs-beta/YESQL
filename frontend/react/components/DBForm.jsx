@@ -1,16 +1,16 @@
 import React from "react";
 const DBForm = () => {
     return ( 
-        <form action='/credentials' method="POST"> 
-          <label for="user">USER</label> 
-          <input type="text" id="user"></input>
-          <label for="host">Host</label> 
-          <input type="text" id="host"></input> 
-          <label for="database">database</label> 
-          <input type="text" id="database"></input> 
-          <label for="port">port</label> 
-          <input type="text" id="port"></input> 
-          <input type = "submit" value = "submit"></input>
+        <form action="/connect" method="POST"> 
+          <label htmlFor="user">USER</label> 
+          <input type="text" name="user" id="user"></input>
+          <label htmlFor="host">Host</label> 
+          <input type="text" name="host" id="host"></input> 
+          <label htmlFor="database">database</label> 
+          <input type="text" name="database" id="database"></input> 
+          <label htmlFor="port">port</label> 
+          <input type="text" name="port" id="port"></input> 
+          <button type="submit" value ="submit">Submit</button>
         </form>
      );
 }
