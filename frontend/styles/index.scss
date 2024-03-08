@@ -1,7 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
 
 $primary-blue: #556AFF;
+$h1-size: 48px;
+$h1-weight: 100;
+$h2-size: 36px;
+$h2-weight: 100;
+$h3-size: 24px;
+$h3-weight: 100;
+$h4-size: 18px;
+$h4-weight: 100;
+$h6-size: 14px;
+$h6-weight: 100;
+$p-size: 12px;
+$p-weight: 100;
 
+// basic styling 
 body {
   background: rgb(223, 227, 255);
   background: linear-gradient(180deg, rgba(223, 227, 255, 1) 0%, rgba(234, 220, 255, 1) 100%);
@@ -16,9 +29,57 @@ body {
   background: #fff;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 50px;
   height: 800px;
   margin: 0px 50px;
   border-radius: 18px;
   color: $primary-blue;
+}
+
+// navbar styling
+nav {
+  margin: 25px 60px 10px 60px;
+  display: flex;
+  justify-content: space-between;
+  color: $primary-blue;
+}
+
+.navbar-links {
+  display: flex;
+}
+
+.navbar-links li {
+  padding-left: 50px;
+  list-style: none;
+}
+
+.logo {
+  height: 50px;
+}
+
+// landing-page styling
+.landing-page {
+  height: 100%;
+  text-align: center;
+  h1 {
+    font-size: $h1-size;
+    font-weight: 100;
+  }
+  h3 {
+    font-size: $h3-size;
+    font-weight: $h3-weight;
+  }
+  p {
+    font-size: $p-size;
+    font-weight: $p-weight;
+  }
+}
+
+.landing-page ol {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: 2fr 2fr;
+  li {
+    margin: 20px;
+  }
 }
