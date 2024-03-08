@@ -17,12 +17,16 @@ module.exports = {
   ],
   devServer: {
     port: 8080,
+    open: true,
     hot: true,
-    proxy: [
-      {
-        '/api': 'http://localhost:3000',
-      }
-    ],
+    proxy: [{
+        context: ['/connect'],
+        target: 'http://localhost:3000',
+      }],
+    // static: {
+    //   directory: path.resolve(__dirname, 'build'),
+    //   publicPath: '/',
+    // },
   },
   module: {
     rules: [
@@ -44,6 +48,14 @@ module.exports = {
         test: /\.(s(a|c)ss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      }
     ]
   }
 };

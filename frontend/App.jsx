@@ -1,12 +1,11 @@
 import React from 'react';
 import Landing from './react/containers/Landing.jsx';
-import DBFlowContainer from './react/containers/DBFlowContainer.jsx';
-
+import Navbar from './react/components/Navbar.jsx';
 
 const App = () => {
   return (
     <div>
-      <h1>This is our React Appi</h1>
+      <Navbar/>
       <div className="container">
         <Landing/>
         <DBFlowContainer/>
