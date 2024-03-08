@@ -176,3 +176,27 @@ input {
   text-align: center;
 }
 
+//flow chart styling
+
+.chart-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.db-query-container {
+  background: $primary-purple;
+  border-radius: 18px;
+  color: white;
+  padding: 10px 30px 30px 30px;
+  section {
+    background: white;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    img {
+      float: right;
+      width: 15px;
+    }
+  }
+}
+
