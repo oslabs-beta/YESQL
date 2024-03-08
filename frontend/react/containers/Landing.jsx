@@ -1,17 +1,15 @@
 import React from 'react';
 import LandingPageText from '../components/LandingPageText.jsx'; 
 import DBForm from '../components/DBForm.jsx'; 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
   return (
-    <div>
+    <div className="landing-page">
       <div>
         <LandingPageText/> 
       </div>
-      <div>
-        <Link to='/formpage'>Form Page!</Link>
-      </div>
+        <Link className="button" to='/formpage'>CONNECT TO DB</Link>
     </div>
   )
 }
