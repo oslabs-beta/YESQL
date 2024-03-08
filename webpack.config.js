@@ -15,6 +15,9 @@ module.exports = {
       template: './frontend/index.html',
     })
   ],
+  resolve: {
+    extensions: ['.jsx', '.js'],
+  },
   devServer: {
     port: 8080,
     open: true,
