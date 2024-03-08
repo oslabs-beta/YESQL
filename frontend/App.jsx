@@ -15,6 +15,10 @@ const App = () => {
             element={<Landing/>} 
           />
           <Route 
+            path='/chart'
+            element={<DBFlowContainer/>} 
+          />
+          <Route 
             path='/formpage' 
             element={<FormPage/>}
           />
