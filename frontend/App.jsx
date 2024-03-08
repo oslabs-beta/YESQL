@@ -1,6 +1,7 @@
 import React from 'react';
 import Landing from './react/containers/Landing.jsx';
 import Navbar from './react/components/Navbar.jsx'; 
+import DBFlowContainer from './react/containers/DBFlowContainer.jsx';
 import {BrowserRouter, Routes, Route, } from 'react-router-dom';
 import FormPage from './react/containers/FormPage.jsx';
 const App = () => {
@@ -14,6 +15,10 @@ const App = () => {
             element={<Landing/>} 
           />
           <Route 
+            path='/chart'
+            element={<DBFlowContainer/>} 
+          />
+          <Route 
             path='/formpage' 
             element={<FormPage/>}
           />
@@ -21,7 +26,7 @@ const App = () => {
       </div>
      </BrowserRouter>
   )
-}
+};
 
 
 export default App;
