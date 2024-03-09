@@ -6,7 +6,7 @@ const database = require('./database');
 const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
-const userController = require('./controllers/userController.js');
+const databaseController = require('./controllers/databaseController.js');
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -16,9 +16,11 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../frontend/index.html')));
 
 // route for connecting to user's local db:
-app.post('/connect', userController.connect, (req, res) =>{
-    if (res.locals.connected) res.status(200).send('connected to user local db');
-    else res.status(400).send('error connecting to the db');
+app.post('/connect', 
+    databaseController.connect, 
+    databaseController.query,
+    (req, res) =>{
+    res.status(200).json(res.locals.tableData);
 });
 
 //error handling used when return next(error) 
