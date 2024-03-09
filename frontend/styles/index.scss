@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
-
+$font: "Comfortaa",
+sans-serif;
 $primary-blue: #556AFF;
+$pale-blue: rgba(223, 227, 255, 1);
+$primary-purple: #6700FF;
 $h1-size: 48px;
 $h1-weight: 100;
 $h2-size: 36px;
@@ -18,11 +21,24 @@ $p-weight: 100;
 body {
   background: rgb(223, 227, 255);
   background: linear-gradient(180deg, rgba(223, 227, 255, 1) 0%, rgba(234, 220, 255, 1) 100%);
-  font-family: "Comfortaa", sans-serif;
+  font-family: $font;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   height: 100vh;
+}
+
+.button {
+  background: $primary-blue;
+  color: #fff;
+  font-weight: $p-weight;
+  font-size: $h4-size;
+  text-decoration: none;
+  border-radius: 18px;
+  border: none;
+  padding: 20px 30px;
+  margin: 10px 0px;
+  font-family: $font;
 }
 
 .container {
@@ -59,7 +75,9 @@ nav {
 
 // landing-page styling
 .landing-page {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   h1 {
     font-size: $h1-size;
@@ -73,13 +91,112 @@ nav {
     font-size: $p-size;
     font-weight: $p-weight;
   }
-}
-
-.landing-page ol {
-  display: grid;
-  grid-template-columns: 2fr 2fr;
-  grid-template-rows: 2fr 2fr;
-  li {
-    margin: 20px;
+  .button {
+    width: 50%;
   }
 }
+
+.landing-page section {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas: 
+  ". . one one one one one one . ."
+  ". . two two two two two two . ."
+  ". . three three three three three three . ."
+  ". . four four four four four four . ."
+  ;
+  row-gap: 20px;
+  column-gap: 10px;
+  font-size: 22px;
+  line-height: 1.2;
+  margin-bottom: 50px;
+  div {
+    padding: 10px;
+    // background: $pale-blue;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 0px 18px 18px 18px;
+    color: #6700ff;
+      ;
+      border: 2px solid #6700ff;
+    span {
+      font-size: 48px;
+      padding-right: 10px;
+    }
+  }
+     .step-1 {
+       grid-area: one;
+      //  background: linear-gradient(90deg, rgba(243, 115, 56, 0.703) 0%, rgba(231, 84, 199, 0.797) 25%);
+     }
+  
+     .step-2 {
+       grid-area: two;
+        //background: linear-gradient(90deg, rgba(231, 84, 198, 0.797) 0%, rgba(184, 75, 252, 0.7) 75%);
+     }
+  
+     .step-3 {
+       grid-area: three;
+       //background: linear-gradient(90deg, rgba(184, 75, 252, 0.7) 0%, rgba(160, 78, 252, 0.7) 100%);
+     }
+  
+     .step-4 {
+       grid-area: four;
+       //background: linear-gradient(90deg, rgba(160, 78, 252, 0.7) 0%, rgba(112, 82, 254, 0.7) 100%);
+     }
+}
+
+// form styling 
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  padding: 20px;
+  h2 {
+    text-align: center;
+  }
+}
+
+label {
+  padding: 15px 0px 5px 10px;
+}
+
+input {
+  border: none;
+  box-shadow: rgb(0 0 0 / 8%) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  padding: 10px;
+  background: #F8F9FF;
+}
+
+.center-link {
+  text-align: center;
+}
+
+//flow chart styling
+
+.chart-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.db-query-container {
+  background: $primary-purple;
+  border-radius: 18px;
+  color: white;
+  padding: 10px 30px 30px 30px;
+  section {
+    background: white;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    img {
+      float: right;
+      width: 15px;
+    }
+  }
+}
+
