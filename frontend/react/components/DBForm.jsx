@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 const DBForm = () => {
     return ( 
