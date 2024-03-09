@@ -13,7 +13,7 @@ const DBForm = () => {
           <input type="text" name="database" id="database"></input> 
           <label htmlFor="port">port</label> 
           <input type="text" name="port" id="port"></input> 
-        <Link className="center-link" to="/chart"><button type="submit" className="button" value="submit">Submit</button></Link>
+        <button type="submit" className="button" value="submit">Submit</button>
         </form>
      );
 }
