@@ -1,10 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
-import dbReducer from './dbSlice'
-// import todosReducer from '../features/todos/todosSlice'
-// import filtersReducer from '../features/filters/filtersSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { apiSlice } from './dbSlice.js';
+
 
 export const store = configureStore({
   reducer: {
-    database: dbReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer
   },
-})
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware)
+});
+//database: dbReducer,
+
+setupListeners(store.dispatch);
