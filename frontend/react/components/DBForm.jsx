@@ -1,9 +1,30 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useConnectMutation } from '../../apiSlice';
 
 const DBForm = () => {
+    const navigate = useNavigate();
+    const [postConnect, {isLoading, isError}] = useConnectMutation();
+
+  const handleSubmit = async (event) => {
+      event.preventDefault();
+
+      const formData = {
+        user: event.target.elements.user.value,
+        host: event.target.elements.host.value,
+        database: event.target.elements.database.value,
+        port: event.target.elements.port.value,
+      }
+      try {
+        const {data} = await postConnect(formData);
+        console.log('we got something back!', data);
+        navigate('/chart');
+      } catch (error) {
+        console.error('we have an error', error);
+      }
+    }
     return ( 
-        <form action="/connect" method="POST"> 
+        <form onSubmit={handleSubmit}> 
           <h2>Database Credentials</h2>
           <label htmlFor="user">USER</label> 
           <input type="text" name="user" id="user"></input>
@@ -14,6 +35,7 @@ const DBForm = () => {
           <label htmlFor="port">port</label> 
           <input type="text" name="port" id="port"></input> 
         <button type="submit" className="button" value="submit">Submit</button>
+        {isError && <div>Error submitting form</div>}
         </form>
      );
 }

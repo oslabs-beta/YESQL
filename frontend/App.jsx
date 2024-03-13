@@ -2,7 +2,7 @@ import React from 'react';
 import Landing from './react/containers/Landing.jsx';
 import Navbar from './react/components/Navbar.jsx'; 
 import DBFlowContainer from './react/containers/DBFlowContainer.jsx';
-import {BrowserRouter, Routes, Route, } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormPage from './react/containers/FormPage.jsx';
 const App = () => {
   return ( 

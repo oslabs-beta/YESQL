@@ -5,7 +5,7 @@ dotenv.config()
 
 const { Pool } = require("pg");
 
-let pool
+let pool;
 
 
 const connectDb = async (PGUSER, PGHOST, PGDATABASE, PGPORT) => {
