@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import { useConnectMutation } from '../../apiSlice';
 
 const DBForm = () => {
     const navigate = useNavigate();
+    const [postConnect, {isLoading, isError}] = useConnectMutation();
 
-    const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
       event.preventDefault();
 
       const formData = {
@@ -13,26 +15,13 @@ const DBForm = () => {
         database: event.target.elements.database.value,
         port: event.target.elements.port.value,
       }
-      
-      fetch('/connect', {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          user: formData.user, 
-          host: formData.host, 
-          database: formData.database, 
-          port: formData.port
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('we got something back!', data)
-      })
-      .catch(error => console.log('we have an error', error));
-
-      navigate('/chart');
+      try {
+        const {data} = await postConnect(formData);
+        console.log('we got something back!', data);
+        navigate('/chart');
+      } catch (error) {
+        console.error('we have an error', error);
+      }
     }
     return ( 
         <form onSubmit={handleSubmit}> 
@@ -46,6 +35,7 @@ const DBForm = () => {
           <label htmlFor="port">port</label> 
           <input type="text" name="port" id="port"></input> 
         <button type="submit" className="button" value="submit">Submit</button>
+        {isError && <div>Error submitting form</div>}
         </form>
      );
 }
