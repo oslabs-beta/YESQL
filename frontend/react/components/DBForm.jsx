@@ -4,7 +4,9 @@ import { useConnectMutation } from '../../apiSlice';
 
 const DBForm = () => {
     const navigate = useNavigate();
-    const [postConnect, {isLoading, isError}] = useConnectMutation();
+    const [postConnect, {isLoading, isError}] = useConnectMutation({
+      fixedCacheKey: 'databaseSchema',
+    });
 
   const handleSubmit = async (event) => {
       event.preventDefault();

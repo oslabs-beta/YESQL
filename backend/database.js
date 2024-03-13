@@ -7,7 +7,6 @@ const { Pool } = require("pg");
 
 let pool;
 
-
 const connectDb = async (PGUSER, PGHOST, PGDATABASE, PGPORT) => {
     try {
         pool = new Pool({

@@ -9,7 +9,11 @@ const DBFlowContainer = () => {
     // const dispatch = useDispatch();
     
     // Using a query hook automatically fetches data and returns query values
-  const { data, error, isLoading, isSuccess } = useConnectMutation();
+  const [postConnect, { data, error, isLoading, isSuccess }] = useConnectMutation({
+    fixedCacheKey: 'databaseSchema',
+  });
+
+  console.log('data', data);
 
   if (isLoading) {
     return <div>Loading...</div>
