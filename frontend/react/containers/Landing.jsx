@@ -6,14 +6,18 @@ import { Link } from 'react-router-dom';
 const Landing = () => {
   return (
     <div className="landing-page">
-      <h1>Let’s not waste your <br/>precious time</h1>
-      <h3>
-        make your SQL queries optimal with <span className="yesql-intro">Yes<span>ql</span></span></h3>
+      <h1>Say goodbye to <br />inefficiencies <br />and hello to <br/><span>precision with Yesql</span></h1>
+      {/* <h3>
+        make your queries optimal with <span className="yesql-intro">Yes<span>ql</span></span></h3> */}
       <div className="landing-page-grid">
       <div>
         <LandingPageText/> 
       </div>
       <div>
+          <h3>In a world where time is currency, 
+            <br />optimize SQL queries effortlessly with Yesql.
+            <br/>Visualize records, columns, and table segments to 
+            <br/>craft finely tuned queries for optimal performance. </h3>
         <Link className="button" to='/formpage'>Connect to Database</Link>
       </div>
       </div>

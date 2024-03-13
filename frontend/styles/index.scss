@@ -2,17 +2,20 @@
 $font: "Comfortaa",
 sans-serif;
 $primary-blue: #556AFF;
-$dark-blue: #000a50;
-$primary-purple: #6700FF;
+// $primary-blue: #ff00f2;
+$dark-blue: #0b002d;
+$primary-purple: #7300ff;
+// $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
+
 $gray: #fafafa;
 $white: #fff;
 $header-font: "Poppins", sans-serif;
 $h1-size: 64px;
-$h1-weight: 600;
+$h1-weight: 400;
 $h1-letter-spacing: 0.02em;
 $h2-size: 36px;
 $h2-weight: 600;
-$h3-size: 36px;
+$h3-size: 24px;
 $h3-weight: 400;
 $h4-size: 18px;
 $h4-weight: 100;
@@ -29,10 +32,11 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  height: 100vh;
+  height: 100%;
 }
  h1, h2, h3, h4 {
   font-family: $header-font;
+  color: $dark-blue;
  }
 
  h2 {
@@ -61,11 +65,11 @@ body {
 }
 
 .container {
+  padding: 50px;
   background: $white;
   display: flex;
   justify-content: center;
   padding: 50px;
-  height: 800px;
   margin: 0px 50px;
   border-radius: 18px;
   color: $primary-blue;
@@ -97,7 +101,6 @@ nav {
 .landing-page-grid {
     background: $gray;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    width: 1200px;
     border-radius: 18px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -106,6 +109,7 @@ nav {
     text-align: center;
 }
 .landing-page {
+  margin: 50px 0px;
   display: flex;
   flex-direction: column;
   color: $primary-blue;
@@ -114,15 +118,20 @@ nav {
     font-weight: $h1-weight;
     letter-spacing: $h1-letter-spacing;
     color: $dark-blue;
-    margin: 0px;
-    line-height: 1.0;
+    margin: 0px 0px 50px 50px;
+    line-height: 1.1;
+    span {
+      color: $primary-blue;
+      font-weight: 600
+    }
   }
   h3 {
     font-size: $h3-size;
     font-weight: $h3-weight;
     color: $dark-blue;
-    margin-top: 5px;
-    margin-bottom: 50px;
+    padding: 25px;
+    letter-spacing: 0.02em;
+    width: 700px;
   }
   p {
     font-size: $p-size;
@@ -157,8 +166,8 @@ nav {
     // background: $pale-blue;
     height: 50px;
     border-radius: 0px 18px 18px 18px;
-    color: $primary-blue;
-    border: 3px solid $primary-blue;
+    color: $dark-blue;
+    border: 3px solid $dark-blue;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -218,8 +227,11 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: rgba(85, 106, 255, 0.1) 0px 4px 6px -1px, rgba(182, 160, 255, 0.06) 0px 2px 4px -1px;
   padding: 20px;
+  border-radius: 18px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  color: $dark-blue;
   input, label {
     margin: 0px 20px;
   }
@@ -227,8 +239,10 @@ form {
     text-align: center;
   }
   .button {
-    padding: 10px 50px;
-    margin: 30px 20px 20px 20px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px 20px;
+    width: 200px;
   }
 }
 
