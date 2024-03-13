@@ -1,15 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 $font: "Comfortaa",
 sans-serif;
 $primary-blue: #556AFF;
-$pale-blue: rgba(223, 227, 255, 1);
+$dark-blue: #000a50;
 $primary-purple: #6700FF;
-$h1-size: 48px;
-$h1-weight: 100;
+$gray: #fafafa;
+$white: #fff;
+$header-font: "Poppins", sans-serif;
+$h1-size: 64px;
+$h1-weight: 600;
+$h1-letter-spacing: 0.02em;
 $h2-size: 36px;
-$h2-weight: 100;
-$h3-size: 24px;
-$h3-weight: 100;
+$h2-weight: 600;
+$h3-size: 36px;
+$h3-weight: 400;
 $h4-size: 18px;
 $h4-weight: 100;
 $h6-size: 14px;
@@ -27,6 +31,20 @@ body {
   font-style: normal;
   height: 100vh;
 }
+ h1, h2, h3, h4 {
+  font-family: $header-font;
+ }
+
+ h2 {
+  font-size: $h2-size;
+  font-weight: $h2-weight;
+  text-align: center;
+ }
+
+ h3 {
+  font-weight: $h3-weight;
+ }
+
 
 .button {
   background: $primary-blue;
@@ -36,13 +54,14 @@ body {
   text-decoration: none;
   border-radius: 18px;
   border: none;
-  padding: 20px 30px;
+  padding: 20px 50px;
   margin: 10px 0px;
   font-family: $font;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
 .container {
-  background: #fff;
+  background: $white;
   display: flex;
   justify-content: center;
   padding: 50px;
@@ -74,18 +93,36 @@ nav {
 }
 
 // landing-page styling
+
+.landing-page-grid {
+    background: $gray;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    width: 1200px;
+    border-radius: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    text-align: center;
+}
 .landing-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  color: $primary-blue;
   h1 {
     font-size: $h1-size;
-    font-weight: 100;
+    font-weight: $h1-weight;
+    letter-spacing: $h1-letter-spacing;
+    color: $dark-blue;
+    margin: 0px;
+    line-height: 1.0;
   }
   h3 {
     font-size: $h3-size;
     font-weight: $h3-weight;
+    color: $dark-blue;
+    margin-top: 5px;
+    margin-bottom: 50px;
   }
   p {
     font-size: $p-size;
@@ -97,36 +134,46 @@ nav {
 }
 
 .landing-page section {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-template-rows: auto;
   grid-template-areas: 
-  ". . one one one one one one . ."
-  ". . two two two two two two . ."
-  ". . three three three three three three . ."
-  ". . four four four four four four . ."
+  "one"
+  "two"
+  "three"
+  "four"
   ;
   row-gap: 20px;
   column-gap: 10px;
   font-size: 22px;
   line-height: 1.2;
-  margin-bottom: 50px;
+  padding: 20px 50px;
   div {
+    position: relative;
+    background: $gray;
+    z-index: 2;
     padding: 10px;
     // background: $pale-blue;
     height: 50px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     border-radius: 0px 18px 18px 18px;
-    color: #6700ff;
-      ;
-      border: 2px solid #6700ff;
+    color: $primary-blue;
+    border: 3px solid $primary-blue;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 400px;
+    // height: 100px;
+    // background-color: #ccc;
+    margin: 20px;
+    text-align: center;
+    // line-height: 100px;
+  }
     span {
       font-size: 48px;
       padding-right: 10px;
     }
-  }
+  
      .step-1 {
        grid-area: one;
       //  background: linear-gradient(90deg, rgba(243, 115, 56, 0.703) 0%, rgba(231, 84, 199, 0.797) 25%);
@@ -148,15 +195,40 @@ nav {
      }
 }
 
+.line {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.yesql-intro {
+  color: $primary-purple;
+  font-family: $font;
+  font-weight: 800;
+  span {
+    color: $primary-blue;
+  }
+}
+
 // form styling 
 form {
   display: flex;
   flex-direction: column;
-  width: 400px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  justify-content: center;
+  box-shadow: rgba(85, 106, 255, 0.1) 0px 4px 6px -1px, rgba(182, 160, 255, 0.06) 0px 2px 4px -1px;
   padding: 20px;
-  h2 {
+  input, label {
+    margin: 0px 20px;
+  }
+  h3 {
     text-align: center;
+  }
+  .button {
+    padding: 10px 50px;
+    margin: 30px 20px 20px 20px;
   }
 }
 
