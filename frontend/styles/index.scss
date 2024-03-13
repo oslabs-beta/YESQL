@@ -7,7 +7,7 @@ $dark-blue: #0b002d;
 $primary-purple: #7300ff;
 // $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
 
-$gray: #fafafa;
+$gray: #ffffff;
 $white: #fff;
 $header-font: "Poppins", sans-serif;
 $h1-size: 64px;
@@ -15,7 +15,7 @@ $h1-weight: 400;
 $h1-letter-spacing: 0.02em;
 $h2-size: 36px;
 $h2-weight: 600;
-$h3-size: 24px;
+$h3-size: 18px;
 $h3-weight: 400;
 $h4-size: 18px;
 $h4-weight: 100;
@@ -77,7 +77,7 @@ body {
 
 // navbar styling
 nav {
-  margin: 25px 60px 10px 60px;
+  margin: 25px 60px 0px 60px;
   display: flex;
   justify-content: space-between;
   color: $primary-blue;
@@ -85,6 +85,7 @@ nav {
 
 .navbar-links {
   display: flex;
+  font-size: 16px;
 }
 
 .navbar-links li {
@@ -93,7 +94,7 @@ nav {
 }
 
 .logo {
-  height: 50px;
+  height: 40px;
 }
 
 // landing-page styling
@@ -130,8 +131,14 @@ nav {
     font-weight: $h3-weight;
     color: $dark-blue;
     padding: 25px;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
     width: 700px;
+    position: relative;
+    z-index: 2;
+    span {
+      font-weight: 600;
+      font-size: 24px;
+    }
   }
   p {
     font-size: $p-size;
@@ -139,6 +146,8 @@ nav {
   }
   .button {
     width: 50%;
+      position: relative;
+        z-index: 1;
   }
 }
 
@@ -213,13 +222,15 @@ nav {
   width: 100%;
 }
 
-.yesql-intro {
-  color: $primary-purple;
-  font-family: $font;
-  font-weight: 800;
-  span {
-    color: $primary-blue;
-  }
+.landing-gradient {
+  position: absolute;
+  width: 30%;
+  height: 80px;
+  bottom: 304px;
+  right: 28%;
+  border-radius: 120px 20px;
+  box-shadow:rgb(131 0 253 / 46%) 294px 475px 188px;
+  z-index: 0;
 }
 
 // form styling 
@@ -258,9 +269,9 @@ input {
   background: #F8F9FF;
 }
 
-.center-link {
-  text-align: center;
-}
+// .center-link {
+//   text-align: center;
+// }
 
 //flow chart styling
 

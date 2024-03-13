@@ -14,8 +14,11 @@ const Landing = () => {
         <LandingPageText/> 
       </div>
       <div>
-          <h3>In a world where time is currency, 
+          <div className="landing-gradient"></div>
+          <h3><span>
+            In a world where time is currency,
             <br />optimize SQL queries effortlessly with Yesql.
+          </span>
             <br/>Visualize records, columns, and table segments to 
             <br/>craft finely tuned queries for optimal performance. </h3>
         <Link className="button" to='/formpage'>Connect to Database</Link>
