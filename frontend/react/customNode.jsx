@@ -1,11 +1,21 @@
+import React, {useState, useEffect} from "react";
+import { useDispatch } from 'react-redux';
+import { add } from '../querySlice';
 
+const customNode = (data) => {
+  const [selectedNode, setSelectedNode] = useState(null);
+  const dispatch = useDispatch();
 
-const customNode = ({data}) => {
-  console.log('Data => ', data)
+  useEffect(() => {
+    console.log(selectedNode, 'selectedNode!')
+    if (selectedNode !== null) {
+      dispatch(add(selectedNode));
+    }
+  }, [selectedNode, dispatch]);
 
   return (
-    <div>
-      <button>{data}</button>
+    <div className="custom-node">
+      <button onClick={() => setSelectedNode(data.id)}>{data.id}</button>
     </div>
   )
 };

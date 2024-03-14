@@ -10,6 +10,8 @@ $primary-purple: #7300ff;
 $gray: #fafafa;
 $white: #fff;
 $header-font: "Poppins", sans-serif;
+$box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 $h1-size: 64px;
 $h1-weight: 400;
 $h1-letter-spacing: 0.02em;
@@ -296,5 +298,28 @@ input {
       width: 15px;
     }
   }
+}
+
+//reactflow custom styling
+.react-flow {
+  background: #fafafa;
+  border: 1px solid #d8d8d8;
+}
+
+.custom-node {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button{
+    border: none;
+    background: transparent;
+    margin: 20px;
+    font-family: $font;
+  }
+}
+
+.react-flow__node {
+  background: white;
+  box-shadow: $box-shadow;
 }
 
