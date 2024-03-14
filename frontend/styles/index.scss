@@ -320,6 +320,7 @@ input {
 
 .react-flow__node {
   background: white;
-  box-shadow: $box-shadow;
+  border-bottom: 1px solid black;
+  // box-shadow: $box-shadow;
 }
 
