@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge } from 'reactflow';
  
 import customNode from '../customNode';
@@ -6,8 +6,6 @@ import 'reactflow/dist/style.css';
  
 const nodeTypes = {customNode: customNode};
 const DBFlow = ({data}) => {
-
-  console.log('Data', data)
 
   const initialNodes = [];
   
@@ -17,7 +15,7 @@ const DBFlow = ({data}) => {
       const tableName = `${table}`;
       // console.log("table name => ", table)
       // console.log('Node => ', { id: `Table${tableNum}`, position: { x: (tableNum * 370), y: 0 }, data: { value: tableName }, style: {width: 320, height: (data[table].length * 50)} })
-      initialNodes.push({ id: `Table${tableNum}`, type: 'customNode', position: { x: (tableNum * 370), y: 0 }, data: { value: table }, style: {width: 320, height: (data[table].length * 50)}, selectable: true });
+      initialNodes.push({ id: `Table${tableNum}`, type: 'customNode', position: { x: (tableNum * 370), y: 0 }, data: { value: table }, style: {width: 320, height: (data[table].length * 70)}, selectable: true });
       for (let i = 0; i < data[table].length; i++) {
         const column = data[table][i];
         // console.log('Table, Column => ', table, column);
@@ -28,6 +26,7 @@ const DBFlow = ({data}) => {
   }
   
   nodeHelper();
+  const nodeTypes = useMemo(() => ({ customNode: customNode}), []);
   // const initialNodes = [
   //   { id: '1', position: { x: 50, y: 20 }, data: { label: '1' }, style: {width: 200, height: 200} },
   //   { id: '2', parentNode: '1', position: { x: 0, y: 0 }, extent:[[0, 0], [0, 0]] , data: { label: '2' } },
@@ -47,7 +46,7 @@ const DBFlow = ({data}) => {
   );
    
   return (
-    <div className="db-flow-wrapper"style={{ width: '800px', height: '600px' }}>
+    <div className="db-flow-wrapper"style={{ width: '1200px', height: '900px' }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
