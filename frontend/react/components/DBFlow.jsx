@@ -12,12 +12,13 @@ const DBFlow = ({data}) => {
   const nodeHelper = () => {
     let tableNum = 0;
     for (const table in data) {
-      initialNodes.push({ id: table, position: { x: (tableNum * 50), y: 0 }, data: { label: table }, style: {width: 300, height: (data[table].length * 50)} });
+      initialNodes.push({ id: `Table${tableNum}`, position: { x: (tableNum * 370), y: 0 }, data: { label: table }, style: {width: 320, height: (data[table].length * 50)} });
       for (let i = 0; i < data[table].length; i++) {
         const column = data[table][i];
-        initialNodes.push({ id: column, position: { x: 0, y: (i * 50)}, data: {label: column}, style: {width: 300, height: 50}, parentNode: table, extent: [[0, (i * 50)], [0, (i * 50)]]});
+        console.log('Table, Column => ', table, column);
+        initialNodes.push({ id: column, position: { x: 10, y: (i * 50)}, data: {label: column}, style: {width: 300, height: 50}, parentNode: `Table${tableNum}`, draggable: false});
       };
-      tableNum + 1;
+      tableNum += 1;
     };
   }
   
