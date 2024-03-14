@@ -15,6 +15,7 @@ const Landing = () => {
       </div>
       <div>
           <div className="landing-gradient"></div>
+          <div className="landing-gradient-2"></div>
           <h3><span>
             In a world where time is currency,
             <br />optimize SQL queries effortlessly with Yesql.

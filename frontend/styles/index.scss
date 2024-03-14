@@ -7,7 +7,7 @@ $dark-blue: #0b002d;
 $primary-purple: #7300ff;
 // $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
 
-$gray: #ffffff;
+$gray: #fafafa;
 $white: #fff;
 $header-font: "Poppins", sans-serif;
 $h1-size: 64px;
@@ -184,7 +184,7 @@ nav {
     // height: 100px;
     // background-color: #ccc;
     margin: 20px;
-    text-align: center;
+    text-align: start;
     // line-height: 100px;
   }
     span {
@@ -232,6 +232,7 @@ nav {
   box-shadow:rgb(131 0 253 / 46%) 294px 475px 188px;
   z-index: 0;
 }
+
 
 // form styling 
 form {
