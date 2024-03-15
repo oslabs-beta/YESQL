@@ -10,7 +10,8 @@ const Landing = () => {
       {/* <h3>
         make your queries optimal with <span className="yesql-intro">Yes<span>ql</span></span></h3> */}
       <div className="landing-page-grid">
-      <div>
+      <div> 
+      {/* render instructions: */}
         <LandingPageText/> 
       </div>
       <div>
@@ -22,6 +23,7 @@ const Landing = () => {
           </span>
             <br/>Visualize records, columns, and table segments to 
             <br/>craft finely tuned queries for optimal performance. </h3>
+            {/*link tag points to /formpage */}
         <Link className="button" to='/formpage'>Connect to Database</Link>
       </div>
       </div>
