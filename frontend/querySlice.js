@@ -1,14 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { query: '' }
+const initialState = { 
+  query: ['SELECT'],
+}
 
 const querySlice = createSlice({
   name: 'query',
   initialState,
   reducers: {
     add(state, action) {
-      state.query += action.payload
+      state.query.push(action.payload)
     },
+    delete(state) {
+      state.query.pop();
+    }
   },
 })
 
