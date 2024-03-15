@@ -20,7 +20,6 @@ app.post('/connect',
     databaseController.connect, 
     databaseController.query,
     (req, res) =>{
-        console.log(res.locals, 'res.locals line 23')
     res.status(200).json(res.locals.tableData);
 });
 

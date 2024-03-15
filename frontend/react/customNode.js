@@ -1,15 +1,13 @@
 import React from "react";
 
-const customNode = ({data, isConnectable}) => {
-  console.log('Data => ', data)
+const customNode = () => {
+  // console.log('Data in customNode => ', data)
 
   return (
     <div>
-      <input type="button" value={data.value} />
+      <input type="button" />
     </div>
   )
 };
-// const clickHandler = () => {
-  //when field is clicked, we want the name of it to appear in the query 
-//}
+
 export default customNode;

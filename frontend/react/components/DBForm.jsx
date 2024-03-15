@@ -18,8 +18,8 @@ const DBForm = () => {
         port: event.target.elements.port.value,
       }
       try {
-        const {data} = await postConnect(formData);
-        console.log('we got something back!', data);
+        const data = await postConnect(formData);
+        console.log(data);
         navigate('/chart');
       } catch (error) {
         console.error('we have an error', error);

@@ -13,8 +13,6 @@ const DBFlowContainer = () => {
     fixedCacheKey: 'databaseSchema',
   });
 
-  console.log('data', data);
-
   if (isLoading) {
     return <div>Loading...</div>
   }

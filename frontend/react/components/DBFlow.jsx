@@ -5,24 +5,36 @@ import customNode from '../customNode';
 import 'reactflow/dist/style.css';
  
 const nodeTypes = {customNode: customNode};
+
 const DBFlow = ({data}) => {
 
   const initialNodes = [];
   
   const nodeHelper = () => {
     let tableNum = 0;
+
     for (const table in data) {
       const tableName = `${table}`;
       // console.log("table name => ", table)
       // console.log('Node => ', { id: `Table${tableNum}`, position: { x: (tableNum * 370), y: 0 }, data: { value: tableName }, style: {width: 320, height: (data[table].length * 50)} })
-      initialNodes.push({ id: `Table${tableNum}`, type: 'customNode', position: { x: (tableNum * 370), y: 0 }, data: { value: table }, style: {width: 320, height: (data[table].length * 70)}, selectable: true });
+      initialNodes.push({ id: `Table${tableNum}`, type: 'customNode', position: 
+      { x: (tableNum * 370), y: 0 }, data: { value: table }, 
+      style: {width: 320, height: (data[table].length * 70)}, 
+      selectable: true });
+
       for (let i = 0; i < data[table].length; i++) {
         const column = data[table][i];
         // console.log('Table, Column => ', table, column);
-        initialNodes.push({ id: `${tableName} ${column}`, type: 'customNode', position: { x: 10, y: ((i * 50) + 50)}, data: {value: column}, style: {width: 300, height: 50}, parentNode: `Table${tableNum}`, draggable: false, selectable: true});
+        initialNodes.push({ id: `${tableName} ${column}`, type: 'customNode', 
+        position: { x: 10, y: ((i * 50) + 50)}, data: {value: column}, style: 
+        {width: 300, height: 50}, parentNode: `Table${tableNum}`, draggable: false, 
+        selectable: true});
       };
+
       tableNum += 1;
     };
+
+    console.log(initialNodes, 'initialNodes')
   }
   
   nodeHelper();
