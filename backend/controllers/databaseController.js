@@ -4,12 +4,10 @@ const db = require("../database");
 
 databaseController.connect = async (req, res, next) => {
     try {
+        //server receives the body from the client, and sends a fetch request to the db
         console.log('Request Body => ', req.body)
         const { user, host, database, port } = req.body;
         await db.connectDb(user, host, database, port);
-        // const result = await db.query('SELECT * FROM people');
-        // console.log(result);
-        res.locals.connected = true;
         return next();
     } catch (error) {
         console.log(error);
@@ -18,6 +16,7 @@ databaseController.connect = async (req, res, next) => {
 };
 
 databaseController.query = async (req, res, next) => {
+    //Query from server to db to get tables and column names:
     try {
         const tables = await db.query(`SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE'`);
         const outputObject = {};

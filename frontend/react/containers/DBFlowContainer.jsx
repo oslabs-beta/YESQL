@@ -14,30 +14,20 @@ const DBFlowContainer = () => {
   });
 
   console.log('data', data);
-
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-  if (error) {
-    return <div>Error: {error}</div>
-  }
-
-  if (isSuccess && data) {
+  //conditional rendering below:
     return (     
-       
         <div>
-        {/* {data.isLoading ? (
-          <>Loading...</> */}
-        {/* ) : isSuccess ? ( // if query is status: success, render components, pass data on props down to DBFlow */}
-        <div className="chart-page-container">
+        {isLoading ? (
+          <>Loading...</>
+          // ({*/ if query is status: success, render components, pass data on props down to DBFlow /*} /
+          ): isSuccess ? (
+          <div className="chart-page-container">
             <DBQuery/>
+            {/* //pass down data (from post) on props:*/}
             <DBFlow data={data} />
-            {/* <DBFlow dbSchema={data}/> */}
-        </div>
-        {/* ) : null } */}
+          </div>
+        ) : null };
       </div>
     )
   }
-}
-
 export default DBFlowContainer;

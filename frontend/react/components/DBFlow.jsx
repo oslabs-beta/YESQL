@@ -8,14 +8,18 @@ const nodeTypes = {customNode: customNode};
 const DBFlow = ({data}) => {
 
   const initialNodes = [];
-  
+  // map table and column nodes:
   const nodeHelper = () => {
     let tableNum = 0;
+    //loop through data object, iterating on each key (table):
     for (const table in data) {
+      //key name:
       const tableName = `${table}`;
       // console.log("table name => ", table)
       // console.log('Node => ', { id: `Table${tableNum}`, position: { x: (tableNum * 370), y: 0 }, data: { value: tableName }, style: {width: 320, height: (data[table].length * 50)} })
+      //populate array of nodes:
       initialNodes.push({ id: `Table${tableNum}`, type: 'customNode', position: { x: (tableNum * 370), y: 0 }, data: { value: table }, style: {width: 320, height: (data[table].length * 70)}, selectable: true });
+      //attach each child (column) node to the parent (table) node:
       for (let i = 0; i < data[table].length; i++) {
         const column = data[table][i];
         // console.log('Table, Column => ', table, column);
@@ -26,6 +30,7 @@ const DBFlow = ({data}) => {
   }
   
   nodeHelper();
+  //define the type we set in our initialNodes:
   const nodeTypes = useMemo(() => ({ customNode: customNode}), []);
   // const initialNodes = [
   //   { id: '1', position: { x: 50, y: 20 }, data: { label: '1' }, style: {width: 200, height: 200} },

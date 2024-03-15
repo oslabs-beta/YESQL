@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 app.use(cors());
 
+//static file / "root" route with our index.html
+//send static index
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../frontend/index.html')));
 
 // route for connecting to user's local db:
@@ -20,7 +22,8 @@ app.post('/connect',
     databaseController.connect, 
     databaseController.query,
     (req, res) =>{
-        console.log(res.locals, 'res.locals line 23')
+
+res.olocals is goinoing back to the client    //sending table and column         )
     res.status(200).json(res.locals.tableData);
 });
 
