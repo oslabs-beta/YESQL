@@ -317,8 +317,14 @@ label {
 
 //reactflow custom styling
 .react-flow {
-  background: #fafafa;
-  border: 1px solid #d8d8d8;
+  // background: #fafafa;
+  background-image:
+      radial-gradient(rgb(217, 215, 215) 5%, transparent 0%);
+    background-position: 24px 24px;
+    background-size: 50px 50px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(217, 215, 215);
+    margin-top: 50px;
 }
 
 .custom-node {
@@ -334,8 +340,22 @@ label {
 }
 
 .react-flow__node {
-  background: white;
-  border-bottom: 1px solid black;
-  // box-shadow: $box-shadow;
+  background:#fafafa;
 }
 
+.nodrag {
+  background: none;
+  font-family: $font;
+  border: none;
+}
+
+.clicked {
+  background: #556aff2e;
+}
+
+.db-query-container button {
+  font-family: $font;
+  margin: 2px;
+  border: none;
+  padding: 5px;
+}

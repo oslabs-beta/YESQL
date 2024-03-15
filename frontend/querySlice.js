@@ -11,11 +11,12 @@ const querySlice = createSlice({
     add(state, action) {
       state.query.push(action.payload)
     },
-    delete(state) {
-      state.query.pop();
+    remove(state, action) {
+      console.log(action.payload, 'action.payload')
+      state.query = state.query.filter((clause) => clause !== action.payload);
     }
   },
 })
 
-export const { add } = querySlice.actions
+export const { add, remove } = querySlice.actions
 export default querySlice.reducer;
