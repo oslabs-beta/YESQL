@@ -8,6 +8,7 @@ import { add, remove } from '../querySlice';
 
 const customNode = ({data, isConnectable}) => {
   const [selectedNode, setSelectedNode] = useState(null);
+  const [removingNode, setRemovingNode] = useState(null);
   const dispatch = useDispatch();
 
   const [clicked, setClicked] = useState(false);
@@ -20,14 +21,15 @@ const customNode = ({data, isConnectable}) => {
     }
   }, [selectedNode, dispatch]);
 
-  const handleClick = (label) => {
-    setSelectedNode(label);
+  const handleClick = (data) => {
+    setSelectedNode([data.label, data.parent]);
     if (!clicked) {
       setClicked(true);
     } else {
       setClicked(false);
       // setSelectedNode(label);
-      dispatch(remove(label))
+      dispatch(remove([data.label, data.parent]))
+      // setRemovingNode(null);
     }
   }
 
@@ -35,7 +37,7 @@ const customNode = ({data, isConnectable}) => {
     <div>
       <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
       <div>
-        <button type="button" name="button" onClick={() => handleClick(data.label)} style={{width: '300px', height: '50px'}} className={`${clicked ? 'nodrag clicked' : 'nodrag'}`}>{data.label}</button>
+        <button type="button" name="button" onClick={() => handleClick(data)} style={{width: '300px', height: '50px'}} className={`${clicked ? 'nodrag clicked' : 'nodrag'}`}>{data.label}</button>
       </div>
       <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
     </div>

@@ -21,7 +21,7 @@ const DBFlow = ({data}) => {
       for (let i = 0; i < data[table].length; i++) {
         const column = data[table][i];
         // console.log('Table, Column => ', table, column);
-        initialNodes.push({ id: `${tableName} ${column}`, type: 'custom', position: { x: 10, y: ((i * 50) + 50)}, data: {label: column}, style: {width: 300, height: 50}, parentNode: tableName, draggable: false});
+        initialNodes.push({ id: `${tableName} ${column}`, type: 'custom', position: { x: 10, y: ((i * 50) + 50)}, data: {label: column, parent: tableName}, style: {width: 300, height: 50}, parentNode: tableName, draggable: false});
       };
 
       tableNum += 1;
