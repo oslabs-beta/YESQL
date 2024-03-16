@@ -22,8 +22,8 @@ const customNode = ({data, isConnectable}) => {
   }, [selectedNode, dispatch]);
 
   const handleClick = (data) => {
-    setSelectedNode([data.label, data.parent]);
     if (!clicked) {
+      setSelectedNode([data.label, data.parent]);
       setClicked(true);
     } else {
       setClicked(false);
