@@ -226,11 +226,11 @@ nav {
 .landing-gradient {
   position: absolute;
   width: 30%;
-  height: 80px;
-  bottom: 304px;
+  height: 90px;
+  bottom: 355px;
   right: 28%;
-  border-radius: 120px 20px;
-  box-shadow:rgb(131 0 253 / 46%) 294px 475px 188px;
+    border-radius: 120px 20px;
+  box-shadow: #c6abff 294px 475px 188px;
   z-index: 0;
 }
 
@@ -242,6 +242,9 @@ form {
   justify-content: center;
   padding: 20px;
   border-radius: 18px;
+  min-width: 600px;
+  max-width: 800px;
+  margin: auto;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   color: $dark-blue;
@@ -260,8 +263,7 @@ input {
     text-align: center;
   }
   .button {
-    margin: auto;
-    margin-top: 20px;
+    margin: 25px auto;
     padding: 10px 20px;
     width: 200px;
   }
@@ -284,10 +286,12 @@ label {
 
 .db-query-container {
   background: $primary-purple;
+  max-width: 1200px;
+  min-width: 800px;
   border-radius: 18px;
   color: white;
   padding: 10px 30px 30px 30px;
-  margin: 0px 100px;
+  margin: auto;
   section {
     background: white;
     color: black;
