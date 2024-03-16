@@ -12,6 +12,7 @@ const DBFlow = ({data}) => {
   // const nodeTypes = { customNode: customNode };
   const nodeHelper = () => {
     let tableNum = 0;
+
     for (const table in data) {
       const tableName = `${table}`;
       // console.log("table name => ", table)
@@ -22,8 +23,11 @@ const DBFlow = ({data}) => {
         // console.log('Table, Column => ', table, column);
         initialNodes.push({ id: `${tableName} ${column}`, type: 'custom', position: { x: 10, y: ((i * 50) + 50)}, data: {label: column}, style: {width: 300, height: 50}, parentNode: tableName, draggable: false});
       };
+
       tableNum += 1;
     };
+
+    console.log(initialNodes, 'initialNodes')
   }
   
   nodeHelper();
@@ -53,7 +57,7 @@ const DBFlow = ({data}) => {
   );
    
   return (
-    <div className="db-flow-wrapper"style={{ width: '1200px', height: '900px' }}>
+    <div className="db-flow-wrapper"style={{ width: '100%', height: '900px' }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
