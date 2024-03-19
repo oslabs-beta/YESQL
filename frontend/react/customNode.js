@@ -37,7 +37,7 @@ const customNode = ({data, isConnectable}) => {
     <div>
       <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
       <div>
-        <button type="button" name="button" onClick={() => handleClick(data)} style={{width: '300px', height: '50px'}} className={`${clicked ? 'nodrag clicked' : 'nodrag'}`}>{data.label}</button>
+        <button type="button" id={`${data.parent}.${data.label}`} name="button" onClick={() => handleClick(data)} style={{width: '300px', height: '50px'}} className={`${clicked ? 'nodrag clicked' : 'nodrag'}`}>{data.label}</button>
       </div>
       <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
     </div>

@@ -316,6 +316,9 @@ label {
       box-shadow: none;
       flex-wrap: wrap;
     }
+    div {
+      display: flex;
+    }
   }
 }
 
@@ -362,4 +365,11 @@ label {
   margin: 2px;
   border: none;
   padding: 5px;
+}
+
+
+
+
+.clause-dropdown {
+  color: red;
 }
