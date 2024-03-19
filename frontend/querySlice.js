@@ -1,12 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { 
-  query: [
-    { 
-      string: "SELECT",
-      id: 0
-    }
-  ],
+  query: ["SELECT"],
+  id: [0],
 }
 
 const querySlice = createSlice({
