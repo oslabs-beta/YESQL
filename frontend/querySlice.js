@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = { 
   query: ["SELECT"],
   id: [0],
+  removedNode: [],
 }
 
 const querySlice = createSlice({
@@ -25,8 +26,7 @@ const querySlice = createSlice({
         };
       },
     remove(state, action) {
-      console.log(state, '<- state')
-      console.log(action.payload, 'action.payload')
+      state.removedNode = action.payload;
       if (state.query[2] === "FROM" && state.query.length === 4) {
         state.query = state.query.slice(0, 1);
       } else if (typeof action.payload[1] === "string") {
@@ -37,11 +37,7 @@ const querySlice = createSlice({
       } 
     },
     addClause(state, action) {
-      state.query.push({
-        string: action.payload,
-        id: state.id,
-      });
-      state.id++;
+      state.query.push(action.payload);
     },
     removeClause(state, action) {
     }
