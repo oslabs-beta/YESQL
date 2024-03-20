@@ -13,25 +13,15 @@ const customNode = ({data, isConnectable}) => {
   const buttonRef = useRef(null);
 
   useEffect(() => {
-    if (removedNode && removedNode.length > 0) {
-      console.log(removedNode, "REMOVEDNODE");
-      const [label, parent] = removedNode;
-      console.log("label:", label);
-      console.log("data.label:", data.label);
-      console.log("parent:", parent);
-      console.log("data.parent:", data.parent);
-      if (label === data.label && parent === data.parent) {
-        console.log('buttonRef HAHAHAHAHAHAHAHAHAHHAHAHAHAHAH-> ', buttonRef)
+    if (removedNode) {
+      if (removedNode.string === data.label && removedNode.parent === data.parent) {
         setClicked(false);
         buttonRef.current.className = 'nodrag';
-        console.log('hi');
-        console.log(buttonRef.current.className, 'classList after reassign');
       }
     }
   }, [removedNode, data.label, data.parent]);
 
   const handleClick = (data) => {
-    console.log(data, 'data is in handleClick right here')
     setClicked(prevClicked => !prevClicked);
     if (!clicked) {
       dispatch(add({
@@ -40,13 +30,10 @@ const customNode = ({data, isConnectable}) => {
       }));
       setClicked(true);
     } else {
-      // setSelectedNode(label);
       dispatch(remove({
         string: data.label,
         parent: data.parent
       }))
-      // setRemovingNode(null);
-      // setClicked(false);
     }
   }
 

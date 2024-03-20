@@ -5,7 +5,7 @@ const initialState = {
     string: "SELECT",
     parent: ""
   }],
-  removedNode: [],
+  removedNode: {},
 }
 
 const querySlice = createSlice({
@@ -21,7 +21,7 @@ const querySlice = createSlice({
       },
     remove(state, action) {
       state.removedNode = action.payload;
-      state.query.filter((node) => node.string !== action.payload.string && node.parent !== action.payload.parent)
+      state.query = state.query.filter((node) => !(node.string === action.payload.string && node.parent === action.payload.parent));
     },
     addClause(state, action) {
       state.query.push(action.payload);

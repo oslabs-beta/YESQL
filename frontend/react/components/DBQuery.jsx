@@ -12,13 +12,12 @@ const DBQuery = () => {
   const handleClick = (element) => {
     console.log('element -> ', element)
     // console.log('string -> ', string, ' index -> ', index)
-    dispatch(remove({string: element.string, parent: node.parent}));
+    dispatch(remove({string: element.string, parent: element.parent}));
   }
 
   let indexNum = 0;
 
   const queryInputs = store.query.map((node) => {
-    console.log(node, 'node inside of line 21')
     return (
     <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>
   )});
