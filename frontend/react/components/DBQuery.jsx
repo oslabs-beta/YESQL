@@ -6,13 +6,17 @@ import ClauseDropdown from './ClauseDropdown';
 
 const DBQuery = () => {
   const store = useSelector((state) => state.queryReducer);
-  // const [selectedNode, setSelectedNode] = useSelector((state) => state.queryReducer.query)
   const dispatch = useDispatch();
 
   const handleClick = (element) => {
-    console.log('element -> ', element)
-    // console.log('string -> ', string, ' index -> ', index)
     dispatch(remove({string: element.string, parent: element.parent}));
+  }
+
+  const handleCopyToClipboard = () => {
+    const query = store.query.map(node => node.string).join(' ');
+    navigator.clipboard.writeText(query)
+    .then(() => alert('Query copied to clipboard'))
+    .catch(error => console.error('Unable to copy query to clipboard: ', error));
   }
 
   let indexNum = 0;
@@ -26,7 +30,7 @@ const DBQuery = () => {
     <div className="db-query-container">
       <p>YOUR QUERY:</p>
       <section>
-        <img src={copyIcon} alt="" />
+        <img src={copyIcon} alt="copy query icon" onClick={handleCopyToClipboard} />
         <div>
           {queryInputs}
           <ClauseDropdown className="clause-dropdown"/>
