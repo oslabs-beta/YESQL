@@ -11,21 +11,23 @@ const querySlice = createSlice({
   initialState,
   reducers: {
     add(state, action) {
+      console.log(action.payload, 'action.payload in querySlice')
         if (state.query.includes("FROM")) {
           state.query.splice(-2, 0, `${action.payload[0]}`);
-          state.id.push(state.id.length);
+          state.id.push(action.payload[1]);
         } else {
           state.query.push(`${action.payload[0]}`);
-          state.id.push(state.id.length);
+          state.id.push(action.payload[1]);
 
           state.query.push(`FROM`);
-          state.id.push(state.id.length);
+          state.id.push(action.payload[1]);
 
           state.query.push(`${action.payload[1]}`);
-          state.id.push(state.id.length);
+          state.id.push(action.payload[1]);
         };
       },
     remove(state, action) {
+      console.log(action.payload, 'action.payload in line 29')
       state.removedNode = action.payload;
       if (state.query[2] === "FROM" && state.query.length === 4) {
         state.query = state.query.slice(0, 1);
