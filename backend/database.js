@@ -35,7 +35,6 @@ const connectDb = async (PGUSER, PGHOST, PGDATABASE, PGPORT) => {
 module.exports = {
     connectDb,
     query: (text, params, callback) => {
-        console.log('Executed query => ', text);
         return pool.query(text, params, callback)
     }
 }

@@ -1,19 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { addClause } from '../../querySlice'
 
 const ClauseDropdown = () => {
   const dispatch = useDispatch();
+  const [selectedValue, setSelectedValue] = useState('+');
 
   const handleChange = (event) => {
-    console.log('im being invoked on line 8', event.target.value)
+    setSelectedValue('+');
     dispatch(addClause(event.target.value));
   }
 
   return (
     <div>
-      <select onChange={handleChange}>
-        <option value="">+</option>
+      <select value={selectedValue} onChange={handleChange}>
+        <option disabled hidden>
+          +
+        </option>  
         <option value="ALL">ALL</option>
         <option value="AND">AND</option>
         <option value="ANY">ANY</option>

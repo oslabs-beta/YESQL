@@ -319,6 +319,21 @@ label {
     div {
       display: flex;
     }
+    select {
+      width: 20px;
+      border: none;
+      background: #f1f1f1;
+      color: black;
+      font-size: 18px;
+      margin: 5px;
+      text-align: center;
+      padding: 2px;
+      text-decoration: none;
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+
+    }
   }
 }
 
