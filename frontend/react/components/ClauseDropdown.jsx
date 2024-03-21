@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
-import { addClause } from '../../querySlice'
+import { useDispatch, useSelector } from 'react-redux';
+import { addClause, addInput } from '../../querySlice'
 
 const ClauseDropdown = () => {
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const ClauseDropdown = () => {
         <option value="ALL">ALL</option>
         <option value="AND">AND</option>
         <option value="ANY">ANY</option>
+        <option value="=">EQUAL</option>
         <option value="GROUP BY">GROUP BY</option>
         <option value="IS NOT NULL">IS NOT NULL</option>
         <option value="IS NULL">IS NULL</option>

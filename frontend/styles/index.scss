@@ -322,17 +322,16 @@ label {
     select {
       width: 20px;
       border: none;
-      background: #f1f1f1;
-      color: black;
+      background: $primary-blue;
+      color: white;
+      border-radius: 0px 8px 8px 8px;
       font-size: 18px;
       margin: 5px;
       text-align: center;
-      padding: 2px;
       text-decoration: none;
       appearance: none;
       -moz-appearance: none;
       -webkit-appearance: none;
-
     }
   }
 }
@@ -382,6 +381,17 @@ label {
   padding: 5px;
 }
 
+[id^="undefined"] {
+  text-transform: uppercase;
+  background: none;
+  font-size: 18px;
+  text-align: center;
+  padding: none;
+  margin-left: 10px;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #dadada;
+  font-weight: 500;
+}
 
 
 

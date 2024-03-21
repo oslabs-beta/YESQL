@@ -5,6 +5,7 @@ const initialState = {
     string: "SELECT",
     parent: ""
   }],
+  inputVisible: true,
   removedNode: {},
 }
 
@@ -16,7 +17,10 @@ const querySlice = createSlice({
       let lengthOfQuery = 0;
       for (let key in state.query) {
         lengthOfQuery++;
-        if (lengthOfQuery > 1 && lengthOfQuery === Object.keys(state.query).length && state.query[key].parent !== action.payload.parent) {
+        if (lengthOfQuery > 1 
+          && lengthOfQuery === Object.keys(state.query).length 
+          && state.query[key].parent !== action.payload.parent
+          && state.query[key].parent !== '') {
           state.query.push({
             string: 'FROM',
             parent: ''
@@ -42,11 +46,15 @@ const querySlice = createSlice({
         string: action.payload,
         parent: ''
       });
+        state.inputVisible = true;
+    },
+    addInput(state, action) {
+      state.inputVisible = false;
     },
     removeClause(state, action) {
     }
   },
 })
 
-export const { add, remove, addClause } = querySlice.actions
+export const { add, remove, addClause, addInput } = querySlice.actions
 export default querySlice.reducer;
