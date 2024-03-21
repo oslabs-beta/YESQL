@@ -6,7 +6,6 @@ import ClauseDropdown from './ClauseDropdown';
 
 const DBQuery = () => {
   const store = useSelector((state) => state.queryReducer);
-  const [inputVisible, setInputVisible] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -16,8 +15,7 @@ const DBQuery = () => {
 
   const handleInput = (event) => {
     dispatch(add({ string: event, parent: '' }));
-    dispatch(addInput(false))
-    setInputVisible(false);
+    dispatch(addInput());
   }
 
   const handleCopyToClipboard = () => {
@@ -29,19 +27,14 @@ const DBQuery = () => {
 
   let indexNum = 0;
 
-  useEffect(() => {
-    setInputVisible(true);
-  }, [store.inputVisible])
-
-
-
   const queryInputs = store.query.map((node) => {
     return (
       <React.Fragment key={indexNum++}>
-        { node.string === '=' && inputVisible ? 
+        { node.string === '=' && node.inputVisible ? 
           <>
             <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>
-            <input type='text' style={{display: inputVisible ? 'block' : 'none'}} onChange={(e) => handleInput(e.target.value)}/>
+            {/* <input autoFocus type='text' onChange={(e) => setInputValue(e)} onBlur={handleInput(inputValue)}/> */}
+              <input type='text' onKeyDown={(e) => {if (e.key === 'Enter') handleInput(e.target.value)}}/>
           </>
           : 
           <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>

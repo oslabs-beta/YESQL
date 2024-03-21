@@ -5,7 +5,6 @@ const initialState = {
     string: "SELECT",
     parent: ""
   }],
-  inputVisible: true,
   removedNode: {},
 }
 
@@ -42,14 +41,21 @@ const querySlice = createSlice({
       state.query = state.query.filter((node) => !(node.string === action.payload.string && node.parent === action.payload.parent));
     },
     addClause(state, action) {
-      state.query.push({
-        string: action.payload,
-        parent: ''
-      });
-        state.inputVisible = true;
+      if (action.payload !== '=') {
+        state.query.push({
+          string: action.payload,
+          parent: ''
+        });
+      } else {
+        state.query.push({
+          string: action.payload,
+          parent: '',
+          inputVisible: true
+        });
+      }
     },
     addInput(state, action) {
-      state.inputVisible = false;
+      state.query[state.query.length - 2].inputVisible = false;
     },
     removeClause(state, action) {
     }
