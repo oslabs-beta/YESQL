@@ -12,15 +12,16 @@ const ClauseDropdown = () => {
   }
 
   return (
-    <div>
+    <>
       <select value={selectedValue} onChange={handleChange}>
         <option disabled hidden>
           +
         </option>  
-        <option value="ALL">ALL</option>
+        <option value="*">ALL</option>
         <option value="AND">AND</option>
         <option value="ANY">ANY</option>
         <option value="=">EQUAL</option>
+        <option value="FROM">FROM</option>
         <option value="GROUP BY">GROUP BY</option>
         <option value="IS NOT NULL">IS NOT NULL</option>
         <option value="IS NULL">IS NULL</option>
@@ -29,10 +30,11 @@ const ClauseDropdown = () => {
         <option value="NOT">NOT</option>
         <option value="OR">OR</option>
         <option value="ORDER BY">ORDER BY</option>
+        <option value="DISTINCT">DISTINCT</option>
         <option value="WHERE">WHERE</option>
         <option value="<>">NOT EQUAL </option>
       </select>
-    </div>
+    </>
   )
 }
 

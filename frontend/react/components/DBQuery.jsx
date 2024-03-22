@@ -30,15 +30,20 @@ const DBQuery = () => {
   const queryInputs = store.query.map((node) => {
     return (
       <React.Fragment key={indexNum++}>
-        { node.string === '=' && node.inputVisible ? 
+        { node.string === '=' && node.inputVisible ? (
           <>
             <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>
             {/* <input autoFocus type='text' onChange={(e) => setInputValue(e)} onBlur={handleInput(inputValue)}/> */}
               <input type='text' onKeyDown={(e) => {if (e.key === 'Enter') handleInput(e.target.value)}}/>
           </>
-          : 
-          <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>
-        }
+          ) : node.parent === 'clause' ? (
+          <>
+            <br/>
+            <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>     
+          </>
+          ) : (
+          <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>     
+      )}
       </React.Fragment>
     )
   });

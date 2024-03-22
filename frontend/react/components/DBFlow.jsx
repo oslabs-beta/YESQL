@@ -26,8 +26,6 @@ const DBFlow = ({data}) => {
 
       tableNum += 1;
     };
-
-    console.log(initialNodes, 'initialNodes')
   }
   
   nodeHelper();
@@ -41,7 +39,6 @@ const DBFlow = ({data}) => {
     // { id: 'e1-3', source: '1', target: '3'}
 ];
 
-  console.log(initialNodes)
 
   const nodeTypes = useMemo(() => ({
       custom: customNode

@@ -3,9 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = { 
   query: [{
     string: "SELECT",
-    parent: ""
+    parent: "clause"
   }],
   removedNode: {},
+  numOfClauses: 1,
 }
 
 const querySlice = createSlice({
@@ -13,45 +14,46 @@ const querySlice = createSlice({
   initialState,
   reducers: {
     add(state, action) {
-      let lengthOfQuery = 0;
-      for (let key in state.query) {
-        lengthOfQuery++;
-        if (lengthOfQuery > 1 
-          && lengthOfQuery === Object.keys(state.query).length 
-          && state.query[key].parent !== action.payload.parent
-          && state.query[key].parent !== '') {
-          state.query.push({
-            string: 'FROM',
-            parent: ''
-          })
-          state.query.push({
-            string: state.query[key].parent,
-            parent: state.query[key].parent,
-          })
-          lengthOfQuery += 2;
+      let indexOfFrom;
+      let fromIncluded = false;
+      state.query.forEach((el, index) => {
+        if (el.string === 'FROM') {
+          fromIncluded = true;
+          indexOfFrom = index;
         }
+      });
+      fromIncluded 
+      && action.payload.parent !== 'clause' 
+      && state.numOfClauses < 3 
+      ? 
+      state.query.splice(indexOfFrom, 0, action.payload) 
+      : state.query.push(action.payload);
+      if (!fromIncluded && state.query.length > 0) {
+        state.query.push({ string: 'FROM', parent: 'clause' });
+        state.numOfClauses++;
       }
-      state.query.push({
-        string: action.payload.string,
-        parent: action.payload.parent
-      })
-      },
+      const isParentIncluded = state.query.some(el => el.string === action.payload.parent);
+      if (action.payload.parent && !isParentIncluded) 
+      state.query.push({string: action.payload.parent, parent: action.payload.parent})
+    },
     remove(state, action) {
       state.removedNode = action.payload;
       state.query = state.query.filter((node) => !(node.string === action.payload.string && node.parent === action.payload.parent));
     },
     addClause(state, action) {
-      if (action.payload !== '=') {
+      if (action.payload !== '=' && action.payload !== '*') {
         state.query.push({
           string: action.payload,
-          parent: ''
+          parent: 'clause'
         });
+        state.numOfClauses++;
       } else {
         state.query.push({
           string: action.payload,
-          parent: '',
+          parent: 'condition',
           inputVisible: true
         });
+        state.numOfClauses++
       }
     },
     addInput(state, action) {

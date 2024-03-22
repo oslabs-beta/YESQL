@@ -286,9 +286,8 @@ label {
 
 .db-query-container {
   background: $primary-purple;
-  max-width: 1200px;
-  min-width: 800px;
   border-radius: 18px;
+  width: 60%;
   color: white;
   padding: 10px 30px 30px 30px;
   margin: auto;
@@ -296,7 +295,7 @@ label {
     background: white;
     color: black;
     padding: 10px;
-    text-align: center;
+    // text-align: center;
     img {
       float: right;
       width: 15px;
@@ -317,7 +316,7 @@ label {
       flex-wrap: wrap;
     }
     div {
-      display: flex;
+      padding-bottom: 15px;
     }
     select {
       width: 20px;
