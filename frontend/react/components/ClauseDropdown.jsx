@@ -1,19 +1,22 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addClause, addInput } from '../../querySlice'
+import { addClause, removeInput } from '../../querySlice'
 
+
+// We're utilizing the ClauseDropdown for selecting the variation of clauses available to build our Query. 
+// There are additional clauses we'd need to add.  
 const ClauseDropdown = () => {
   const dispatch = useDispatch();
-  const [selectedValue, setSelectedValue] = useState('+');
 
+  // The handleChange function is being invoked once we select a clause in the dropdown
   const handleChange = (event) => {
-    setSelectedValue('+');
+    // dispatching our addClause action to the querySlice.js
     dispatch(addClause(event.target.value));
   }
 
   return (
     <>
-      <select value={selectedValue} onChange={handleChange}>
+      <select value='+' onChange={handleChange}>
         <option disabled hidden>
           +
         </option>  

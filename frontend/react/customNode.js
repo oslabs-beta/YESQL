@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useCallback } from "react";
 import { Handle, Position } from "reactflow";
 import { add, remove } from '../querySlice';
 
@@ -25,7 +24,7 @@ const customNode = ({data, isConnectable}) => {
     setClicked(prevClicked => !prevClicked);
     if (!clicked) {
       dispatch(add({
-        string: data.label, 
+        string: `${data.parent}.${data.label}`, 
         parent: data.parent
       }));
       setClicked(true);

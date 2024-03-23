@@ -287,7 +287,7 @@ label {
 .db-query-container {
   background: $primary-purple;
   border-radius: 18px;
-  width: 60%;
+  width: -webkit-fill-available;
   color: white;
   padding: 10px 30px 30px 30px;
   margin: auto;
@@ -295,7 +295,6 @@ label {
     background: white;
     color: black;
     padding: 10px;
-    // text-align: center;
     img {
       float: right;
       width: 15px;
@@ -314,9 +313,6 @@ label {
       flex-direction: row;
       box-shadow: none;
       flex-wrap: wrap;
-    }
-    div {
-      padding-bottom: 15px;
     }
     select {
       width: 20px;
@@ -389,7 +385,6 @@ label {
   margin-left: 10px;
   letter-spacing: 0.02em;
   border-bottom: 2px solid #dadada;
-  font-weight: 500;
 }
 
 

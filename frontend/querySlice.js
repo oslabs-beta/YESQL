@@ -38,7 +38,10 @@ const querySlice = createSlice({
     },
     remove(state, action) {
       state.removedNode = action.payload;
-      state.query = state.query.filter((node) => !(node.string === action.payload.string && node.parent === action.payload.parent));
+      state.query = state.query.filter((node) => 
+        !(node.string === action.payload.string 
+        && node.parent === action.payload.parent
+      ));
     },
     addClause(state, action) {
       if (action.payload !== '=' && action.payload !== '*') {
@@ -56,7 +59,7 @@ const querySlice = createSlice({
         state.numOfClauses++
       }
     },
-    addInput(state, action) {
+    removeInput(state, action) {
       state.query[state.query.length - 2].inputVisible = false;
     },
     removeClause(state, action) {
@@ -64,5 +67,5 @@ const querySlice = createSlice({
   },
 })
 
-export const { add, remove, addClause, addInput } = querySlice.actions
+export const { add, remove, addClause, removeInput } = querySlice.actions
 export default querySlice.reducer;
