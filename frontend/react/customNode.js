@@ -1,35 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
-import { useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { Handle, Position } from "reactflow";
 import { add, remove } from '../querySlice';
 
 
 
 const customNode = ({data, isConnectable}) => {
-  const [selectedNode, setSelectedNode] = useState(null);
-  const [removingNode, setRemovingNode] = useState(null);
-  const dispatch = useDispatch();
-
+  const removedNode = useSelector((state) => state.queryReducer.removedNode);
   const [clicked, setClicked] = useState(false);
+  const dispatch = useDispatch();
+  const buttonRef = useRef(null);
 
   useEffect(() => {
-    console.log(data, 'data is hereeee')
-    console.log(selectedNode, 'selectedNode!')
-    if (selectedNode !== null) {
-      dispatch(add(selectedNode));
+    if (removedNode) {
+      if (removedNode.string === data.label && removedNode.parent === data.parent) {
+        setClicked(false);
+        buttonRef.current.className = 'nodrag';
+      }
     }
-  }, [selectedNode, dispatch]);
+  }, [removedNode, data.label, data.parent]);
 
   const handleClick = (data) => {
+    setClicked(prevClicked => !prevClicked);
     if (!clicked) {
-      setSelectedNode([data.label, data.parent]);
+      dispatch(add({
+        string: data.label, 
+        parent: data.parent
+      }));
       setClicked(true);
     } else {
-      setClicked(false);
-      // setSelectedNode(label);
-      dispatch(remove([data.label, data.parent]))
-      // setRemovingNode(null);
+      dispatch(remove({
+        string: data.label,
+        parent: data.parent
+      }))
     }
   }
 
@@ -37,7 +40,16 @@ const customNode = ({data, isConnectable}) => {
     <div>
       <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
       <div>
-        <button type="button" name="button" onClick={() => handleClick(data)} style={{width: '300px', height: '50px'}} className={`${clicked ? 'nodrag clicked' : 'nodrag'}`}>{data.label}</button>
+        <button 
+        ref={buttonRef}
+        type="button" 
+        id={`${data.parent}.${data.label}`} 
+        name="button" 
+        onClick={() => handleClick(data)} 
+        style={{width: '300px', height: '50px'}} 
+        className={`${clicked ? 'nodrag clicked' : 'nodrag'}`}>
+          {data.label}
+        </button>
       </div>
       <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
     </div>

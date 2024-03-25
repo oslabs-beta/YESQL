@@ -4,7 +4,6 @@ const db = require("../database");
 
 databaseController.connect = async (req, res, next) => {
     try {
-        console.log('Request Body => ', req.body)
         const { user, host, database, port } = req.body;
         await db.connectDb(user, host, database, port);
         // const result = await db.query('SELECT * FROM people');

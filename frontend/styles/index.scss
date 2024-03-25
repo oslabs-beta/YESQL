@@ -286,9 +286,8 @@ label {
 
 .db-query-container {
   background: $primary-purple;
-  max-width: 1200px;
-  min-width: 800px;
   border-radius: 18px;
+  width: -webkit-fill-available;
   color: white;
   padding: 10px 30px 30px 30px;
   margin: auto;
@@ -296,7 +295,6 @@ label {
     background: white;
     color: black;
     padding: 10px;
-    text-align: center;
     img {
       float: right;
       width: 15px;
@@ -315,6 +313,20 @@ label {
       flex-direction: row;
       box-shadow: none;
       flex-wrap: wrap;
+    }
+    select {
+      width: 20px;
+      border: none;
+      background: $primary-blue;
+      color: white;
+      border-radius: 0px 8px 8px 8px;
+      font-size: 18px;
+      margin: 5px;
+      text-align: center;
+      text-decoration: none;
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
     }
   }
 }
@@ -362,4 +374,21 @@ label {
   margin: 2px;
   border: none;
   padding: 5px;
+}
+
+[id^="undefined"] {
+  text-transform: uppercase;
+  background: none;
+  font-size: 18px;
+  text-align: center;
+  padding: none;
+  margin-left: 10px;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #dadada;
+}
+
+
+
+.clause-dropdown {
+  color: red;
 }
