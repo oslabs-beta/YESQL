@@ -24,7 +24,7 @@ const customNode = ({data, isConnectable}) => {
     setClicked(prevClicked => !prevClicked);
     if (!clicked) {
       dispatch(add({
-        string: `${data.parent}.${data.label}`, 
+        string: data.label, 
         parent: data.parent
       }));
       setClicked(true);
