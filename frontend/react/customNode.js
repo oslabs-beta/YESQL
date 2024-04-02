@@ -15,7 +15,7 @@ const customNode = ({data, isConnectable}) => {
     if (removedNode) {
       if (removedNode.string === data.label && removedNode.parent === data.parent) {
         setClicked(false);
-        buttonRef.current.className = 'nodrag';
+        buttonRef.current.className = 'flowButton';
       }
     }
   }, [removedNode, data.label, data.parent]);
@@ -47,7 +47,7 @@ const customNode = ({data, isConnectable}) => {
         name="button" 
         onClick={() => handleClick(data)} 
         style={{width: '300px', height: '50px'}} 
-        className={`${clicked ? 'nodrag clicked' : 'nodrag'}`}>
+        className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
           {data.label}
         </button>
       </div>
