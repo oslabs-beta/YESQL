@@ -12,7 +12,8 @@ const DBFlowContainer = () => {
   const [postConnect, { data, error, isLoading, isSuccess }] = useConnectMutation({
     fixedCacheKey: 'databaseSchema',
   });
-
+  console.log('Data =>', data);
+  
   if (isLoading) {
     return <div>Loading...</div>
   }
