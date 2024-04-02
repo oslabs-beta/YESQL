@@ -33,31 +33,36 @@ const querySlice = createSlice({
     //    where the index of from is in our query array. This way we can select wether
     //    whatever we are adding should be pushed to the end of the array, or if 
     //    we need to use the slice method in order to insert the new object before the FROM clause. 
-    // 2. We are using the fromIncluded in order to know wether we should be adding the FROM clause. 
+    // 2. We are using the fromIncluded in order to know whether we should be adding the FROM clause. 
     //    If the FROM clause is already included in the query, we don't need to add it again. 
 
     add(state, action) {
       let indexOfFrom;
       let fromIncluded = false;
+      let connections = action.payload.foreignConnections;
       state.query.forEach((el, index) => {
         if (el.string === 'FROM') {
           fromIncluded = true;
           indexOfFrom = index;
         }
       });
-      fromIncluded 
-      && action.payload.parent !== 'clause' 
-      && state.numOfClauses < 3 
-      ? 
-      state.query.splice(indexOfFrom, 0, action.payload) 
-      : state.query.push(action.payload);
+      const isParentIncluded = state.query.some(el => el.string === action.payload.parent);
+      const isConnection = state.query.some(el => connections ? connections.includes(el.string) : false);
+      if (action.payload.parent && !isParentIncluded) {
+        if (fromIncluded && !isConnection) alert('Tables do not have a connection!');
+      };
+      if (fromIncluded && action.payload.parent !== 'clause' && action.payload.parent) {
+        if (isConnection || isParentIncluded) state.query.splice(indexOfFrom, 0, action.payload) 
+      } else {
+        console.log('Payload => ', action.payload);
+        state.query.push(action.payload);
+      };
       if (!fromIncluded && state.query.length > 0) {
         state.query.push({ string: 'FROM', parent: 'clause' });
         state.numOfClauses++;
-      }
-      const isParentIncluded = state.query.some(el => el.string === action.payload.parent);
-      if (action.payload.parent && !isParentIncluded) 
-      state.query.push({string: action.payload.parent, parent: action.payload.parent})
+        state.query.push({ string: action.payload.parent, parent: action.payload.parent });
+      };
+      if (isConnection && !isParentIncluded) state.query.splice(indexOfFrom + 3, 0, { string: action.payload.parent, parent: action.payload.parent });
     },
     // In the remove reducer, we are filtering out the object that we receive through the payload. 
     remove(state, action) {
