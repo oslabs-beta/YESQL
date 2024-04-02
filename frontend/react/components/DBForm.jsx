@@ -10,7 +10,7 @@ const DBForm = () => {
 
   const handleSubmit = async (event) => {
       event.preventDefault();
-
+      // capture user's input credentials in an object to send in post request to connect to user's db:
       const formData = {
         user: event.target.elements.user.value,
         host: event.target.elements.host.value,
@@ -18,8 +18,10 @@ const DBForm = () => {
         port: event.target.elements.port.value,
       }
       try {
-        const data = await postConnect(formData);
-        console.log(data);
+        //sending user credentials in a post request; 
+        const {data} = await postConnect(formData);
+        console.log('we got something back!', data);
+        //we navigate to /chart (dbFlow container) only once we confirm our post request with the user credentials was successful
         navigate('/chart');
       } catch (error) {
         console.error('we have an error', error);
