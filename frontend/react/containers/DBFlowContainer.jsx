@@ -12,9 +12,15 @@ const DBFlowContainer = () => {
   const [postConnect, { data, error, isLoading, isSuccess }] = useConnectMutation({
     fixedCacheKey: 'databaseSchema',
   });
+// conditional rendering:
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  if (error) {
+    return <div>Error: {error}</div>
+  }
 
-  console.log('data', data);
-  //conditional rendering below:
+  if (isSuccess && data) {
     return (     
         <div>
         {isLoading ? (

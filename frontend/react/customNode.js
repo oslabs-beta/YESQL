@@ -1,24 +1,59 @@
-import React from "react";
-import { useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { Handle, Position } from "reactflow";
+import { add, remove } from '../querySlice';
+
+
 
 const customNode = ({data, isConnectable}) => {
+  const removedNode = useSelector((state) => state.queryReducer.removedNode);
+  const [clicked, setClicked] = useState(false);
+  const dispatch = useDispatch();
+  const buttonRef = useRef(null);
 
-  const clickHandler= useCallback((data) => {
-    console.log('Data => ', data);
-  }, []);
+  useEffect(() => {
+    if (removedNode) {
+      if (removedNode.string === data.label && removedNode.parent === data.parent) {
+        setClicked(false);
+        buttonRef.current.className = 'flowButton';
+      }
+    }
+  }, [removedNode, data.label, data.parent]);
+
+  const handleClick = (data) => {
+    setClicked(prevClicked => !prevClicked);
+    if (!clicked) {
+      dispatch(add({
+        string: data.label, 
+        parent: data.parent
+      }));
+      setClicked(true);
+    } else {
+      dispatch(remove({
+        string: data.label,
+        parent: data.parent
+      }))
+    }
+  }
 
   return (
     <div>
       <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
       <div>
-        <button type="button" name="button" onClick={clickHandler(data)} style={{width: '300px', height: '50px'}} className="nodrag">{data.label}</button>
+        <button 
+        ref={buttonRef}
+        type="button" 
+        id={`${data.parent}.${data.label}`} 
+        name="button" 
+        onClick={() => handleClick(data)} 
+        style={{width: '300px', height: '50px'}} 
+        className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
+          {data.label}
+        </button>
       </div>
       <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
     </div>
   );
 };
-// const clickHandler = () => {
-  //when field is clicked, we want the name of it to appear in the query 
-//}
+
 export default customNode;

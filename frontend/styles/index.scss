@@ -35,6 +35,7 @@ body {
   font-weight: 400;
   font-style: normal;
   height: 100%;
+  margin: 0px 50px;
 }
  h1, h2, h3, h4 {
   font-family: $header-font;
@@ -69,10 +70,8 @@ body {
 .container {
   padding: 50px;
   background: $white;
-  display: flex;
-  justify-content: center;
   padding: 50px;
-  margin: 0px 50px;
+  margin: auto;
   border-radius: 18px;
   color: $primary-blue;
 }
@@ -227,11 +226,11 @@ nav {
 .landing-gradient {
   position: absolute;
   width: 30%;
-  height: 80px;
-  bottom: 304px;
+  height: 90px;
+  bottom: 355px;
   right: 28%;
-  border-radius: 120px 20px;
-  box-shadow:rgb(131 0 253 / 46%) 294px 475px 188px;
+    border-radius: 120px 20px;
+  box-shadow: #c6abff 294px 475px 188px;
   z-index: 0;
 }
 
@@ -243,18 +242,28 @@ form {
   justify-content: center;
   padding: 20px;
   border-radius: 18px;
+  min-width: 600px;
+  max-width: 800px;
+  margin: auto;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   color: $dark-blue;
   input, label {
     margin: 0px 20px;
   }
+
+input {
+    border: none;
+    box-shadow: rgb(0 0 0 / 8%) 3px 3px 6px 0px inset,
+      rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    padding: 10px;
+    background: #F8F9FF;
+  }
   h3 {
     text-align: center;
   }
   .button {
-    margin: auto;
-    margin-top: 20px;
+    margin: 25px auto;
     padding: 10px 20px;
     width: 200px;
   }
@@ -262,14 +271,6 @@ form {
 
 label {
   padding: 15px 0px 5px 10px;
-}
-
-input {
-  border: none;
-  box-shadow: rgb(0 0 0 / 8%) 3px 3px 6px 0px inset,
-    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-  padding: 10px;
-  background: #F8F9FF;
 }
 
 // .center-link {
@@ -286,24 +287,60 @@ input {
 .db-query-container {
   background: $primary-purple;
   border-radius: 18px;
+  width: -webkit-fill-available;
   color: white;
   padding: 10px 30px 30px 30px;
+  margin: auto;
   section {
     background: white;
     color: black;
     padding: 10px;
-    text-align: center;
     img {
       float: right;
       width: 15px;
+    }
+    input {
+      text-align: center;
+      font-family: $font;
+      box-shadow: none;
+      background: transparent;
+      padding: 0px;
+      margin: 0px;
+      font-size: 16px;
+    }
+    form {
+      display: flex;
+      flex-direction: row;
+      box-shadow: none;
+      flex-wrap: wrap;
+    }
+    select {
+      width: 20px;
+      border: none;
+      background: $primary-blue;
+      color: white;
+      border-radius: 0px 8px 8px 8px;
+      font-size: 18px;
+      margin: 5px;
+      text-align: center;
+      text-decoration: none;
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
     }
   }
 }
 
 //reactflow custom styling
 .react-flow {
-  background: #fafafa;
-  border: 1px solid #d8d8d8;
+  // background: #fafafa;
+  background-image:
+      radial-gradient(rgb(217, 215, 215) 5%, transparent 0%);
+    background-position: 24px 24px;
+    background-size: 50px 50px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(217, 215, 215);
+    margin-top: 50px;
 }
 
 .custom-node {
@@ -319,8 +356,39 @@ input {
 }
 
 .react-flow__node {
-  background: white;
-  border-bottom: 1px solid black;
-  // box-shadow: $box-shadow;
+  background:#fafafa;
 }
 
+.flowButton {
+  background: none;
+  font-family: $font;
+  border: none;
+}
+
+.clicked {
+  background: #556aff2e;
+}
+
+.db-query-container button {
+  font-family: $font;
+  margin: 2px;
+  border: none;
+  padding: 5px;
+}
+
+[id^="undefined"] {
+  text-transform: uppercase;
+  background: none;
+  font-size: 18px;
+  text-align: center;
+  padding: none;
+  margin-left: 10px;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #dadada;
+}
+
+
+
+.clause-dropdown {
+  color: red;
+}
