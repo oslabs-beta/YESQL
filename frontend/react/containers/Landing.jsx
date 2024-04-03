@@ -24,7 +24,8 @@ const Landing = () => {
             <br/>Visualize records, columns, and table segments to 
             <br/>craft finely tuned queries for optimal performance. </h3>
             {/*link tag points to /formpage */}
-        <Link className="button" to='/formpage'>Connect to Database</Link>
+        <Link className="button" to='/formpage'>Connect to local Database</Link>
+        <Link className='button' to='/hostedFormPage'>Connect to hosted Database</Link>
       </div>
       </div>
     </div>
