@@ -26,6 +26,7 @@ const customNode = ({data, isConnectable}) => {
       dispatch(add({
         string: data.label, 
         parent: data.parent,
+        hasComma: false,
         foreignConnections: data.foreignKeyTables
       }));
       setClicked(true);

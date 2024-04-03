@@ -71,8 +71,10 @@ const DBQuery = () => {
             <br/>
             <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>     
           </>
+          ) : node.hasComma ? (
+            <button onClick={() => handleClick({ string: node.string, parent: node.parent })} id={node.parent} value={node.string} key={indexNum++}>{node.string},</button> 
           ) : (
-          <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>     
+            <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>     
       )}
       </React.Fragment>
     )

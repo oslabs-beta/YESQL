@@ -19,10 +19,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = { 
   query: [{
     string: "SELECT",
-    parent: "clause"
+    parent: "clause" ,
+    hasComma: false
   }],
   removedNode: {},
   numOfClauses: 1,
+  numOfColumns: 0,
 }
 
 const querySlice = createSlice({
@@ -35,8 +37,10 @@ const querySlice = createSlice({
     //    we need to use the slice method in order to insert the new object before the FROM clause. 
     // 2. We are using the fromIncluded in order to know whether we should be adding the FROM clause. 
     //    If the FROM clause is already included in the query, we don't need to add it again. 
-
+//
     add(state, action) {
+      let length = state.query.length;
+      console.log(length, ' <--- length in add reducer')
       let indexOfFrom;
       let fromIncluded = false;
       let connections = action.payload.foreignConnections;
@@ -46,29 +50,41 @@ const querySlice = createSlice({
           indexOfFrom = index;
         }
       });
+      console.log(indexOfFrom, ' <--- indexOfFrom in add reducer')
       const isParentIncluded = state.query.some(el => el.string === action.payload.parent);
       const isConnection = state.query.some(el => connections ? connections.includes(el.string) : false);
       if (action.payload.parent && !isParentIncluded) {
         if (fromIncluded && !isConnection) alert('Tables do not have a connection!');
       };
       if (fromIncluded && action.payload.parent !== 'clause' && action.payload.parent) {
-        if (isConnection || isParentIncluded) state.query.splice(indexOfFrom, 0, action.payload) 
+        if (isConnection || isParentIncluded) {
+          state.query.splice(indexOfFrom, 0, action.payload)
+          state.numOfColumns++;
+          console.log(state.numOfColumns, '<--- numOfColumns')
+        } 
       } else {
-        console.log('Payload => ', action.payload);
+        // console.log('Payload => ', action.payload);
         state.query.push(action.payload);
+        state.numOfColumns++;
+        console.log(state.numOfColumns, '<--- numOfColumns')
       };
       if (!fromIncluded && state.query.length > 0) {
         state.query.push({ string: 'FROM', parent: 'clause' });
         state.numOfClauses++;
         state.query.push({ string: action.payload.parent, parent: action.payload.parent });
       };
+      if (length > 2 && indexOfFrom < length - 1 && state.numOfColumns > 1) {
+        for (let i = 1; i < indexOfFrom; i++) {
+            if (!state.query[i].string.includes(',')) state.query[i].string += ',';
+        }
+      }
       if (isConnection && !isParentIncluded) state.query.splice(indexOfFrom + 3, 0, { string: action.payload.parent, parent: action.payload.parent });
     },
     // In the remove reducer, we are filtering out the object that we receive through the payload. 
     remove(state, action) {
       state.removedNode = action.payload;
       state.query = state.query.filter((node) => 
-        !(node.string === action.payload.string 
+        !(node.string === action.payload.string
         && node.parent === action.payload.parent
       ));
     },
@@ -101,8 +117,6 @@ const querySlice = createSlice({
     // and reassign the inputVisible to false, which will hide the input.
     removeInput(state, action) {
       state.query[state.query.length - 2].inputVisible = false;
-    },
-    removeClause(state, action) {
     }
   },
 })
