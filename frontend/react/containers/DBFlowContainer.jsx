@@ -12,8 +12,7 @@ const DBFlowContainer = () => {
   const [postConnect, { data, error, isLoading, isSuccess }] = useConnectMutation({
     fixedCacheKey: 'databaseSchema',
   });
-  console.log('Data =>', data);
-  
+// conditional rendering:
   if (isLoading) {
     return <div>Loading...</div>
   }
@@ -23,20 +22,19 @@ const DBFlowContainer = () => {
 
   if (isSuccess && data) {
     return (     
-       
         <div>
-        {/* {data.isLoading ? (
-          <>Loading...</> */}
-        {/* ) : isSuccess ? ( // if query is status: success, render components, pass data on props down to DBFlow */}
-        <div className="chart-page-container">
+        {isLoading ? (
+          <>Loading...</>
+          // ({*/ if query is status: success, render components, pass data on props down to DBFlow /*} /
+          ): isSuccess ? (
+          <div className="chart-page-container">
             <DBQuery/>
+            {/* //pass down data (from post) on props:*/}
             <DBFlow data={data} />
-            {/* <DBFlow dbSchema={data}/> */}
-        </div>
-        {/* ) : null } */}
+          </div>
+        ) : null };
       </div>
     )
   }
 }
-
 export default DBFlowContainer;
