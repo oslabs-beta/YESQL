@@ -2,20 +2,25 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useConnectMutation } from '../../apiSlice';
 
-const DBForm = () => {
+const DBForm = (props) => {
     const navigate = useNavigate();
     const [postConnect, {isLoading, isError}] = useConnectMutation({
       fixedCacheKey: 'databaseSchema',
     });
+    console.log(props)
 
   const handleSubmit = async (event) => {
       event.preventDefault();
+      console.log(event.target.elements)
       // capture user's input credentials in an object to send in post request to connect to user's db:
-      const formData = {
-        user: event.target.elements.user.value,
-        host: event.target.elements.host.value,
-        database: event.target.elements.database.value,
-        port: event.target.elements.port.value,
+      const formData = {}
+      if (props.location === 'hosted') {
+        formData.uri= event.target.elements.uri.value
+      } else {
+          formData.user= event.target.elements.user.value;
+          formData.host= event.target.elements.host.value;
+          formData.database= event.target.elements.database.value;
+          formData.port= event.target.elements.port.value;
       }
       try {
         //sending user credentials in a post request; 
@@ -28,7 +33,15 @@ const DBForm = () => {
       }
     }
     return ( 
-        <form onSubmit={handleSubmit}> 
+      props.location === 'hosted' ?
+        <form onSubmit={handleSubmit}>
+          <h3>Connect to Database</h3>
+          <label htmlFor="uri">Connection URI</label> 
+          <input type="text" name="uri" id="uri"></input>
+          <button type="submit" className="button" value="submit">Submit</button>
+        {isError && <div>Error submitting form</div>}
+        </form>
+         : <form onSubmit={handleSubmit}> 
           <h3>Connect to Database</h3>
           <label htmlFor="user">User</label> 
           <input type="text" name="user" id="user"></input>
