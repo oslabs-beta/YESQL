@@ -36,7 +36,7 @@ const DBFlow = ({data}) => {
   nodeHelper();
   //define the type we set in our initialNodes:
   const nodeTypes = useMemo(() => ({ 
-    customNode: customNode
+    custom: customNode
     }), []
   );
   
