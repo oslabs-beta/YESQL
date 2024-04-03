@@ -23,13 +23,13 @@ module.exports = {
     open: true,
     hot: true,
     proxy: [{
-        context: ['/connect'],
+        context: ['/connect', '/', '/chart'],
         target: 'http://localhost:3000',
       }],
-    // static: {
-    //   directory: path.resolve(__dirname, 'build'),
-    //   publicPath: '/',
-    // },
+    static: {
+      directory: path.resolve(__dirname, 'build'),
+      publicPath: '/',
+    },
   },
   module: {
     rules: [

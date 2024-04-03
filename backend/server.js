@@ -13,8 +13,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 app.use(cors());
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../frontend/index.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../build/index.html')));
 
+app.get('/chart', (req, res) => res.redirect('/'))
+app.get('/formpage', (req, res) => res.redirect('/'))
+// app.get('/chart', (req, res) => res.sendFile(path.join(__dirname, '../build/index.html')));
 // route for connecting to user's local db:
 app.post('/connect', 
     databaseController.connect, 
