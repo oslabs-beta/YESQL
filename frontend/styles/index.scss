@@ -2,9 +2,11 @@
 $font: "Comfortaa",
 sans-serif;
 $primary-blue: #556AFF;
+$primary-blue-pale: #5569ff7b;
 // $primary-blue: #ff00f2;
 $dark-blue: #0b002d;
 $primary-purple: #7300ff;
+$primary-purple-pale: #7300ff6f;
 // $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
 
 $gray: #fafafa;
@@ -25,6 +27,14 @@ $h6-size: 14px;
 $h6-weight: 100;
 $p-size: 12px;
 $p-weight: 100;
+
+// media queries
+$small-screen: 576px;
+$medium-screen: 768px;
+$large-screen: 1400px;
+$extra-large-screen: 1400px;
+
+
 
 // basic styling 
 body {
@@ -109,6 +119,11 @@ nav {
     grid-template-rows: 1fr;
     align-items: center;
     text-align: center;
+    @media (max-width: $large-screen) {
+        display: flex;
+        justify-content: center;
+        padding: 50px;
+    }
 }
 .landing-page {
   margin: 50px 0px;
@@ -133,7 +148,7 @@ nav {
     color: $dark-blue;
     padding: 25px;
     letter-spacing: 0.04em;
-    width: 700px;
+    // width: 700px;
     position: relative;
     z-index: 2;
     span {
@@ -212,6 +227,9 @@ nav {
        grid-area: four;
        //background: linear-gradient(90deg, rgba(160, 78, 252, 0.7) 0%, rgba(112, 82, 254, 0.7) 100%);
      }
+     @media (max-width: $large-screen) {
+      display: none;
+     }
 }
 
 .line {
@@ -223,15 +241,24 @@ nav {
   width: 100%;
 }
 
-.landing-gradient {
-  position: absolute;
-  width: 30%;
-  height: 90px;
-  bottom: 355px;
-  right: 28%;
-    border-radius: 120px 20px;
-  box-shadow: #c6abff 294px 475px 188px;
-  z-index: 0;
+
+
+.landing-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .button {
+    &:hover {
+      background: $primary-blue-pale;
+    }
+  }
+  .button-2 {
+    background: $primary-purple;
+    background: $primary-purple;
+    &:hover {
+      background: $primary-purple-pale;
+    }
+  }
 }
 
 
@@ -242,7 +269,6 @@ form {
   justify-content: center;
   padding: 20px;
   border-radius: 18px;
-  min-width: 600px;
   max-width: 800px;
   margin: auto;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
