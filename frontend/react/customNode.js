@@ -13,7 +13,11 @@ const customNode = ({data, isConnectable}) => {
 
   useEffect(() => {
     if (removedNode) {
-      if (removedNode.string === data.label && removedNode.parent === data.parent) {
+      let nodeString = removedNode.string;
+      if (typeof nodeString === 'string' && nodeString.endsWith(',')) {
+        nodeString = nodeString.slice(0, -1);
+      }
+      if (nodeString === data.label && removedNode.parent === data.parent) {
         setClicked(false);
         buttonRef.current.className = 'flowButton';
       }

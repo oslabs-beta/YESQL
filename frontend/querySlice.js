@@ -39,7 +39,7 @@ const querySlice = createSlice({
     //    If the FROM clause is already included in the query, we don't need to add it again. 
 //
     add(state, action) {
-      let length = state.query.length;
+      const length = state.query.length;
       console.log(length, ' <--- length in add reducer')
       let indexOfFrom;
       let fromIncluded = false;
@@ -82,21 +82,26 @@ const querySlice = createSlice({
     },
     // In the remove reducer, we are filtering out the object that we receive through the payload. 
     remove(state, action) {
+      // console.log(action.payload);
+      // if (typeof action.payload.string === 'string' && action.payload.string.endsWith(',')) {
+      //   action.payload.string = action.payload.string.slice(0, -1);
+      // }
+      let hasComma;
       state.removedNode = action.payload;
-      state.query = state.query.filter((node) => {
-        console.log(action.payload, 'action.payload')
-        console.log(node.string, ' <-- node.string before if')
-        // console.log(node.parent, '<-- node.parent before if')
-      let checkedString = node.string;
-      if (checkedString.includes(',')) {
-        checkedString = checkedString.slice(0, -1)
-        // console.log(checkedString, ' <-- checkedString inside if condition')
-        // console.log(node.string, ' <-- node.string inside if condition')
-        // console.log(node.parent, ' <-- node.parent inside if condition')
+      state.query = state.query.filter((node, index) => {
+        if (typeof node.string === 'string' && node.string.endsWith(',')) {
+          hasComma = node.string.slice(0, -1)
+        }
+        return !(node.string === action.payload.string || hasComma === action.payload.string && node.parent === action.payload.parent)
+      })
+      let indexOfFrom;
+      for (let i = 0; i < state.query.length; i++) {
+        if (state.query[i].string === 'FROM' && i > 1) {
+          state.query[i - 1].string = state.query[i - 1].string.slice(0, -1);
+        }
       }
-      return !(checkedString === action.payload.string && node.parent === action.payload.parent)
-      }
-    )},
+  
+    },
     // We are adding a clause through the addClause reducer. We want to make 
     // sure that the added clause isn't an '=' or an '*'. 
     // If the clause that's being adding is an '='-sign, 
