@@ -83,11 +83,20 @@ const querySlice = createSlice({
     // In the remove reducer, we are filtering out the object that we receive through the payload. 
     remove(state, action) {
       state.removedNode = action.payload;
-      state.query = state.query.filter((node) => 
-        !(node.string === action.payload.string
-        && node.parent === action.payload.parent
-      ));
-    },
+      state.query = state.query.filter((node) => {
+        console.log(action.payload, 'action.payload')
+        console.log(node.string, ' <-- node.string before if')
+        // console.log(node.parent, '<-- node.parent before if')
+      let checkedString = node.string;
+      if (checkedString.includes(',')) {
+        checkedString = checkedString.slice(0, -1)
+        // console.log(checkedString, ' <-- checkedString inside if condition')
+        // console.log(node.string, ' <-- node.string inside if condition')
+        // console.log(node.parent, ' <-- node.parent inside if condition')
+      }
+      return !(checkedString === action.payload.string && node.parent === action.payload.parent)
+      }
+    )},
     // We are adding a clause through the addClause reducer. We want to make 
     // sure that the added clause isn't an '=' or an '*'. 
     // If the clause that's being adding is an '='-sign, 
