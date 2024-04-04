@@ -6,8 +6,8 @@ databaseController.connect = async (req, res, next) => {
     try {
         //server receives the body from the client, and sends a fetch request to the db
         //console.log('Request Body => ', req.body)
-        const { user, host, database, port } = req.body;
-        await db.connectDb(user, host, database, port);
+        const { user, host, database, port, uri } = req.body;
+        uri ? await db.connectDb(uri) : await db.connectDb(user, host, database, port);
         return next();
     } catch (error) {
         console.log(error);

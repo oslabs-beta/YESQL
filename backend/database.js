@@ -7,14 +7,20 @@ const { Pool } = require("pg");
 
 let pool;
 
-const connectDb = async (PGUSER, PGHOST, PGDATABASE, PGPORT) => {
+const connectDb = async (...credentials) => {
     try {
-        pool = new Pool({
-            user: PGUSER,
-            host: PGHOST,
-            database: PGDATABASE,
-            port: PGPORT,
-        }); 
+        if (credentials.length === 1) {
+            pool = new Pool({
+                connectionString: credentials[0]
+            });
+        } else {
+            pool = new Pool({
+                user: credentials[0],
+                host: credentials[1],
+                database: credentials[2],
+                port: credentials[3],
+            }); 
+        }
         // connect to the database 
         await pool.connect(); 
         //execute a query
