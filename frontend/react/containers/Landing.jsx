@@ -15,17 +15,18 @@ const Landing = () => {
         <LandingPageText/> 
       </div>
       <div>
-          <div className="landing-gradient"></div>
-          <div className="landing-gradient-2"></div>
           <h3><span>
             In a world where time is currency,
             <br />optimize SQL queries effortlessly with Yesql.
           </span>
             <br/>Visualize records, columns, and table segments to 
-            <br/>craft finely tuned queries for optimal performance. </h3>
+            <br/>craft finely tuned queries for optimal performance. 
+          </h3>
             {/*link tag points to /formpage */}
-        <Link className="button" to='/formpage'>Connect to local Database</Link>
-        <Link className='button' to='/hostedFormPage'>Connect to hosted Database</Link>
+          <div className="landing-button-container">
+            <Link className="button" to='/formpage'>Connect to local Database</Link>
+            <Link className='button button-2' to='/hostedFormPage'>Connect to hosted Database</Link>
+          </div>
       </div>
       </div>
     </div>
