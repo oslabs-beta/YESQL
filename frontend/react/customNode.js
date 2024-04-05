@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Handle, Position } from "reactflow";
-import { add, remove } from '../querySlice';
+import { addColumn, removeColumn } from '../querySlice';
 
 
 
 const customNode = ({data, isConnectable}) => {
   const removedNode = useSelector((state) => state.queryReducer.removedNode);
+  const tableConnected = useSelector((state) => state.queryReducer.tableConnected);
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
   const buttonRef = useRef(null);
@@ -25,20 +26,21 @@ const customNode = ({data, isConnectable}) => {
   }, [removedNode, data.label, data.parent]);
 
   const handleClick = (data) => {
-    setClicked(prevClicked => !prevClicked);
+    setClicked((prevClicked) => !prevClicked);
     if (!clicked) {
-      dispatch(add({
-        string: data.label, 
+      dispatch(addColumn({
+        string: data.label,
         parent: data.parent,
+        isColumn: true,
         hasComma: false,
-        foreignConnections: data.foreignKeyTables
+        foreignConnections: data.foreignKeyTables,
       }));
       setClicked(true);
     } else {
-      dispatch(remove({
+      dispatch(removeColumn({
         string: data.label,
-        parent: data.parent
-      }))
+        parent: data.parent,
+      }));
     }
   }
 
