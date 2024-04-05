@@ -74,7 +74,7 @@ const querySlice = createSlice({
         state.numOfClauses++;
         state.query.push({ string: action.payload.parent, parent: action.payload.parent });
       };
-      if (length > 2 && indexOfFrom < length - 1 && state.numOfColumns === 2) {
+      if (length > 2 && indexOfFrom < length - 1 && state.numOfClauses === 2) {
         for (let i = 1; i < indexOfFrom; i++) {
             if (!state.query[i].string.includes(',')) state.query[i].string += ',';
         }
@@ -83,23 +83,31 @@ const querySlice = createSlice({
     },
     // In the remove reducer, we are filtering out the object that we receive through the payload. 
     remove(state, action) {
-      let stringWithComma;
+      let hasComma;
       state.removedNode = action.payload;
       state.query = state.query.filter((node) => {
         if (typeof node.string === 'string' && node.string.endsWith(',') && node.string === action.payload.string) {
-          stringWithComma = node.string.slice(0, -1)
+          hasComma = node.string.slice(0, -1)
         }
-        return !(node.string === action.payload.string || stringWithComma === action.payload.string && node.parent === action.payload.parent)
+        return !(node.string === action.payload.string || hasComma === action.payload.string && node.parent === action.payload.parent)
       });
+      if (state.numOfColumns > 1) {
+        state.numOfColumns--;
+      }
+
       const includesFrom = state.query.some(item => item.string === 'FROM');
       if (includesFrom && state.query.length < 4 && state.query.length > 2) {
         state.query = state.query.slice(0, -2);
+        
+        state.numOfClauses--;
       }
+
       for (let i = 0; i < state.query.length; i++) {
-        if (state.query[i].string === 'FROM' && i > 1 && state.query[i].string.endsWith(',')) {
+        if (state.query[i].string === 'FROM' && i > 1 && state.query[i - 1].string.endsWith(',')) {
           state.query[i - 1].string = state.query[i - 1].string.slice(0, -1);
         }
       }
+  
     },
     // We are adding a clause through the addClause reducer. We want to make 
     // sure that the added clause isn't an '=' or an '*'. 
