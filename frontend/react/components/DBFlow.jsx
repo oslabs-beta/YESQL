@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge } from 'reactflow';
-import ReactModal from 'react-modal';
+
  
 import customNode from '../customNode.js';
 import 'reactflow/dist/style.css';
@@ -52,15 +52,17 @@ const DBFlow = ({data}) => {
     [setEdges],
   );
 
+  //useState function  for the modal being open:
   const [modalIsOpen, setIsOpen] = useState(false);
-
+// function to open the modal
   const openModal = () => {
     setIsOpen(true);
   }
    
   return (
     <div className="db-flow-wrapper"style={{ width: '100%', height: '900px' }}>
-      <button className='button' onClick={openModal}>Test Modal</button>
+      {/* button to open modal: */}
+      <button className='button' onClick={openModal}>join</button>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -69,14 +71,6 @@ const DBFlow = ({data}) => {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
       />
-      <ReactModal
-        isOpen={modalIsOpen}
-        shouldCloseOnEsc={true}
-        >
-        <div>
-          <DBForm />
-        </div>
-      </ReactModal>
     </div>
   );
 }
