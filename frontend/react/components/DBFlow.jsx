@@ -1,8 +1,11 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge } from 'reactflow';
+import ReactModal from 'react-modal';
  
 import customNode from '../customNode.js';
 import 'reactflow/dist/style.css';
+import FormPage from '../containers/FormPage.jsx';
+import DBForm from './DBForm.jsx';
  
 // const nodeTypes = {custom: customNode};
 const DBFlow = ({data}) => {
@@ -48,9 +51,16 @@ const DBFlow = ({data}) => {
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
   );
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  }
    
   return (
     <div className="db-flow-wrapper"style={{ width: '100%', height: '900px' }}>
+      <button className='button' onClick={openModal}>Test Modal</button>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -59,6 +69,14 @@ const DBFlow = ({data}) => {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
       />
+      <ReactModal
+        isOpen={modalIsOpen}
+        shouldCloseOnEsc={true}
+        >
+        <div>
+          <DBForm />
+        </div>
+      </ReactModal>
     </div>
   );
 }
