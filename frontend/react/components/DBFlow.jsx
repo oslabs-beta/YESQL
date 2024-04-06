@@ -52,17 +52,10 @@ const DBFlow = ({data}) => {
     [setEdges],
   );
 
-  //useState function  for the modal being open:
-  const [modalIsOpen, setIsOpen] = useState(false);
-// function to open the modal
-  const openModal = () => {
-    setIsOpen(true);
-  }
    
   return (
     <div className="db-flow-wrapper"style={{ width: '100%', height: '900px' }}>
-      {/* button to open modal: */}
-      <button className='button' onClick={openModal}>join</button>
+     
       <ReactFlow
         nodes={nodes}
         edges={edges}
