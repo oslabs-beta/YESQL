@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addClauseOrCondition, removeInput } from '../../querySlice'
+import { addClauseOrCondition, removeInputWindow } from '../../querySlice'
 
 
 // We're utilizing the ClauseDropdown for selecting the variation of clauses available to build our Query. 

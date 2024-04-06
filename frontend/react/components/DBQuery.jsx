@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import copyIcon from '../../assets/copy_icon.png';
-import { removeColumn, addColumnOrCondition, removeClauseOrCondition, addInput, removeInput } from '../../querySlice';
+import { removeColumn, addColumnOrCondition, removeClauseOrCondition, addInput, removeInputWindow, removeValue } from '../../querySlice';
 import ClauseDropdown from './ClauseDropdown';
 
 const DBQuery = () => {
@@ -20,7 +20,9 @@ const DBQuery = () => {
       if (element.parent === 'clause' ||
           element.parent === 'condition' ||
           element.parent === 'input') {
-        dispatch(removeClauseOrCondition({string: element.string, index: element.index}));
+        dispatch(removeClauseOrCondition({string: element.string, parent: element.parent, index: element.index}));
+      } else if (element.parent === 'value') {
+        dispatch(removeValue({string: element.string, parent: element.parent, index: element.index}))
       } else {
         dispatch(removeColumn({string: element.string, parent: element.parent}));
       }
@@ -34,10 +36,10 @@ const DBQuery = () => {
   // I (Nina) think that we should potentially change the name of for all pieces
   // of the query to 'type' and name each clause as having the type 'clause'
   const handleInput = (event) => {
-    dispatch(addInput({ string: event, parent: 'input'}));
-    // removeInput is another function inside of querySlice that will remove the input 
+    dispatch(addInput({ string: event, parent: 'value'}));
+    // removeInputWindow is another function inside of querySlice that will remove the input 
     // field if the clause that was added is an '=' sign. 
-    dispatch(removeInput());
+    dispatch(removeInputWindow());
   }
 
   // this function handles the copy of the query when you click on the copy button 

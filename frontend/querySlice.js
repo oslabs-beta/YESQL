@@ -32,13 +32,6 @@ const querySlice = createSlice({
   name: 'query',
   initialState,
   reducers: {
-    // 1. indexOfFrom: This variable is being used in order for us to find
-    //    where the index of from is in our query array. This way we can select wether
-    //    whatever we are adding should be pushed to the end of the array, or if
-    //    we need to use the slice method in order to insert the new object before the FROM clause.
-    // 2. We are using the fromIncluded in order to know whether we should be adding the FROM clause.
-    //    If the FROM clause is already included in the query, we don't need to add it again.
-    //
     addColumn(state, action) {
       const array = state.query;
       const [isColumn] = state.query;
@@ -54,28 +47,32 @@ const querySlice = createSlice({
       const indexOfFrom = state.query.findIndex((node) => {
         return node.string === 'FROM';
       });
-      // if numOfClauses > 2, push column to end of array.
+
+      if (state.numOfClauses > 1 && indexOfFrom !== -1) {
+        for (let i = 1; i < indexOfFrom; i++) {
+          if (!state.query[i].string.endsWith(',')) {
+            state.query[i].string += ',';
+          }
+        }
+      }
+
       if (state.numOfClauses > 2) {
         array.push(column);
       }
-      // if nothing has been pushed to the array yet (if length is one), and action.payload.isColumn is true,
-      // push the node, with from, and the parent.
+
       if (array.length === 1 && isColumn) {
-        state.numOfClauses += 1;
+        state.numOfClauses++;
         array.push(
             column,
             {string: 'FROM', parent: 'clause'},
             {string: column.parent, parent: column.parent},
         );
       }
-      // if pushing another node (with the same parent as (isParentIncluded),
-      // use the array.splice method to insert
+
       if (isParentIncluded && isColumn && state.numOfClauses === 2) {
         array.splice(indexOfFrom, 0, column);
       }
 
-      // if user is trying to select column from a table that is not already included
-      // check if there is a connection, if not, return alert
       if (!isParentIncluded && queryLength > 1) {
         if (!isConnection) {
           alert('this table has no connections!');
@@ -84,25 +81,25 @@ const querySlice = createSlice({
         }
       }
     },
-    // In the remove reducer, we are filtering out the object that we receive through the payload.
     removeColumn(state, action) {
-      let hasComma;
       state.removedNode = action.payload;
-      if (state.removedNode.parent === 'clause' || state.query.length > 1 && state.numOfClauses >= 2) state.numOfClauses--;
+      if (!action.payload.string.endsWith(',')) {
+        state.query = state.query.filter((node) => {
+          return (action.payload.string !== node.string.slice(0, -1));
+        });
+      }
       state.query = state.query.filter((node) => {
-        if (typeof node.string === 'string' && node.string.endsWith(',') && node.string === action.payload.string) {
-          hasComma = node.string.slice(0, -1);
-        }
-        return !(node.string === action.payload.string || hasComma === action.payload.string && node.parent === action.payload.parent);
+        return (action.payload.string !== node.string);
       });
+
       if (state.numOfColumns > 1) {
         state.numOfColumns--;
       }
 
       const includesFrom = state.query.some((item) => item.string === 'FROM');
       if (includesFrom && state.query.length < 4 && state.query.length > 2) {
-        state.query = state.query.slice(0, -2);
         if (state.query.length > 1 && state.numOfClauses >= 2) state.numOfClauses--;
+        state.query = state.query.slice(0, -2);
       }
 
       for (let i = 0; i < state.query.length; i++) {
@@ -128,20 +125,26 @@ const querySlice = createSlice({
       }
     },
     removeClauseOrCondition(state, action) {
-      const beforeFilter = state.query.length;
+      state.removedNode = action.payload;
       state.query = state.query.filter((node, index) => {
         return !(
           node.string === action.payload.string &&
            index === action.payload.index
         );
       });
-      if (state.query.length > 1) state.numOfClauses--;
+      if (state.numOfClauses > 1 && action.payload.parent !== 'value') state.numOfClauses--;
     },
     addInput(state, action) {
       state.query.push(action.payload);
     },
-    removeInput(state, action) {
+    removeInputWindow(state) {
       state.query[state.query.length - 2].inputVisible = false;
+    },
+    removeValue(state, action) {
+      state.removedNode = action.payload;
+      state.query = state.query.filter((node, index) => {
+        return !(node.string === action.payload.string && node.parent === action.payload.parent);
+      });
     },
   },
 });
@@ -152,7 +155,8 @@ export const {
   addClauseOrCondition,
   removeClauseOrCondition,
   addInput,
-  removeInput,
+  removeInputWindow,
+  removeValue,
 } = querySlice.actions;
 export default querySlice.reducer;
 
