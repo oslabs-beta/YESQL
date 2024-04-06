@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { Handle, Position } from "reactflow";
-import { addColumn, removeColumn } from '../querySlice';
-
+import React, {useState, useEffect, useRef} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Handle, Position} from 'reactflow';
+import {addColumn, removeColumn} from '../querySlice';
 
 
 const customNode = ({data, isConnectable}) => {
   const removedNode = useSelector((state) => state.queryReducer.removedNode);
-  const tableConnected = useSelector((state) => state.queryReducer.tableConnected);
+  const queryLength = useSelector((state) => state.queryReducer.query.length);
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
   const buttonRef = useRef(null);
@@ -25,37 +24,40 @@ const customNode = ({data, isConnectable}) => {
     }
   }, [removedNode, data.label, data.parent]);
 
-  const handleClick = (data) => {
+  const handleClick = async (data) => {
+    const currLengthOfQuery = queryLength;
     setClicked((prevClicked) => !prevClicked);
     if (!clicked) {
-      dispatch(addColumn({
+       dispatch(addColumn({
         string: data.label,
         parent: data.parent,
         isColumn: true,
         hasComma: false,
         foreignConnections: data.foreignKeyTables,
       }));
-      setClicked(true);
+      if (currLengthOfQuery > queryLength) {
+        setClicked(true);
+      };
     } else {
       dispatch(removeColumn({
         string: data.label,
         parent: data.parent,
       }));
     }
-  }
+  };
 
   return (
     <div>
       <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
       <div>
-        <button 
-        ref={buttonRef}
-        type="button" 
-        id={`${data.parent}.${data.label}`} 
-        name="button" 
-        onClick={() => handleClick(data)} 
-        style={{width: '300px', height: '50px'}} 
-        className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
+        <button
+          ref={buttonRef}
+          type="button"
+          id={`${data.parent}.${data.label}`}
+          name="button"
+          onClick={() => handleClick(data)}
+          style={{width: '300px', height: '50px'}}
+          className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
           {data.label}
         </button>
       </div>
