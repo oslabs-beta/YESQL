@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import copyIcon from '../../assets/copy_icon.png';
-import { remove, add, removeInput } from '../../querySlice';
+import { removeColumn, addColumnOrCondition, removeClauseOrCondition, addInput, removeInputWindow, removeValue } from '../../querySlice';
 import ClauseDropdown from './ClauseDropdown';
 
 const DBQuery = () => {
@@ -17,7 +17,15 @@ const DBQuery = () => {
     // Here we are making sure that the initial SELECT clause can't be 
     // deleted from the query
     if (element.string !== 'SELECT') {
-      dispatch(remove({string: element.string, parent: element.parent}));
+      if (element.parent === 'clause' ||
+          element.parent === 'condition' ||
+          element.parent === 'input') {
+        dispatch(removeClauseOrCondition({string: element.string, parent: element.parent, index: element.index}));
+      } else if (element.parent === 'value') {
+        dispatch(removeValue({string: element.string, parent: element.parent, index: element.index}))
+      } else {
+        dispatch(removeColumn({string: element.string, parent: element.parent}));
+      }
     }
   }
 
@@ -28,10 +36,10 @@ const DBQuery = () => {
   // I (Nina) think that we should potentially change the name of for all pieces
   // of the query to 'type' and name each clause as having the type 'clause'
   const handleInput = (event) => {
-    dispatch(add({ string: event, parent: '' }));
-    // removeInput is another function inside of querySlice that will remove the input 
+    dispatch(addInput({ string: event, parent: 'value'}));
+    // removeInputWindow is another function inside of querySlice that will remove the input 
     // field if the clause that was added is an '=' sign. 
-    dispatch(removeInput());
+    dispatch(removeInputWindow());
   }
 
   // this function handles the copy of the query when you click on the copy button 
@@ -58,21 +66,23 @@ const DBQuery = () => {
   // will add the clause on the next row, which makes the query easier to read. 
   // If none of these conditions are truthy, we're adding just the button. 
   
-  const queryInputs = store.query.map((node) => {
+  const queryInputs = store.query.map((node, index) => {
     return (
       <React.Fragment key={indexNum++}>
         { node.string === '=' && node.inputVisible ? (
           <>
-            <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>
+            <button onClick={() => handleClick({string: node.string, parent: node.parent, index: index})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>
             <input type='text' onKeyDown={(e) => {if (e.key === 'Enter') handleInput(e.target.value)}}/>
           </>
           ) : node.parent === 'clause' && node.string !== 'SELECT' ? (
           <>
             <br/>
-            <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>     
+            <button onClick={() => handleClick({string: node.string, parent: node.parent, index: index})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>     
           </>
+          ) : node.hasComma ? (
+            <button onClick={() => handleClick({ string: node.string, parent: node.parent, index: index})} id={node.parent} value={node.string} key={indexNum++}>{node.string},</button> 
           ) : (
-          <button onClick={() => handleClick({string: node.string, parent: node.parent})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>     
+            <button onClick={() => handleClick({string: node.string, parent: node.parent, index: index})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>     
       )}
       </React.Fragment>
     )
