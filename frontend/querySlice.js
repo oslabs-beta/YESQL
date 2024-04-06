@@ -1,21 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-
-// Inside our store we have:
-// 1. query: This is where all pieces of the query field is being stored.
-//    We use it to display buttons and we access the parent property
-//    in order to see which table or what type this specific part is of the query.
-//    It can be a clause, an empty string, a condition, or the table name of the column.
-//    There is still more work to do on the type of parent each object should have.
-// 2. removedNode: We use this state in order to store the node that we'd like to
-//    remove from the query. Then we access removedNode in the customNode in order
-//    to change the class of that specific button in the tables to remove the purple
-//    background from the button/column.
-// 3. numOfClauses: This is only used for the display of the query. We've updated it
-//    so that each time we add a clause, we jump onto the next line in the query field.
-//    This makes it much easier to read instead of having an enormous string in one line.
-//    We DON'T want this to happen for our first clause, select, which is why we are tracking
-//    the number of clauses so that we can add a <br/> tag when the clauses are more than 2.
 const initialState = {
   query: [{
     string: 'SELECT',
@@ -77,7 +61,11 @@ const querySlice = createSlice({
         if (!isConnection) {
           alert('this table has no connections!');
         } else {
-          state.query.push(action.payload);
+          state.query.splice(indexOfFrom, 0, action.payload);
+          state.query.splice(indexOfFrom + 3, 0, {
+            string: action.payload.parent,
+            parent: action.payload.parent,
+          });
         }
       }
     },
@@ -97,6 +85,7 @@ const querySlice = createSlice({
       }
 
       const includesFrom = state.query.some((item) => item.string === 'FROM');
+
       if (includesFrom && state.query.length < 4 && state.query.length > 2) {
         if (state.query.length > 1 && state.numOfClauses >= 2) state.numOfClauses--;
         state.query = state.query.slice(0, -2);
