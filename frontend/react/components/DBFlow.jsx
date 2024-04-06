@@ -1,8 +1,11 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge } from 'reactflow';
+
  
 import customNode from '../customNode.js';
 import 'reactflow/dist/style.css';
+import FormPage from '../containers/FormPage.jsx';
+import DBForm from './DBForm.jsx';
  
 // const nodeTypes = {custom: customNode};
 const DBFlow = ({data}) => {
@@ -48,9 +51,11 @@ const DBFlow = ({data}) => {
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
   );
+
    
   return (
     <div className="db-flow-wrapper"style={{ width: '100%', height: '900px' }}>
+     
       <ReactFlow
         nodes={nodes}
         edges={edges}
