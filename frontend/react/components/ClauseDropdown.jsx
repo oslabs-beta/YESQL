@@ -7,37 +7,76 @@ import { addClauseOrCondition, removeInputWindow } from '../../querySlice'
 // There are additional clauses we'd need to add.  
 const ClauseDropdown = () => {
   const dispatch = useDispatch();
+  const [showOptions, setShowOptions] = useState(false);
 
+  const toggleOptions = () => {
+    setShowClauses(!showOptions);
+  }
   // The handleChange function is being invoked once we select a clause in the dropdown
   const handleChange = (event) => {
     // dispatching our addClauseOrCondition action to the querySlice.js
     dispatch(addClauseOrCondition(event.target.value));
   }
 
+
+  const toggleSubMenu = (e) => {
+    e.stopPropagation();
+    let submenu = e.target.querySelector('ul');
+    if (!submenu) return;
+    if (submenu.style.display === 'none' || !submenu.style.display){
+      submenu.style.display = 'block';
+    } else {
+      submenu.style.display = 'none';
+    }
+  }
+
+  const renderSubMenu = (subMenu) => {
+    return (
+      <ul className="submenu"> 
+        {subMenu.map((subItem, index) => (
+          <li key={index} onClick={toggleSubMenu}>
+            {subItem.label}
+            {subItem.submenu && renderSubMenu(subItem.submenu)}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  const menuData = [
+    {
+      label: 'Menu 1'
+    },
+    {
+      label: 'Menu 2',
+      submenu: [
+        { label: 'subMenu 1',
+          submenu: [{label: 'subMenu 4'}, {label: 'subMenu 5'}]
+        },
+        { label: 'subMenu 2' },
+        { label: 'subMenu 3' },
+      ]
+    },
+    {
+      label: 'Menu 3'
+    },
+    {
+      label: 'Menu 4'
+    },
+  ]
+
   return (
-    <>
-      <select value='+' onChange={handleChange}>
-        <option disabled hidden>
-          +
-        </option>  
-        <option value="*">ALL</option>
-        <option value="AND">AND</option>
-        <option value="ANY">ANY</option>
-        <option value="=">EQUAL</option>
-        <option value="FROM">FROM</option>
-        <option value="GROUP BY">GROUP BY</option>
-        <option value="IS NOT NULL">IS NOT NULL</option>
-        <option value="IS NULL">IS NULL</option>
-        <option value="LIKE">LIKE</option>
-        <option value="LIMIT">LIMIT</option>
-        <option value="NOT">NOT</option>
-        <option value="OR">OR</option>
-        <option value="ORDER BY">ORDER BY</option>
-        <option value="DISTINCT">DISTINCT</option>
-        <option value="WHERE">WHERE</option>
-        <option value="<>">NOT EQUAL </option>
-      </select>
-    </>
+    // <>
+    //   <div id="queryBuilder" onChange={handleChange}> +
+    //     <ul>
+    //       {menuData.map((item, index) => (
+    //         <li key={index} onClick={toggleSubMenu}>
+    //           {item.label}
+    //           {item.submenu && renderSubMenu(item.submenu)}
+    //         </li>
+    //       ))}
+    //     </ul>
+    //   </div>
+    // </>
   )
 }
 

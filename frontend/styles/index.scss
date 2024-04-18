@@ -318,9 +318,9 @@ label {
   padding: 10px 30px 30px 30px;
   margin: auto;
   section {
-    background: white;
+    background: $white;
     color: black;
-    padding: 10px;
+    display: flex;
     img {
       float: right;
       width: 15px;
@@ -417,4 +417,27 @@ label {
 
 .clause-dropdown {
   color: red;
+}
+
+
+.submenu {
+  display: none;
+}
+
+ul {
+  cursor: pointer;
+}
+
+#queryBuilder {
+  background: $primary-blue;
+  height: 20px;
+  width: 20px;
+  border-radius: 0px 18px 18px 18px;
+  color: $white;
+  text-align: center;
+
+  ul {
+    list-style: none;
+    display: none;
+  }
 }

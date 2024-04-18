@@ -95,8 +95,8 @@ const DBQuery = () => {
         <img src={copyIcon} alt="copy query icon" onClick={handleCopyToClipboard} />
         <div>
           {queryInputs}
-          <ClauseDropdown className="clause-dropdown"/>
         </div>
+        <ClauseDropdown className="clause-dropdown" />
       </section>
     </div>
   );
