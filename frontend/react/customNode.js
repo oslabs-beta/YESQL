@@ -6,7 +6,7 @@ import {addColumn, removeColumn} from '../querySlice';
 
 const customNode = ({data, isConnectable}) => {
   const removedNode = useSelector((state) => state.queryReducer.removedNode);
-  const queryLength = useSelector((state) => state.queryReducer.query.length);
+  const query = useSelector((state) => state.queryReducer.query);
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
   const buttonRef = useRef(null);
@@ -25,9 +25,15 @@ const customNode = ({data, isConnectable}) => {
   }, [removedNode, data.label, data.parent]);
 
   const handleClick = async (data) => {
-    const currLengthOfQuery = queryLength;
+    const connections = data.foreignKeyTables;
+    const isConnection = query.some((el) => {
+      return connections ? connections.includes(el.string) : false;
+    });
+    const isParentIncluded = query.some((node) => {
+      return node.string === data.parent;
+    });
     setClicked((prevClicked) => !prevClicked);
-    if (!clicked) {
+    if (!clicked && (isParentIncluded || isConnection || query.length === 1)) {
        dispatch(addColumn({
         string: data.label,
         parent: data.parent,
@@ -35,9 +41,6 @@ const customNode = ({data, isConnectable}) => {
         hasComma: false,
         foreignConnections: data.foreignKeyTables,
       }));
-      if (currLengthOfQuery > queryLength) {
-        setClicked(true);
-      };
     } else {
       dispatch(removeColumn({
         string: data.label,
