@@ -18,21 +18,11 @@ databaseController.connect = async (req, res, next) => {
 databaseController.query = async (req, res, next) => {
   // Query from server to db to get tables and column names:
   try {
-    // console.time('Query');
-    // const tables = await db.query(`SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE'`);
-    // const outputObject = {};
-    // for (let i = 0; i < tables.rows.length; i++) {
-    //   outputObject.tableName = tables[i];
-    //   const outputArray = [];
-    //   const query = `SELECT column_name FROM information_schema.columns WHERE table_name = '${tables.rows[i].table_name}'`;
-    //   const columns = await db.query(query);
-    //   for (let j = 0; j < columns.rows.length; j++) {
-    //     outputArray.push(columns.rows[j].column_name);
-    //   };
-    //   outputObject[tables.rows[i].table_name] = {columns: outputArray};
-    // };
-    // console.timeEnd('Query');
-      const tablesAndColumns = await db.query(`SELECT t.table_name, c.column_name FROM information_schema.tables t FULL OUTER JOIN information_schema.columns c ON c.table_name = t.table_name WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE'`);
+      const tablesAndColumns = await db.query(`SELECT t.table_name, c.column_name 
+      FROM information_schema.tables t 
+      FULL OUTER JOIN information_schema.columns c 
+      ON c.table_name = t.table_name 
+      WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE'`);
       const outputObject = {};
       for (let i = 0; i < tablesAndColumns.rows.length; i++) {
         if (!outputObject[tablesAndColumns.rows[i].table_name]) outputObject[tablesAndColumns.rows[i].table_name] = {columns: []};
