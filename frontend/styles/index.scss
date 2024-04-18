@@ -320,7 +320,7 @@ label {
   section {
     background: $white;
     color: black;
-    display: flex;
+    padding: 20px;
     img {
       float: right;
       width: 15px;
@@ -428,16 +428,44 @@ ul {
   cursor: pointer;
 }
 
-#queryBuilder {
+.queryBuilder {
   background: $primary-blue;
   height: 20px;
   width: 20px;
-  border-radius: 0px 18px 18px 18px;
+  border-radius: 0px 8px 8px 8px;
   color: $white;
   text-align: center;
+  position: relative;
 
   ul {
     list-style: none;
     display: none;
+    color: black;
+    background: rgb(255, 255, 255);
+    z-index: 2;
+    position: relative;
+    padding-left: 0px;
+    min-width: 200px;
+    text-align: left;
+    font-size: 12px;
+    li {
+      padding: 5px 0px;
+      font-size: 14px;
+    }
   }
 }
+
+.top10 {
+  color: blue;
+  font-size: 12px !important;
+}
+
+.dropdownIcon {
+  float: right;
+  height: 0.7em;
+}
+
+.dropdownIconExpanded {
+  rotate: 180deg;
+}
+
