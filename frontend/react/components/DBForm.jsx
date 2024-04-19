@@ -17,14 +17,9 @@ const DBForm = (props) => {
     if (props.location === 'hosted') {
       formData.uri= event.target.elements.uri.value;
     } else {
-      // formData.user= event.target.elements.user.value;
-      // formData.host= event.target.elements.host.value;
-      // formData.database= event.target.elements.database.value;
-      // formData.port= event.target.elements.port.value;
-      formData.user = 'ninaskyttmo';
-      formData.host = 'localhost';
-      formData.database = 'ninaskyttmo';
-      formData.port = 5433;
+      formData.user= event.target.elements.user.value;
+      formData.host= event.target.elements.host.value;
+      formData.database= event.target.elements.database.value;
     }
     try {
       // sending user credentials in a post request;
