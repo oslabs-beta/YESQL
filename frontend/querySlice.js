@@ -163,6 +163,8 @@ export const {
   addInput,
   removeInputWindow,
   removeValue,
-  openModal
+  openModal,
+  currentParent,
+  addedParent
 } = querySlice.actions;
 export default querySlice.reducer;
