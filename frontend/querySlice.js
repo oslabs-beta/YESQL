@@ -10,6 +10,9 @@ const initialState = {
   numOfClauses: 1,
   numOfColumns: 0,
   tableConnected: false,
+  isModalOpen: false,
+  currentParent: '',
+  addedParent: ''
 };
 
 const querySlice = createSlice({
@@ -59,6 +62,7 @@ const querySlice = createSlice({
 
       if (!isParentIncluded && queryLength > 1) {
         if (!isConnection) {
+          //this is what we want to hijack for our modal
           alert('this table has no connections!');
         } else {
           state.query.splice(indexOfFrom, 0, action.payload);
@@ -135,6 +139,19 @@ const querySlice = createSlice({
         return !(node.string === action.payload.string && node.parent === action.payload.parent);
       });
     },
+    openModal(state, action) {
+      //redefining indexOfFrom
+      const indexOfFrom = state.query.findIndex((node) => {
+        return node.string === 'FROM';
+      });
+      //this is the table that is in the query already
+      state.currentParent = state.query[indexOfFrom + 1].string;
+      //updating value of addedParent to the parent value of the clicked node (aka the table of the clicked column)
+      state.addedParent = action.payload.parent; 
+      console.log('have we reached the dispatch???')
+      //reassigning isModalOpen property to true so that the subscriber in DBFlowContainer can see that state has changed so it can open the modal
+      state.isModalOpen = true
+    }
   },
 });
 
@@ -146,5 +163,6 @@ export const {
   addInput,
   removeInputWindow,
   removeValue,
+  openModal
 } = querySlice.actions;
 export default querySlice.reducer;
