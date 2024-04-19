@@ -20,6 +20,7 @@ const DBForm = (props) => {
       formData.user= event.target.elements.user.value;
       formData.host= event.target.elements.host.value;
       formData.database= event.target.elements.database.value;
+      formData.port= event.target.elements.port.value;
     }
     try {
       // sending user credentials in a post request;

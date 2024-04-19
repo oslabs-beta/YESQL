@@ -7,6 +7,9 @@ import { redirect } from "react-router-dom";
 import DBForm from "../components/DBForm";
 import { useSelector, useDispatch } from 'react-redux';
 import { useConnectMutation } from '../../apiSlice.js';
+import JoinModal from "../components/JoinModal.jsx";
+import { Overlay } from "react-bootstrap";
+import { Position } from "reactflow";
 
 const DBFlowContainer = () => {
     // const count = useSelector((state) => state.database.value);
@@ -31,8 +34,8 @@ const DBFlowContainer = () => {
     return (     
         <div className="chart-page-container">
           <DBQuery />
-          <ReactModal isOpen={modalIsOpen} shouldCloseOnEsc={true}>
-            <div>this is our join modal</div>
+          <ReactModal isOpen={modalIsOpen} shouldCloseOnEsc={true} className='overlay' >
+            <JoinModal />
           </ReactModal>
           <DBFlow data={data} />
         </div>

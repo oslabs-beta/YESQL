@@ -489,3 +489,25 @@ ul {
 .queryAndButton {
   display: inline-flex;
 }
+
+.modal {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+}
+
+.overlay {
+  position: absolute;
+      top: auto;
+      left: 25%;
+      right: 25%;
+      bottom: auto;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      overflow: auto;
+      // -webkit-overflow-scrolling: 'touch';
+      border-radius: 4px;
+      outline: none;
+      padding: 20px;
+      height: 50%;
+      width: 50%;
+}
