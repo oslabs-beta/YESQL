@@ -434,30 +434,44 @@ ul {
   width: 20px;
   border-radius: 0px 8px 8px 8px;
   color: $white;
+  margin: auto;
   text-align: center;
   position: relative;
+  cursor: pointer;
+  margin: 5px;
 
   ul {
     list-style: none;
     display: none;
     color: black;
-    background: rgb(255, 255, 255);
+    background: #f1f0f0;
     z-index: 2;
     position: relative;
-    padding-left: 0px;
+    padding: 20px;
+    margin: 5px;
     min-width: 200px;
     text-align: left;
     font-size: 12px;
+    border-radius: 0px 18px 18px 18px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
     li {
+      transition: 0.1s ease-out;
       padding: 5px 0px;
       font-size: 14px;
+      cursor: pointer;
+      &:hover {
+        transition: 0.01s ease-in;
+        letter-spacing: 0.02em;
+        color: blue;
+      }
     }
   }
 }
 
 .top10 {
-  color: blue;
-  font-size: 12px !important;
+  // color: rgb(64, 0, 255);
+  font-size: 14px !important;
+  font-weight: bold;
 }
 
 .dropdownIcon {
@@ -466,6 +480,12 @@ ul {
 }
 
 .dropdownIconExpanded {
-  transform: rotate(180deg);
+  transition: 0.1s ease-out;
+  transform: rotate(-180deg);
+  float: right;
+  height: 0.7em;
 }
 
+.queryAndButton {
+  display: inline-flex;
+}
