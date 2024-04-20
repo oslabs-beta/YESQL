@@ -8,6 +8,7 @@ import DBForm from "../components/DBForm";
 import { useSelector, useDispatch } from 'react-redux';
 import { useConnectMutation } from '../../apiSlice.js';
 import JoinModal from "../components/JoinModal.jsx";
+import OnColumnsModal from "../components/OnColumnsModal.jsx";
 import { Overlay } from "react-bootstrap";
 import { Position } from "reactflow";
 
@@ -18,10 +19,15 @@ const DBFlowContainer = () => {
     //subscribing to state to check if state is updated (i.e. if openModal has been changed)
   const modalIsOpen = useSelector((state) => state.queryReducer.isModalOpen);
   console.log('have we made it past our openModal subscription??? It should be', modalIsOpen);
+  //subscribe to state to see which modal should render
+  const isOnColumnsModalOpen = useSelector((state) => state.queryReducer.isColumnModalOpen);
     // Using a query hook automatically fetches data and returns query values
   const [postConnect, { data, error, isLoading, isSuccess }] = useConnectMutation({
     fixedCacheKey: 'databaseSchema',
   });
+  const modalChoice = () => {
+      isOnColumnsModalOpen ? <OnColumnsModal />  : <JoinModal />;
+  };
 // conditional rendering:
   if (isLoading) {
     return <div>Loading...</div>
@@ -35,7 +41,8 @@ const DBFlowContainer = () => {
         <div className="chart-page-container">
           <DBQuery />
           <ReactModal isOpen={modalIsOpen} shouldCloseOnEsc={true} className='overlay' >
-            <JoinModal />
+            {isOnColumnsModalOpen && <OnColumnsModal />}
+            {!isOnColumnsModalOpen && <JoinModal />}
           </ReactModal>
           <DBFlow data={data} />
         </div>

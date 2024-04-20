@@ -12,7 +12,8 @@ const initialState = {
   tableConnected: false,
   isModalOpen: false,
   currentParent: '',
-  addedParent: ''
+  addedParent: '',
+  isColumnModalOpen: false,
 };
 
 const querySlice = createSlice({
@@ -151,6 +152,9 @@ const querySlice = createSlice({
       console.log('have we reached the dispatch???')
       //reassigning isModalOpen property to true so that the subscriber in DBFlowContainer can see that state has changed so it can open the modal
       state.isModalOpen = true
+    },
+    openColumnModal(state, action) {
+      state.isColumnModalOpen = true
     }
   },
 });
@@ -165,6 +169,7 @@ export const {
   removeValue,
   openModal,
   currentParent,
-  addedParent
+  addedParent,
+  openColumnModal
 } = querySlice.actions;
 export default querySlice.reducer;
