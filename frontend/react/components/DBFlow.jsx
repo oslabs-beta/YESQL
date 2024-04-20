@@ -16,12 +16,14 @@ const DBFlow = ({data}) => {
   // map table and column nodes:
   const nodeHelper = () => {
     let tableNum = 0;
+    const rowLength = Math.ceil(Math.sqrt(Object.keys(data).length))
+    let columnNum = 0
     //loop through data object, iterating on each key (table):
     for (const table in data) {
       //key name:
       const tableName = `${table}`;
       //populate array of nodes:
-      initialNodes.push({ id: tableName, type: 'custom', position: { x: (tableNum * 370), y: 0 }, data: { label: table }, style: {width: 320, height: (data[table].length * 70)} });
+      initialNodes.push({ id: tableName, type: 'custom', position: { x: (tableNum * 370), y: (columnNum * 500) }, data: { label: table }, style: {width: 320, height: (data[table].length * 70)} });
       //attach each child (column) node to the parent (table) node:
       for (let i = 0; i < data[table].columns.length; i++) {
         const column = data[table].columns[i];
@@ -32,7 +34,11 @@ const DBFlow = ({data}) => {
           initialEdges.push({ source: table, target: data[table].connections[i]});
         };
       };
-      tableNum += 1;
+      console.log('Row Length, Column Num => ', rowLength, columnNum)
+      if ((tableNum + 1) % rowLength === 0) {
+        columnNum++;
+        tableNum = 0;
+      } else tableNum += 1;
     };
   }
   
