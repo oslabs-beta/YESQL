@@ -67,7 +67,7 @@ const customNode = ({data, isConnectable}) => {
           id={`${data.parent}.${data.label}`}
           name="button"
           onClick={() => handleClick(data)}
-          style={{width: '300px', height: '50px'}}
+          style={{width: '200px', height: '50px'}}
           className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
           {data.label}
         </button>

@@ -5,6 +5,7 @@ $primary-blue: #556AFF;
 $primary-blue-pale: #5569ff7b;
 // $primary-blue: #ff00f2;
 $dark-blue: #0b002d;
+$table-blue: #9ca7f4;
 $primary-purple: #7300ff;
 $primary-purple-pale: #7300ff6f;
 // $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
@@ -381,14 +382,20 @@ label {
   }
 }
 
+.react-flow__handle {
+  display: none;
+}
+
 .react-flow__node {
-  background:#fafafa;
+  background: #fafafa;
 }
 
 .flowButton {
   background: none;
   font-family: $font;
   border: none;
+  text-align: left;
+  padding: 0px 10px;
 }
 
 .clicked {
@@ -403,13 +410,14 @@ label {
 }
 
 [id^="undefined"] {
-  text-transform: uppercase;
-  background: none;
+  font-weight: 800;
+  background: $table-blue;
   font-size: 18px;
   text-align: center;
   padding: none;
   margin-left: 10px;
   letter-spacing: 0.02em;
+  border-radius: 18px 18px 0px 0px;
   border-bottom: 2px solid #dadada;
 }
 
