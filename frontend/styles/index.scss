@@ -5,7 +5,7 @@ $primary-blue: #556AFF;
 $primary-blue-pale: #5569ff7b;
 // $primary-blue: #ff00f2;
 $dark-blue: #0b002d;
-$table-blue: #9ca7f4;
+$table-blue: #a3bdff;
 $primary-purple: #7300ff;
 $primary-purple-pale: #7300ff6f;
 // $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
@@ -76,6 +76,11 @@ body {
   margin: 10px 0px;
   font-family: $font;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  &:hover {
+    transition: 0.1s ease-in;
+    letter-spacing: 0.02em;
+    box-shadow: none;
+  }
 }
 
 .container {
@@ -248,17 +253,8 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  .button {
-    &:hover {
-      background: $primary-blue-pale;
-    }
-  }
   .button-2 {
-    background: $primary-purple;
-    background: $primary-purple;
-    &:hover {
-      background: $primary-purple-pale;
-    }
+    background-color: $primary-purple;
   }
 }
 
@@ -382,8 +378,21 @@ label {
   }
 }
 
-.react-flow__handle {
-  display: none;
+.react-flow__handle-top {
+   background: transparent;
+   border: none;
+}
+.react-flow__handle-bottom {
+   background: transparent;
+   border: none;
+}
+.react-flow__handle-left {
+   background: transparent;
+   border: none;
+}
+.react-flow__handle-right {
+  background: transparent;
+  border: none;
 }
 
 .react-flow__node {
