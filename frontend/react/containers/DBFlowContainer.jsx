@@ -25,9 +25,6 @@ const DBFlowContainer = () => {
   const [postConnect, { data, error, isLoading, isSuccess }] = useConnectMutation({
     fixedCacheKey: 'databaseSchema',
   });
-  const modalChoice = () => {
-      isOnColumnsModalOpen ? <OnColumnsModal />  : <JoinModal />;
-  };
 // conditional rendering:
   if (isLoading) {
     return <div>Loading...</div>
