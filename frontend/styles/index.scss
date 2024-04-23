@@ -2,12 +2,12 @@
 $font: "Comfortaa",
 sans-serif;
 $primary-blue: #556AFF;
-$primary-blue-pale: #5569ff7b;
+$primary-blue-pale: #5569ff;
 // $primary-blue: #ff00f2;
 $dark-blue: #0b002d;
 $table-blue: #a3bdff;
 $primary-purple: #7300ff;
-$primary-purple-pale: #7300ff6f;
+$primary-purple-pale: rgb(196, 148, 255);
 // $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
 
 $gray: #fafafa;
@@ -509,22 +509,67 @@ ul {
 
 .modal {
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-rows: repeat(5, auto);
+
+  .button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  p {
+    display: none;
+    text-align: center;
+  }
+
+  h3 {
+    font-family: $header-font;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  img {
+    float: right;
+    cursor: help;
+  }
 }
 
 .overlay {
   position: absolute;
-      top: auto;
-      left: 25%;
-      right: 25%;
-      bottom: auto;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      overflow: auto;
-      // -webkit-overflow-scrolling: 'touch';
-      border-radius: 4px;
-      outline: none;
-      padding: 20px;
-      height: 50%;
-      width: 50%;
+  top: 25%;
+  left: 25%;
+  right: 25%;
+  bottom: auto;
+  background-color: $primary-purple-pale;
+  overflow: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  // -webkit-overflow-scrolling: 'touch';
+  border-radius: 18px;
+  outline: none;
+  padding: 20px;
+  width: 50%;
 }
+
+
+.on-columns-modal {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  div {
+    h3 {
+      font-weight: 800;
+      background: #a3bdff;
+      font-size: 18px;
+      text-align: center;
+      padding: none;
+      margin-left: 10px;
+      letter-spacing: 0.02em;
+      border-radius: 18px 18px 0px 0px;
+      border-bottom: 2px solid #dadada;
+    }
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+}
+
