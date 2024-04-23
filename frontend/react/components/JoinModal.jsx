@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {openColumnModal} from '../../querySlice'
 
 const JoinModal = () => {
+    const dispatch = useDispatch();
     //give access to store 
     const currParent = useSelector((state) => state.queryReducer.currentParent);
     const addParent = useSelector((state) => state.queryReducer.addedParent);
@@ -17,13 +19,17 @@ const JoinModal = () => {
     const crossJoinText = `Cross Join combines each row from ${currParent} with each row from ${addParent} for all possible combinations. 
     WARNING: Can get very computationally expensive! Processing time can increase exponentially depending on size of tables!`;
 
+    const handleClick = (data) => {
+        dispatch(openColumnModal(data));
+    };
+
     return (
         <div className='modal'>
-            <input type="button" value="Inner Join"/>
-            <input type="button" value="Full Join"/>
-            <input type="button" value="Left Join"/>
-            <input type="button" value="Right Join"/>
-            <input type="button" value="Cross Join"/>
+            <input type="button" value="Inner Join" onClick={() => handleClick("Inner Join")}/>
+            <input type="button" value="Full Join" onClick={() => handleClick("Full Join")}/>
+            <input type="button" value="Left Join" onClick={() => handleClick("Left Join")}/>
+            <input type="button" value="Right Join" onClick={() => handleClick("Right Join")}/>
+            <input type="button" value="Cross Join" onClick={() => handleClick("Cross Join")}/>
             <p>{innerJoinText}</p>
             <p>{fullJoinText}</p>
             <p>{leftJoinText}</p>
