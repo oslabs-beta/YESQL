@@ -12,31 +12,38 @@ const OnColumnsModal = () => {
     const { currentParent, addedParent, selectedJoin } = useSelector((state) => state.queryReducer);
     const tableOne = useSelector((state) => state.api.mutations.databaseSchema.data[addedParent]);
     const tableTwo = useSelector((state) => state.api.mutations.databaseSchema.data[currentParent]);
-    console.log(tableOne.columns, '<-- tableOne')
-    console.log(tableTwo, '<-- tableTwo')
-    console.log(currentParent, '<-- currentParent')
-    console.log(addedParent, '<-- addParent')
-    console.log(selectedJoin, '<-- selectedJoin')
+    const [clicked, setClicked] = useState([]);
+    const handleClick = (data) => {
+        if (clicked.length === 0) {
+            setClicked.push(data);
+        } else {
+            setClicked(false);
+        }
+    }
+    
     return (
         <div className="on-columns-modal">
-            <div>
+            <h3>{`Select which columns you'd like to connect ${currentParent} and ${addedParent}`}</h3>
+            <div className="tableOne">
             <h3>{currentParent}</h3>
             { tableOne.columns.map((column, index) => (
                 <button
-                 className="flowButton"
+                className={`${clicked.includes(column) ? 'flowButton clicked' : 'flowButton'}`}
                  key={index}
+                 onClick={() => handleClick(column)}
                 >
                 {column}
                 </button>
             ))}
             </div>
             <h1>ON</h1>
-            <div>
+            <div className="tableTwo">
                 <h3>{addedParent}</h3>
                 {tableTwo.columns.map((column, index) => (
                     <button
-                        className="flowButton"
+                        className={`${clicked.includes(column) ? 'flowButton clicked' : 'flowButton'}`}
                         key={index}
+                        onClick={() => handleClick(column)}
                     >
                         {column}
                     </button>

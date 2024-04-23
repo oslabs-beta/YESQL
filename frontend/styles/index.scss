@@ -7,7 +7,7 @@ $primary-blue-pale: #5569ff;
 $dark-blue: #0b002d;
 $table-blue: #a3bdff;
 $primary-purple: #7300ff;
-$primary-purple-pale: rgb(196, 148, 255);
+$primary-purple-pale: #eedfff;
 // $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
 
 $gray: #fafafa;
@@ -30,10 +30,10 @@ $p-size: 12px;
 $p-weight: 100;
 
 // media queries
-$small-screen: 576px;
-$medium-screen: 768px;
-$large-screen: 1400px;
-$extra-large-screen: 1400px;
+$small-screen: 768px;
+$medium-screen: 1023px;
+$large-screen: 1200px;
+$extra-large-screen: 1600px;
 
 
 
@@ -310,7 +310,8 @@ label {
 .db-query-container {
   background: $primary-purple;
   border-radius: 18px;
-  width: -webkit-fill-available;
+  box-sizing: border-box;
+  width: 100%;
   color: white;
   padding: 10px 30px 30px 30px;
   margin: auto;
@@ -547,29 +548,68 @@ ul {
   border-radius: 18px;
   outline: none;
   padding: 20px;
-  width: 50%;
 }
 
 
 .on-columns-modal {
   display: grid;
   grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(2, auto);
+  justify-content: space-around;
+  justify-items: center;
+  grid-template-areas: 
+  "title title title"
+  "tableOne on tableTwo";
+  h3 {
+      grid-area: title;
+      text-align: center;
+    }
   div {
     h3 {
       font-weight: 800;
+      font-family: $font;
       background: #a3bdff;
-      font-size: 18px;
+      font-size: 16px;
       text-align: center;
-      padding: none;
-      margin-left: 10px;
+      padding: 10px;;
+      margin: 0px;
       letter-spacing: 0.02em;
       border-radius: 18px 18px 0px 0px;
-      border-bottom: 2px solid #dadada;
+      // border-bottom: 2px solid #dadada;
+    }
+    h1 {
+      grid-area: on;
+    }
+    button {
+      padding: 10px 10px;
+      &:hover {
+        background: #f4f4f4;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+      }
     }
     display: flex;
     flex-direction: column;
+    width: 200px;
+    background: #fafafa;
+    border-radius: 18px 18px 5px 5px;
+  }
+  .tableOne {
+    grid-area: tableOne;
+  }
+  .tableTwo {
+    grid-area: tableTwo;
+  }
+  @media (max-width: $large-screen) {
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "title"
+    "tableOne"
+    "on"
+    "tableTwo";
+    justify-items: center;
     
   }
-  
 }
 
