@@ -12,12 +12,15 @@ const OnColumnsModal = () => {
     const { currentParent, addedParent, selectedJoin } = useSelector((state) => state.queryReducer);
     const tableOne = useSelector((state) => state.api.mutations.databaseSchema.data[addedParent]);
     const tableTwo = useSelector((state) => state.api.mutations.databaseSchema.data[currentParent]);
-    const [clicked, setClicked] = useState([]);
-    const handleClick = (data) => {
-        if (clicked.length === 0) {
-            setClicked.push(data);
+    const [selectedColumns, setSelectedColumns] = useState([]);
+    const handleClick = (column) => {
+        const index = selectedColumns.indexOf(column);
+        if (index === -1) {
+            setSelectedColumns([...selectedColumns, column])
         } else {
-            setClicked(false);
+            const updatedColumns = [...selectedColumns];
+            updatedColumns.splice(index, 1);
+            setSelectedColumns(updatedColumns);
         }
     }
     
@@ -28,9 +31,9 @@ const OnColumnsModal = () => {
             <h3>{currentParent}</h3>
             { tableOne.columns.map((column, index) => (
                 <button
-                className={`${clicked.includes(column) ? 'flowButton clicked' : 'flowButton'}`}
+                    className={`${selectedColumns.includes(column) ? 'flowButton clicked' : 'flowButton'}`}
                  key={index}
-                 onClick={() => handleClick(column)}
+                 onClick={() => handleClick(column, currentParent)}
                 >
                 {column}
                 </button>
@@ -41,9 +44,9 @@ const OnColumnsModal = () => {
                 <h3>{addedParent}</h3>
                 {tableTwo.columns.map((column, index) => (
                     <button
-                        className={`${clicked.includes(column) ? 'flowButton clicked' : 'flowButton'}`}
+                        className={`${selectedColumns.includes(column) ? 'flowButton clicked' : 'flowButton'}`}
                         key={index}
-                        onClick={() => handleClick(column)}
+                        onClick={() => handleClick(column, addedParent)}
                     >
                         {column}
                     </button>
