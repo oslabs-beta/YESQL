@@ -10,6 +10,13 @@ const customNode = ({data, isConnectable}) => {
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
   const buttonRef = useRef(null);
+  let label;
+  if (data.label === data.primaryKey) label = `${data.label}    PK`;
+  else if (data.foreignKey && data.foreignKey.includes(data.label)) {
+    label = `${data.label}    FK`;
+  } else label = data.label;
+
+  console.log('Data and Label => ', data, label)
 
   useEffect(() => {
     if (removedNode) {
@@ -69,7 +76,7 @@ const customNode = ({data, isConnectable}) => {
           onClick={() => handleClick(data)}
           style={{width: '200px', height: '50px'}}
           className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
-          {data.label}
+          {label}
         </button>
       </div>
       <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
