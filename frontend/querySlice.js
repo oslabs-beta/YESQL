@@ -14,6 +14,7 @@ const initialState = {
   currentParent: '',
   addedParent: '',
   isColumnModalOpen: false,
+  selectedJoin: '',
 };
 
 const querySlice = createSlice({
@@ -154,7 +155,8 @@ const querySlice = createSlice({
       state.isModalOpen = true
     },
     openColumnModal(state, action) {
-      state.isColumnModalOpen = true
+      state.isColumnModalOpen = true;
+      state.selectedJoin = action.payload;
     }
   },
 });
