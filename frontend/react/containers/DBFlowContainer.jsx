@@ -34,6 +34,7 @@ const DBFlowContainer = () => {
   }
   // if query is status: success, render components, pass data on props down to DBFlow 
   if (isSuccess && data) {
+    console.log('Data => ', data)
     return (     
         <div className="chart-page-container">
           <DBQuery />
