@@ -132,6 +132,26 @@ const querySlice = createSlice({
     addInput(state, action) {
       state.query.push(action.payload);
     },
+    addJoin(state, action) {
+      const { currentParent, addedParent, selectedJoin, selectedColumnOne, selectedColumnTwo } = action.payload;
+      if (selectedJoin !== 'CROSS JOIN') {
+        state.query.push({
+          string: `${selectedJoin} ${addedParent} ON ${currentParent}.${selectedColumnOne} = ${addedParent}.${selectedColumnTwo}`,
+          parent: 'JOIN',
+        })
+      } else if (selectedJoin === 'CROSS JOIN') {
+        state.query.push({
+          string: `${selectedJoin} ${addedParent} ON ${currentParent}.${selectedColumnOne} = ${addedParent}.${selectedColumnTwo}`,
+          parent: 'JOIN',
+        })
+      }
+    },
+    //add this to query from the join: 
+        //INNER JOIN table2 ON table1.column = table2.column;
+        //FULL OUTER JOIN table2 ON table1.column_name = table2.column_name;
+        //LEFT JOIN table2 ON table1.column_name = table2.column_name;
+        //RIGHT JOIN table2 ON table1.column_name = table2.column_name;
+        //Cross join is kinda funky** SELECT Table1.FirstName, Table1.LastName, Table2.Department FROM Employees Table1 CROSS JOIN Departments Table2;
     removeInputWindow(state) {
       state.query[state.query.length - 2].inputVisible = false;
     },
@@ -167,6 +187,7 @@ export const {
   addClauseOrCondition,
   removeClauseOrCondition,
   addInput,
+  addJoin,
   removeInputWindow,
   removeValue,
   openModal,

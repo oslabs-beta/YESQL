@@ -1,27 +1,35 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { addJoin } from '../../querySlice';
 
-// get the addparent and currentparent from state with useSelector
-// iterate through these and display two tables with columns in modal
-// add ON with some info below
-// dispatch the selections with desired join to query
-
-//render table 1 and Table 2 in ERD with "on" between
 const OnColumnsModal = () => {
-
+    const dispatch = useDispatch();
     const { currentParent, addedParent, selectedJoin } = useSelector((state) => state.queryReducer);
     const tableOne = useSelector((state) => state.api.mutations.databaseSchema.data[addedParent]);
     const tableTwo = useSelector((state) => state.api.mutations.databaseSchema.data[currentParent]);
-    const [selectedColumns, setSelectedColumns] = useState([]);
-    const handleClick = (column) => {
-        const index = selectedColumns.indexOf(column);
-        if (index === -1) {
-            setSelectedColumns([...selectedColumns, column])
-        } else {
-            const updatedColumns = [...selectedColumns];
-            updatedColumns.splice(index, 1);
-            setSelectedColumns(updatedColumns);
+    const [selectedColumnOne, setSelectedColumnOne] = useState();
+    const [selectedColumnTwo, setSelectedColumnTwo] = useState();
+
+    const handleClick = (column, table) => {
+        if (table === currentParent) {
+            selectedColumnOne ? setSelectedColumnOne(null) : setSelectedColumnOne(column);
+        } else if (table === addedParent) {
+            selectedColumnTwo ? setSelectedColumnTwo(null) : setSelectedColumnTwo(column);
         }
+    }
+
+    const submitToQuery = () => {
+        const joinObj = {
+            currentParent, 
+            addedParent, 
+            selectedColumnOne, 
+            selectedColumnTwo, 
+            selectedJoin
+        }
+        dispatch(addJoin(joinObj));
+        console.log(selectedColumnOne, ' from ', currentParent, ' ON ', selectedColumnTwo, ' from ', addedParent, ' SELECTED JOIN --> ', selectedJoin );
+        // dispatch()
+        
     }
     
     return (
@@ -31,7 +39,7 @@ const OnColumnsModal = () => {
             <h3>{currentParent}</h3>
             { tableOne.columns.map((column, index) => (
                 <button
-                    className={`${selectedColumns.includes(column) ? 'flowButton clicked' : 'flowButton'}`}
+                 className={`${selectedColumnOne === column ? 'flowButton clicked' : 'flowButton'}`}
                  key={index}
                  onClick={() => handleClick(column, currentParent)}
                 >
@@ -44,7 +52,7 @@ const OnColumnsModal = () => {
                 <h3>{addedParent}</h3>
                 {tableTwo.columns.map((column, index) => (
                     <button
-                        className={`${selectedColumns.includes(column) ? 'flowButton clicked' : 'flowButton'}`}
+                        className={`${selectedColumnTwo === column ? 'flowButton clicked' : 'flowButton'}`}
                         key={index}
                         onClick={() => handleClick(column, addedParent)}
                     >
@@ -52,8 +60,12 @@ const OnColumnsModal = () => {
                     </button>
                 ))}
             </div>
-
-
+            <button
+                onClick={submitToQuery}
+                class="button"
+            >
+                Add to Query
+            </button>
         </div>
     );
 };

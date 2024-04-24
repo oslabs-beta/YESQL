@@ -8,7 +8,7 @@ $dark-blue: #0b002d;
 $table-blue: #a3bdff;
 $primary-purple: #7300ff;
 $primary-purple-pale: #eedfff;
-$modal-gradient: linear-gradient(323deg, #e5edf6 0%, #f3f5ff 100%);
+$modal-gradient: linear-gradient(323deg, rgba(219, 224, 255, 1) 0%, rgba(247, 248, 255, 1) 100%);
 // $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
 
 $gray: #fafafa;
@@ -255,7 +255,8 @@ nav {
   flex-direction: column;
   align-items: center;
   .button-2 {
-    background-color: $primary-purple;
+    background-color: $primary-blue;
+    color: #fff;
   }
 }
 
@@ -537,30 +538,33 @@ ul {
 }
 
 .overlay {
-  position: absolute;
-  top: 25%;
-  left: 25%;
-  right: 25%;
-  bottom: auto;
-  background-color: $modal-gradient;
-  overflow: auto;
+  margin: auto;
+  margin-top: 12%;
+  overflow: scroll;
+  height: 400px;
+  width: 600px;
+  background: $modal-gradient;
+  opacity: 1;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-  // -webkit-overflow-scrolling: 'touch';
   border-radius: 18px;
   outline: none;
-  padding: 20px;
+  padding: 50px;
 }
 
 
 .on-columns-modal {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(2, auto);
+  grid-template-rows: repeat(3, auto);
   justify-content: space-around;
   justify-items: center;
   grid-template-areas: 
   "title title title"
-  "tableOne on tableTwo";
+  "tableOne on tableTwo"
+  "buttonModal buttonModal buttonModal";
+  button {
+    grid-area: buttonModal;
+  }
   h3 {
       grid-area: title;
       text-align: center;
