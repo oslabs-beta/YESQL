@@ -11,10 +11,11 @@ const customNode = ({data, isConnectable}) => {
   const dispatch = useDispatch();
   const buttonRef = useRef(null);
   let label;
-  if (data.label === data.primaryKey) label = `${data.label}    PK`;
+  if (data.label === data.primaryKey) label = `${data.label} PK ${data.dataType}`;
   else if (data.foreignKey && data.foreignKey.includes(data.label)) {
-    label = `${data.label}    FK`;
-  } else label = data.label;
+    label = `${data.label} FK ${data.dataType}`;
+  } else if (data.dataType) label = `${data.label} ${data.dataType}`;
+  else label = data.label;
 
   console.log('Data and Label => ', data, label)
 
@@ -74,7 +75,7 @@ const customNode = ({data, isConnectable}) => {
           id={`${data.parent}.${data.label}`}
           name="button"
           onClick={() => handleClick(data)}
-          style={{width: '200px', height: '50px'}}
+          style={{width: '300px', height: '50px'}}
           className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
           {label}
         </button>
