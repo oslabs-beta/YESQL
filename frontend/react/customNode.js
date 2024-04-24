@@ -11,11 +11,8 @@ const customNode = ({data, isConnectable}) => {
   const dispatch = useDispatch();
   const buttonRef = useRef(null);
   let label;
-  if (data.label === data.primaryKey) label = `${data.label} PK ${data.dataType}`;
-  else if (data.foreignKey && data.foreignKey.includes(data.label)) {
-    label = `${data.label} FK ${data.dataType}`;
-  } else if (data.dataType) label = `${data.label} ${data.dataType}`;
-  else label = data.label;
+  if (data.label === data.primaryKey) label = `PK`;
+  else if (data.foreignKey && data.foreignKey.includes(data.label)) label = `FK`;
 
   console.log('Data and Label => ', data, label)
 
@@ -65,7 +62,7 @@ const customNode = ({data, isConnectable}) => {
 
   };
 
-  return (
+  if (!data.parent) return (
     <div>
       <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
       <div>
@@ -77,12 +74,39 @@ const customNode = ({data, isConnectable}) => {
           onClick={() => handleClick(data)}
           style={{width: '300px', height: '50px'}}
           className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
-          {label}
+          {data.label}
         </button>
       </div>
       <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
     </div>
-  );
+  ); else return (
+    <div>
+      <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
+      <div>
+        <button
+          ref={buttonRef}
+          type="button"
+          id={`${data.parent}.${data.label}`}
+          name="button"
+          onClick={() => handleClick(data)}
+          style={{width: '300px', height: '50px'}}
+          className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
+          <div className='nodeGrid'>
+            <span>
+              {data.label}
+            </span>
+            <span style={{textAlign: 'center'}}>
+              {label}
+            </span>
+            <span style={{textAlign: 'right'}}>
+              {data.dataType}
+            </span>
+          </div>
+        </button>
+      </div>
+      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
+    </div>
+  )
 };
 
 export default customNode;
