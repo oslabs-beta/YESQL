@@ -10,27 +10,25 @@ const OnColumnsModal = () => {
     const [selectedColumnOne, setSelectedColumnOne] = useState();
     const [selectedColumnTwo, setSelectedColumnTwo] = useState();
 
-    console.log(tableOne, 'tableOne!!!')
-    console.log(tableTwo, 'tableTwo!!!')
+
     const tableOneMap = [];
     Object.keys(tableOne.columns).forEach((el) => {
-        const obj = { column: el, type: tableOne.columns[el] === 'character varying' ? 'charvar' : tableOne.columns[el] }
+        const obj = { column: el, type: (tableOne.columns[el] === 'character varying' ? 'charvar' : tableOne.columns[el]) }
         if (tableOne.foreignKey.includes(el)) {
             obj.key = 'FK'
-        } else if (el === tableOne.primaryKey) {
+        }
+        if (el === tableOne.primaryKey) {
             obj.key = 'PK';
         }
         tableOneMap.push(obj)
     });
     const tableTwoMap = [];
     Object.keys(tableTwo.columns).forEach((el) => {
-        if (tableOne.columns[el] === 'character varying') {
-            tableOne.columns[el] = 'charvar'
-        }
-        const obj = { column: el, type: tableTwo.columns[el] === 'character varying' ? 'charvar' : tableTwo.columns[el] }
-        if (tableOne.foreignKey.includes(el)) {
+        const obj = { column: el, type: (tableTwo.columns[el] === 'character varying' ? 'charvar' : tableTwo.columns[el]) }
+        if (tableTwo.foreignKey.includes(el)) {
             obj.key = 'FK'
-        } else if (el === tableOne.primaryKey) {
+        } 
+        if (el === tableTwo.primaryKey) {
             obj.key = 'PK';
         }
         tableTwoMap.push(obj)

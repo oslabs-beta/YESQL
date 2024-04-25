@@ -33,7 +33,7 @@ const JoinModal = () => {
         },
         {
             type: 'CROSS JOIN',
-            innerText: `Cross Join combines each row from ${currParent} with each row from ${addParent} for all possible combinations. 
+            innerText: `Cross Join combines each row from ${currParent} with each row from ${addParent} for all possible combinations.
             WARNING: Can get very computationally expensive! Processing time can increase exponentially depending on size of tables!`
         }
     ]
@@ -56,9 +56,9 @@ const JoinModal = () => {
 
     return (
         <div className='modal'>
-            <h3>How would you like to join
-                <br />
-                these tables?</h3>
+            <h3>How would you like to join <br/>
+            {`${currParent} and ${addParent}?`}
+            </h3>
             {modalData.map((joinType, index) => (
                 <>
                     <button

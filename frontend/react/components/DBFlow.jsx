@@ -23,7 +23,7 @@ const DBFlow = ({data}) => {
       //key name:
       const tableName = `${table}`;
       //populate array of nodes:
-      initialNodes.push({ id: tableName, type: 'custom', position: { x: (tableNum * 370), y: (columnNum * 500) }, data: { label: table, foreignKeyTables: data[table].connections }, style: {width: 200, height: (data[table].length * 70)} });
+      initialNodes.push({ id: tableName, type: 'custom', position: { x: (tableNum * 370), y: (columnNum * 700) }, data: { label: table, foreignKeyTables: data[table].connections }, style: {width: 200, height: (data[table].length * 70)} });
       //attach each child (column) node to the parent (table) node:
       let i = 0;
       for (const column in data[table].columns) {
