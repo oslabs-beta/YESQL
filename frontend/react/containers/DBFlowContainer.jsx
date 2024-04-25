@@ -15,7 +15,10 @@ import { Position } from "reactflow";
 const DBFlowContainer = () => {
     // const count = useSelector((state) => state.database.value);
     // const dispatch = useDispatch();
-    
+  const [modalOpen, setOpen] = useState(false);
+  function closeModal() {
+    setOpen(false);
+  };
     //subscribing to state to check if state is updated (i.e. if openModal has been changed)
   const modalIsOpen = useSelector((state) => state.queryReducer.isModalOpen);
   console.log('have we made it past our openModal subscription??? It should be', modalIsOpen);
@@ -38,7 +41,7 @@ const DBFlowContainer = () => {
     return (     
         <div className="chart-page-container">
           <DBQuery />
-          <ReactModal isOpen={modalIsOpen} shouldCloseOnEsc={true} className='overlay' >
+        <ReactModal isOpen={modalIsOpen} shouldCloseOnEsc={true} className='overlay' onRequestClose={closeModal} >
             {isOnColumnsModalOpen && <OnColumnsModal />}
             {!isOnColumnsModalOpen && <JoinModal />}
           </ReactModal>

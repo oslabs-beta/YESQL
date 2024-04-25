@@ -93,12 +93,15 @@ const customNode = ({data, isConnectable}) => {
           className={`${clicked ? 'flowButton clicked' : 'flowButton'}`}>
           <div className='nodeGrid'>
             <span>
-              {data.label}
+              <span className="label">
+                {data.label}
+              </span>
+              {label && 
+              <span className="FKPK">
+                {`( ${label} )`}
+              </span>}
             </span>
-            <span style={{textAlign: 'center'}}>
-              {label}
-            </span>
-            <span style={{textAlign: 'right'}}>
+            <span className="dataType">
               {data.dataType}
             </span>
           </div>
