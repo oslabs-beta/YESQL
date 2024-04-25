@@ -10,6 +10,8 @@ const OnColumnsModal = () => {
     const [selectedColumnOne, setSelectedColumnOne] = useState();
     const [selectedColumnTwo, setSelectedColumnTwo] = useState();
 
+    console.log(tableOne, '<--- tableone in OnColumnsModal')
+
     const handleClick = (column, table) => {
         if (table === currentParent) {
             selectedColumnOne ? setSelectedColumnOne(null) : setSelectedColumnOne(column);
