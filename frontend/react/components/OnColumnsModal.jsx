@@ -4,13 +4,21 @@ import { addJoin } from '../../querySlice';
 
 const OnColumnsModal = () => {
     const dispatch = useDispatch();
-    const { currentParent, addedParent, selectedJoin } = useSelector((state) => state.queryReducer);
+    const { currentParent, addedParent, selectedJoin, isOpen } = useSelector((state) => state.queryReducer);
     const tableOne = useSelector((state) => state.api.mutations.databaseSchema.data[addedParent]);
     const tableTwo = useSelector((state) => state.api.mutations.databaseSchema.data[currentParent]);
     const [selectedColumnOne, setSelectedColumnOne] = useState();
     const [selectedColumnTwo, setSelectedColumnTwo] = useState();
 
-    console.log(tableOne, '<--- tableone in OnColumnsModal')
+    const tableOneMap = [];
+    Object.keys(tableOne.columns).forEach((el) => {
+        tableOneMap.push({column: el, type: tableOne.columns[el]})
+    });
+    const tableTwoMap = [];
+    Object.keys(tableTwo.columns).forEach((el) => {
+        tableTwoMap.push({ column: el, type: tableTwo.columns[el] })
+    });
+
 
     const handleClick = (column, table) => {
         if (table === currentParent) {
@@ -30,7 +38,6 @@ const OnColumnsModal = () => {
         }
         dispatch(addJoin(joinObj));
         console.log(selectedColumnOne, ' from ', currentParent, ' ON ', selectedColumnTwo, ' from ', addedParent, ' SELECTED JOIN --> ', selectedJoin );
-        // dispatch()
         
     }
     
@@ -39,26 +46,26 @@ const OnColumnsModal = () => {
             <h3>{`Select which columns you'd like to connect ${currentParent} and ${addedParent}`}</h3>
             <div className="tableOne">
             <h3>{currentParent}</h3>
-            { tableOne.columns.map((column, index) => (
+            { tableOneMap.map((column, index) => (
                 <button
-                 className={`${selectedColumnOne === column ? 'flowButton clicked' : 'flowButton'}`}
+                 className={`${selectedColumnOne === column.column ? 'flowButton clicked' : 'flowButton'}`}
                  key={index}
-                 onClick={() => handleClick(column, currentParent)}
+                 onClick={() => handleClick(column.column, currentParent)}
                 >
-                {column}
+                {column.column}  {column.type}
                 </button>
             ))}
             </div>
             <h1>ON</h1>
             <div className="tableTwo">
                 <h3>{addedParent}</h3>
-                {tableTwo.columns.map((column, index) => (
+                {tableTwoMap.map((column, index) => (
                     <button
-                        className={`${selectedColumnTwo === column ? 'flowButton clicked' : 'flowButton'}`}
+                        className={`${selectedColumnTwo === column.column ? 'flowButton clicked' : 'flowButton'}`}
                         key={index}
-                        onClick={() => handleClick(column, addedParent)}
+                        onClick={() => handleClick(column.column, addedParent)}
                     >
-                        {column}
+                        {column.column}  {column.type}
                     </button>
                 ))}
             </div>

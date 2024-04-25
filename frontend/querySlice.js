@@ -145,6 +145,7 @@ const querySlice = createSlice({
           parent: 'JOIN',
         })
       }
+      state.isModalOpen = false;
     },
     //add this to query from the join: 
         //INNER JOIN table2 ON table1.column = table2.column;
@@ -172,7 +173,7 @@ const querySlice = createSlice({
       state.addedParent = action.payload.parent; 
       console.log('have we reached the dispatch???')
       //reassigning isModalOpen property to true so that the subscriber in DBFlowContainer can see that state has changed so it can open the modal
-      state.isModalOpen = true
+      state.isModalOpen = true;
     },
     openColumnModal(state, action) {
       state.isColumnModalOpen = true;

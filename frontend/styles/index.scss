@@ -410,8 +410,6 @@ label {
   text-align: left;
   padding: 0px 10px;
   cursor: pointer;
-  border-right: 1px solid gray;
-  border-left: 1px solid gray;
   font-size: 16px;
 }
 
@@ -613,17 +611,6 @@ ul {
   }
   .tableTwo {
     grid-area: tableTwo;
-  }
-  @media (max-width: $large-screen) {
-    grid-template-rows: repeat(4, auto);
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    "title"
-    "tableOne"
-    "on"
-    "tableTwo";
-    justify-items: center;
-    
   }
 }
 
