@@ -6,11 +6,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormPage from './react/containers/FormPage.jsx';
 import HostedFormPage from './react/containers/HostedFormPage.jsx';
 const App = () => {
+  
   return ( 
     //wrap in browserRouter
     <BrowserRouter>   
     <Navbar/>
-      <div className="container">
+      <div>
         <Routes> 
           <Route
             //endPoint and element for ReactRouter:

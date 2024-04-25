@@ -62,8 +62,7 @@ const DBFlow = ({data}) => {
 
    
   return (
-    <div className="db-flow-wrapper"style={{ width: '100%', height: '900px' }}>
-     
+    <div className="db-flow-wrapper"style={{ width: '100%', height: '1000px' }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}

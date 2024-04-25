@@ -100,6 +100,7 @@ body {
   color: $primary-blue;
 }
 
+
 // navbar styling
 nav {
   margin: 25px 60px 0px 60px;
@@ -140,7 +141,9 @@ nav {
     }
 }
 .landing-page {
-  margin: 50px 0px;
+  background: white;
+  padding: 50px;
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   color: $primary-blue;
@@ -176,7 +179,7 @@ nav {
 
 .landing-page section {
   position: relative;
-  display: grid;
+  // display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: auto;
   grid-template-areas: 
@@ -187,7 +190,7 @@ nav {
   ;
   row-gap: 20px;
   column-gap: 10px;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.2;
   padding: 20px 50px;
   div {
@@ -262,6 +265,12 @@ nav {
 
 
 // form styling 
+
+.form-container {
+  background: white;
+  padding: 50px;
+  border-radius: 18px;
+}
 form {
   display: flex;
   flex-direction: column;
@@ -275,6 +284,7 @@ form {
   color: $dark-blue;
   input, label {
     margin: 0px 20px;
+    font-family: $font;
   }
 
 input {
@@ -312,8 +322,9 @@ label {
 
 .db-query-container {
   background: $primary-purple;
-  border-radius: 18px;
+  border-radius: 18px 18px 0px 0px;
   box-sizing: border-box;
+  border: 1px solid $primary-purple;
   width: 100%;
   color: white;
   padding: 10px 30px 30px 30px;
@@ -328,7 +339,6 @@ label {
     }
     input {
       text-align: center;
-      font-family: $font;
       box-shadow: none;
       background: transparent;
       padding: 0px;
@@ -355,19 +365,20 @@ label {
       -moz-appearance: none;
       -webkit-appearance: none;
     }
+    .button {
+      letter-spacing: 0.02em;;
+    }
   }
 }
 
 //reactflow custom styling
 .react-flow {
   // background: #fafafa;
-  background-image:
-      radial-gradient(rgb(217, 215, 215) 5%, transparent 0%);
-    background-position: 24px 24px;
-    background-size: 50px 50px;
+    background-image:
+    radial-gradient(#dadada 6%, transparent 0%);
+    background-position: 12px 12px;
+    background-size: 25px 25px;
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(217, 215, 215);
-    margin-top: 50px;
 }
 
 .custom-node {
@@ -414,7 +425,7 @@ label {
 }
 
 .clicked {
-  background: #556aff2e;
+  background: #efefef;
 }
 
 .db-query-container button {
@@ -433,7 +444,6 @@ label {
   margin-left: 10px;
   letter-spacing: 0.02em;
   border-radius: 18px 18px 0px 0px;
-  border-bottom: 2px solid #dadada;
 }
 
 
@@ -510,7 +520,7 @@ ul {
 }
 
 .queryAndButton {
-  display: inline-flex;
+  display: flex;
 }
 
 .modal {
@@ -548,14 +558,12 @@ ul {
   margin: auto;
   margin-top: 12%;
   overflow: auto;
-  height: 500px;
   width: 600px;
   background: $modal-gradient;
   opacity: 1;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
   border-radius: 18px;
   outline: none;
-  padding: 50px;
 }
 
 
@@ -569,8 +577,14 @@ ul {
   "title title title"
   "tableOne on tableTwo"
   "buttonModal buttonModal buttonModal";
+  padding: 20px;
   button {
+    font-size: 12px;
+  }
+  .button {
     grid-area: buttonModal;
+    padding: 10px 20px;
+    margin-top: 30px;
   }
   h3 {
       grid-area: title;
@@ -594,6 +608,8 @@ ul {
     }
     button {
       padding: 10px 10px;
+      display: flex;
+      justify-content: space-between;
       &:hover {
         // background: #f4f4f4;
         letter-spacing: 0.02em;
