@@ -9,6 +9,7 @@ const OnColumnsModal = () => {
     const tableTwo = useSelector((state) => state.api.mutations.databaseSchema.data[currentParent]);
     const [selectedColumnOne, setSelectedColumnOne] = useState();
     const [selectedColumnTwo, setSelectedColumnTwo] = useState();
+    console.log('Table One => ', tableOne)
 
     const handleClick = (column, table) => {
         if (table === currentParent) {

@@ -622,3 +622,8 @@ ul {
   display: grid;
   grid-template-columns: 2fr .5fr 2fr;
 }
+
+.border {
+  border-style: solid;
+  border-radius: 1em;
+}
