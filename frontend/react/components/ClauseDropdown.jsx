@@ -118,7 +118,7 @@ const ClauseDropdown = () => {
   return (
     <>
       <div className="queryBuilder" onClick={(e) => toggleSubMenu(e, '')} onChange={handleChange}>
-        +
+        Add +
         <ul className="nestedMenu">
           {menuData.map((item, index) => (
             <li

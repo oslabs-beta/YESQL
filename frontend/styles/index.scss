@@ -47,7 +47,7 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  height: 100%;
+  height: 100vh;
   margin: 0px 50px;
 }
  h1, h2, h3, h4 {
@@ -100,6 +100,7 @@ body {
   color: $primary-blue;
 }
 
+
 // navbar styling
 nav {
   margin: 25px 60px 0px 60px;
@@ -140,7 +141,9 @@ nav {
     }
 }
 .landing-page {
-  margin: 50px 0px;
+  background: white;
+  padding: 50px;
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   color: $primary-blue;
@@ -164,6 +167,7 @@ nav {
   }
   h3 {
     margin-bottom: 10px;
+    font-size: 21px;
   }
   p {
     font-size: $p-size;
@@ -176,7 +180,7 @@ nav {
 
 .landing-page section {
   position: relative;
-  display: grid;
+  // display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: auto;
   grid-template-areas: 
@@ -187,7 +191,7 @@ nav {
   ;
   row-gap: 20px;
   column-gap: 10px;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.2;
   padding: 20px 50px;
   div {
@@ -262,6 +266,13 @@ nav {
 
 
 // form styling 
+
+.form-container {
+  background: white;
+  padding: 50px;
+  border-radius: 18px;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -273,8 +284,10 @@ form {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   color: $dark-blue;
+  background: #fff;
   input, label {
     margin: 0px 20px;
+    font-family: $font;
   }
 
 input {
@@ -312,28 +325,34 @@ label {
 
 .db-query-container {
   background: $primary-purple;
-  border-radius: 18px;
+  border-radius: 18px 18px 0px 0px;
   box-sizing: border-box;
+  border: 1px solid $primary-purple;
   width: 100%;
   color: white;
   padding: 10px 30px 30px 30px;
   margin: auto;
+  p {
+    margin: 5px;
+  }
   section {
     background: $white;
     color: black;
-    padding: 20px;
+    padding: 10px;
     img {
       float: right;
       width: 15px;
     }
     input {
       text-align: center;
-      font-family: $font;
       box-shadow: none;
       background: transparent;
-      padding: 0px;
+      padding-top: 1px;
+      padding-bottom: 3px;
       margin: 0px;
+      font-family: $font;
       font-size: 16px;
+      border: 2px solid #dadada;
     }
     form {
       display: flex;
@@ -355,19 +374,20 @@ label {
       -moz-appearance: none;
       -webkit-appearance: none;
     }
+    .button {
+      letter-spacing: 0.02em;;
+    }
   }
 }
 
 //reactflow custom styling
 .react-flow {
   // background: #fafafa;
-  background-image:
-      radial-gradient(rgb(217, 215, 215) 5%, transparent 0%);
-    background-position: 24px 24px;
-    background-size: 50px 50px;
+    background-image:
+    radial-gradient(#dadada 6%, transparent 0%);
+    background-position: 12px 12px;
+    background-size: 25px 25px;
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(217, 215, 215);
-    margin-top: 50px;
 }
 
 .custom-node {
@@ -414,7 +434,7 @@ label {
 }
 
 .clicked {
-  background: #556aff2e;
+  background: #efefef;
 }
 
 .db-query-container button {
@@ -433,7 +453,6 @@ label {
   margin-left: 10px;
   letter-spacing: 0.02em;
   border-radius: 18px 18px 0px 0px;
-  border-bottom: 2px solid #dadada;
 }
 
 
@@ -453,15 +472,16 @@ ul {
 
 .queryBuilder {
   background: $primary-blue;
-  height: 20px;
-  width: 20px;
   border-radius: 0px 8px 8px 8px;
   color: $white;
-  margin: auto;
   text-align: center;
-  position: relative;
+  font-size: 12px;
+  height: 20px;
+  width: 50px;
+  margin-top: 3px;
+  margin-left: 2px;
+  padding-top: 5px;
   cursor: pointer;
-  margin: 5px;
 
   ul {
     list-style: none;
@@ -471,12 +491,25 @@ ul {
     z-index: 2;
     position: relative;
     padding: 20px;
-    margin: 5px;
     min-width: 200px;
     text-align: left;
     font-size: 12px;
     border-radius: 0px 18px 18px 18px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    ul {
+      box-shadow: none;
+      // background: #fff;
+      margin-top:5px;
+      margin: auto;
+      li {
+        text-align: left;
+        padding-left: 20px;
+        &:hover {
+          background: #dadada;
+
+        }
+      }
+    }
     li {
       transition: 0.1s ease-out;
       padding: 5px 0px;
@@ -510,12 +543,16 @@ ul {
 }
 
 .queryAndButton {
-  display: inline-flex;
+  
 }
 
 .modal {
   display: grid;
   grid-template-rows: repeat(5, auto);
+  padding-bottom: 30px;
+  p {
+    padding: 0px 20px;
+  }
 
   .button {
     padding: 10px 20px;
@@ -546,16 +583,14 @@ ul {
 
 .overlay {
   margin: auto;
-  margin-top: 12%;
+  margin-top: 8%;
   overflow: auto;
-  height: 500px;
   width: 600px;
   background: $modal-gradient;
   opacity: 1;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
   border-radius: 18px;
   outline: none;
-  padding: 50px;
 }
 
 
@@ -569,8 +604,15 @@ ul {
   "title title title"
   "tableOne on tableTwo"
   "buttonModal buttonModal buttonModal";
+  padding: 20px;
   button {
+    font-size: 12px;
+  }
+  .button {
     grid-area: buttonModal;
+    padding: 10px 20px;
+    margin-top: 30px;
+    
   }
   h3 {
       grid-area: title;
@@ -594,6 +636,8 @@ ul {
     }
     button {
       padding: 10px 10px;
+      display: flex;
+      justify-content: space-between;
       &:hover {
         // background: #f4f4f4;
         letter-spacing: 0.02em;
