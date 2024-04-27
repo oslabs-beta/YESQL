@@ -52,9 +52,7 @@ const OnColumnsModal = () => {
             selectedColumnTwo, 
             selectedJoin
         }
-        dispatch(addJoin(joinObj));
-        //console.log(selectedColumnOne, ' from ', currentParent, ' ON ', selectedColumnTwo, ' from ', addedParent, ' SELECTED JOIN --> ', selectedJoin );
-        
+        dispatch(addJoin(joinObj));     
     }
     
     return (
@@ -99,7 +97,7 @@ const OnColumnsModal = () => {
             </div>
             <button
                 onClick={submitToQuery}
-                class="button"
+                className="button"
             >
                 Add to Query
             </button>

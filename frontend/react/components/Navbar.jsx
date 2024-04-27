@@ -7,7 +7,6 @@ const Navbar = () => {
       <img className="logo" src={logo} alt="yesql_logo" />
       <ul className="navbar-links">
         <li>Github</li>
-        <li>Blog</li>
         <li>Contact</li>
       </ul>
     </nav>

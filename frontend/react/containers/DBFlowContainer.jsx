@@ -21,10 +21,12 @@ const DBFlowContainer = () => {
   };
     //subscribing to state to check if state is updated (i.e. if openModal has been changed)
   const modalIsOpen = useSelector((state) => state.queryReducer.isModalOpen);
-  console.log('have we made it past our openModal subscription??? It should be', modalIsOpen);
+  // console.log('have we made it past our openModal subscription??? It should be', modalIsOpen);
   //subscribe to state to see which modal should render
   const isOnColumnsModalOpen = useSelector((state) => state.queryReducer.isColumnModalOpen);
     // Using a query hook automatically fetches data and returns query values
+
+    // Do we actually need useConnectMutation here?? 
   const [postConnect, { data, error, isLoading, isSuccess }] = useConnectMutation({
     fixedCacheKey: 'databaseSchema',
   });
@@ -40,10 +42,10 @@ const DBFlowContainer = () => {
     console.log('Data => ', data)
     return (     
         <div className="chart-page-container">
-          <DBQuery />
+        <DBQuery />
         <ReactModal isOpen={modalIsOpen} shouldCloseOnEsc={true} className='overlay' onRequestClose={closeModal} >
-            {isOnColumnsModalOpen && <OnColumnsModal />}
-            {!isOnColumnsModalOpen && <JoinModal />}
+            { isOnColumnsModalOpen && <OnColumnsModal />}
+            { !isOnColumnsModalOpen && <JoinModal />}
           </ReactModal>
           <DBFlow data={data} />
         </div>

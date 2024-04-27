@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const cors = require('cors');
-const database = require('./database');
 const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
@@ -12,6 +11,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 app.use(cors());
+app.use(express.static('build'))
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../build/index.html')));
 
