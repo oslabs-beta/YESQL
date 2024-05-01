@@ -104,16 +104,16 @@ const querySlice = createSlice({
       }
     },
     addClauseOrCondition(state, action) {
-      if (action.payload !== '=' && action.payload !== '*') {
+      if (action.payload.parent !== 'Comparison Operators' && action.payload.parent !== 'Arithmetic Operators' && action.payload.value !== '*') {
         state.query.push({
-          string: action.payload,
+          string: action.payload.value,
           parent: 'clause',
         });
         state.numOfClauses++;
       } else {
         state.query.push({
-          string: action.payload,
-          parent: 'condition',
+          string: action.payload.value,
+          parent: action.payload.parent,
           inputVisible: true,
         });
         state.numOfClauses++;

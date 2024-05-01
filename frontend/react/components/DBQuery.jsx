@@ -67,9 +67,10 @@ const DBQuery = () => {
   // If none of these conditions are truthy, we're adding just the button. 
   
   const queryInputs = store.query.map((node, index) => {
+    console.log(node, 'this is node that you want')
     return (
       <React.Fragment key={indexNum++}>
-        { node.string === '=' && node.inputVisible ? (
+        {(node.parent === 'Comparison Operators' || node.parent === 'Arithmetic Operators') && node.inputVisible ? (
           <>
             <button onClick={() => handleClick({string: node.string, parent: node.parent, index: index})} id={node.parent} value={node.string} key={indexNum++}>{node.string}</button>
             <input type='text' onKeyDown={(e) => {if (e.key === 'Enter') handleInput(e.target.value)}}/>
