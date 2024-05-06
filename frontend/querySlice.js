@@ -11,6 +11,7 @@ const initialState = {
   numOfColumns: 0,
   tableConnected: false,
   isModalOpen: false,
+  isClause: false,
   currentParent: '',
   addedParent: '',
   isColumnModalOpen: false,
@@ -37,7 +38,7 @@ const querySlice = createSlice({
         return node.string === 'FROM';
       });
 
-      if (state.numOfClauses > 1 && indexOfFrom !== -1) {
+      if (state.numOfClauses > 1 && indexOfFrom !== -1 && !state.isClause) {
         for (let i = 1; i < indexOfFrom; i++) {
           if (!state.query[i].string.endsWith(',')) {
             state.query[i].string += ',';
@@ -74,6 +75,7 @@ const querySlice = createSlice({
           });
         }
       }
+      state.isClause = false;
     },
     removeColumn(state, action) {
       state.removedNode = action.payload;
@@ -104,6 +106,7 @@ const querySlice = createSlice({
       }
     },
     addClauseOrCondition(state, action) {
+      state.isClause = true;
       if (action.payload !== '=' && action.payload !== '*') {
         state.query.push({
           string: action.payload,
