@@ -6,6 +6,7 @@ const initialState = {
     parent: 'clause',
     hasComma: false,
   }],
+  testResults: [],
   removedNode: {},
   numOfClauses: 1,
   numOfColumns: 0,
@@ -181,6 +182,9 @@ const querySlice = createSlice({
     openColumnModal(state, action) {
       state.isColumnModalOpen = true;
       state.selectedJoin = action.payload;
+    },
+    addTestResults(state, action) {
+      state.testResults.push(action.payload);
     }
   },
 });
@@ -197,6 +201,7 @@ export const {
   openModal,
   currentParent,
   addedParent,
-  openColumnModal
+  openColumnModal, 
+  addTestResults
 } = querySlice.actions;
 export default querySlice.reducer;

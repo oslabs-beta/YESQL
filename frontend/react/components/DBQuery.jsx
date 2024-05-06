@@ -1,7 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import copyIcon from '../../assets/copy_icon.png';
-import { removeColumn, addColumnOrCondition, removeClauseOrCondition, addInput, removeInputWindow, removeValue } from '../../querySlice';
+import { 
+  removeColumn, 
+  addColumnOrCondition, 
+  removeClauseOrCondition, 
+  addInput, 
+  removeInputWindow, 
+  removeValue, 
+  addTestResults } from '../../querySlice';
 import ClauseDropdown from './ClauseDropdown';
 
 const DBQuery = () => {
@@ -42,15 +49,30 @@ const DBQuery = () => {
     dispatch(removeInputWindow());
   }
 
-  // this function handles the copy of the query when you click on the copy button 
-  // to the right of the query field. First, we map over each string (which is what is 
-  // being displayed in the queryfield), then we join them all together as a string and 
-  // save that into the query variable. 
-  const handleCopyToClipboard = () => {
-    const query = store.query.map(node => node.string).join(' ');
-    navigator.clipboard.writeText(query)
-    .then(() => alert('Query copied to clipboard'))
-    .catch(error => console.error('Unable to copy query to clipboard: ', error));
+  
+  const sendQuery = async () => {
+    // const response = await fetch('/testQuery', {
+      //   method: "POST",
+      //   mode: 'cors',
+      //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(query)
+        // })
+        // const testQuery = response.json();
+        
+      }
+      
+      // this function handles the copy of the query when you click on the copy button 
+      // to the right of the query field. First, we map over each string (which is what is 
+      // being displayed in the queryfield), then we join them all together as a string and 
+      // save that into the query variable. 
+    const handleCopyToClipboard = () => {
+      const query = store.query.map(node => node.string).join(' ');
+      dispatch(addTestResults(query));
+      navigator.clipboard.writeText(query)
+      .then(() => alert('Query copied to clipboard'))
+      .catch(error => console.error('Unable to copy query to clipboard: ', error));
   }
 
   // indexNum is added for best practice with React, that recommends that every element
