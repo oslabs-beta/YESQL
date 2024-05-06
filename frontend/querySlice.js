@@ -184,7 +184,12 @@ const querySlice = createSlice({
       state.selectedJoin = action.payload;
     },
     addTestResults(state, action) {
-      state.testResults.push(action.payload);
+      const queryString = action.payload.query;
+      const time = action.payload.time;
+      state.testResults.push({
+        queryString, 
+        time
+      });
     }
   },
 });

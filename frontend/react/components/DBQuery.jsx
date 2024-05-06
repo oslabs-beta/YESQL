@@ -10,6 +10,7 @@ import {
   removeValue, 
   addTestResults } from '../../querySlice';
 import ClauseDropdown from './ClauseDropdown';
+import TestResults from './TestResults'
 
 const DBQuery = () => {
   // accessing the Redux store in querySlice so that we can iterate
@@ -69,7 +70,11 @@ const DBQuery = () => {
       // save that into the query variable. 
     const handleCopyToClipboard = () => {
       const query = store.query.map(node => node.string).join(' ');
-      dispatch(addTestResults(query));
+      const time = 1.05;
+      dispatch(addTestResults({
+        query,
+        time 
+      }));
       navigator.clipboard.writeText(query)
       .then(() => alert('Query copied to clipboard'))
       .catch(error => console.error('Unable to copy query to clipboard: ', error));
@@ -120,6 +125,7 @@ const DBQuery = () => {
           <ClauseDropdown className="clause-dropdown"/>
         </div>
       </section>
+      <TestResults />
     </div>
   );
 }
