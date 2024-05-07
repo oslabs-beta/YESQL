@@ -18,19 +18,19 @@ databaseController.connect = async (req, res, next) => {
 databaseController.query = async (req, res, next) => {
   // Query from server to db to get tables and column names:
   try {
-      const tablesAndColumns = await db.query(`SELECT t.table_name, c.column_name, c.data_type
+    const tablesAndColumns = await db.query(`SELECT t.table_name, c.column_name, c.data_type
       FROM information_schema.tables t 
       FULL OUTER JOIN information_schema.columns c 
       ON c.table_name = t.table_name 
       WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE'`);
-      const outputObject = {};
-      for (let i = 0; i < tablesAndColumns.rows.length; i++) {
-        const columnName = tablesAndColumns.rows[i].column_name;
-        const dataType = tablesAndColumns.rows[i].data_type;
-        console.log('Data Type => ', dataType)
-        if (!outputObject[tablesAndColumns.rows[i].table_name]) outputObject[tablesAndColumns.rows[i].table_name] = {columns: {}};
-        outputObject[tablesAndColumns.rows[i].table_name].columns[columnName] = dataType;
-      };
+    const outputObject = {};
+    for (let i = 0; i < tablesAndColumns.rows.length; i++) {
+      const columnName = tablesAndColumns.rows[i].column_name;
+      const dataType = tablesAndColumns.rows[i].data_type;
+      console.log('Data Type => ', dataType);
+      if (!outputObject[tablesAndColumns.rows[i].table_name]) outputObject[tablesAndColumns.rows[i].table_name] = {columns: {}};
+      outputObject[tablesAndColumns.rows[i].table_name].columns[columnName] = dataType;
+    };
     // This section is for determining connections, foreign keys, and primary keys
     const connections = await db.query(`SELECT c.table_name, c.column_name AS primary_key, k.column_name AS foreign_key, c.constraint_name 
     FROM information_schema.constraint_column_usage c 
@@ -40,8 +40,8 @@ databaseController.query = async (req, res, next) => {
     const connectionRows = connections.rows;
     for (const row of connectionRows) {
       let foreignTable;
-      row.constraint_name.includes('_fk') ? foreignTable = row.constraint_name.slice(0, row.constraint_name.search(/(_fk)/gm)) : foreignTable = row.constraint_name.slice(0, row.constraint_name.search(/(_pk)/gm))
-      console.log('Foreign Table => ', foreignTable)
+      row.constraint_name.includes('_fk') ? foreignTable = row.constraint_name.slice(0, row.constraint_name.search(/(_fk)/gm)) : foreignTable = row.constraint_name.slice(0, row.constraint_name.search(/(_pk)/gm));
+      console.log('Foreign Table => ', foreignTable);
       if (!outputObject[foreignTable].foreignKey) outputObject[foreignTable].foreignKey = [];
       if (row.primary_key === row.foreign_key) outputObject[row.table_name].primaryKey = row.primary_key;
       if (!outputObject[row.table_name].connections) outputObject[row.table_name].connections = [];
@@ -57,5 +57,16 @@ databaseController.query = async (req, res, next) => {
   };
 };
 
+databaseController.getQueryResults = async (req, res, next) => {
+  console.log(db, 'db');
+  try {
+    console.log(req.body.query, 'req.body');
+    const testResults = await db.query(req.body.query);
+    console.log(testResults);
+  } catch (error) {
+    console.log(error);
+    return next(error);
+  }
+};
 
 module.exports = databaseController;

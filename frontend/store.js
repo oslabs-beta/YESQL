@@ -1,6 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
-import { apiSlice } from './apiSlice.js';
+import {configureStore} from '@reduxjs/toolkit';
+import {setupListeners} from '@reduxjs/toolkit/query';
+import {apiSlice} from './apiSlice.js';
 import queryReducer from './querySlice.js';
 
 
@@ -10,8 +10,8 @@ export const store = configureStore({
     queryReducer: queryReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware)
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
-//database: dbReducer,
+// database: dbReducer,
 
 setupListeners(store.dispatch);

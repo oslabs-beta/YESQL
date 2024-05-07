@@ -336,12 +336,31 @@ label {
     margin: 5px;
   }
   section {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    'query query query copyButton'
+    'query query query testButton'
+    ;
+    align-items: center;
     background: $white;
     color: black;
     padding: 10px;
     img {
-      float: right;
       width: 15px;
+      grid-area: copyButton;
+      justify-self: end;
+    }
+    .test-button {
+      grid-area: testButton;
+      color: white;
+      background: orange;
+      border-radius: 18px 0px 18px 18px;
+      padding: 5px 8px;
+      img {
+        width: 12px;
+      }
     }
     input {
       text-align: center;
@@ -378,6 +397,11 @@ label {
       letter-spacing: 0.02em;;
     }
   }
+}
+
+
+.queryAndButton {
+  grid-area: query;
 }
 
 //reactflow custom styling
@@ -605,10 +629,6 @@ ul {
   transform: rotate(-180deg);
   float: right;
   height: 0.7em;
-}
-
-.queryAndButton {
-  
 }
 
 .modal {

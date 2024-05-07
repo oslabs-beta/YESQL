@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addClauseOrCondition } from '../../querySlice';
+/* eslint-disable max-len */
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {addClauseOrCondition} from '../../querySlice';
 import menuData from '../dropdownData';
 import dropdownIcon from '../../assets/dropdown_icon.png';
 
@@ -14,7 +15,7 @@ const ClauseDropdown = () => {
 
   const toggleSubMenu = (e, value) => {
     e.stopPropagation();
-    let submenu = e.target.querySelector('ul');
+    const submenu = e.target.querySelector('ul');
     const buttonIndex = e.target.getAttribute('data-index');
 
     if (!submenu) {
@@ -24,7 +25,7 @@ const ClauseDropdown = () => {
     }
 
     const isToggled = toggledButtons[buttonIndex];
-    setToggledButtons({ ...toggledButtons, [buttonIndex]: !isToggled });
+    setToggledButtons({...toggledButtons, [buttonIndex]: !isToggled});
 
     if (submenu.style.display === 'none' || !submenu.style.display) {
       submenu.style.display = 'inline-block';
