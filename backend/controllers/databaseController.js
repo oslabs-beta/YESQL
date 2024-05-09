@@ -4,6 +4,7 @@ const db = require('../database');
 
 databaseController.connect = async (req, res, next) => {
   try {
+    console.log('connectingDatabase');
     // server receives the body from the client, and sends a fetch request to the db
     // console.log('Request Body => ', req.body)
     const {user, host, database, port, uri} = req.body;
@@ -58,11 +59,16 @@ databaseController.query = async (req, res, next) => {
 };
 
 databaseController.getQueryResults = async (req, res, next) => {
-  console.log(db, 'db');
+  console.log(db.query, 'db');
   try {
-    console.log(req.body.query, 'req.body');
-    const testResults = await db.query(req.body.query);
-    console.log(testResults);
+    console.log(req.body, 'req.body');
+    const queryResult = await db.query(req.body.query);
+
+    console.log(queryResult);
+
+
+    res.locals.queryResult = queryResult;
+    return next();
   } catch (error) {
     console.log(error);
     return next(error);

@@ -64,7 +64,7 @@ const DBQuery = () => {
       },
       body: JSON.stringify({query: query}),
     });
-    const testQuery = response.json();
+    const testQuery = await response.json();
     console.log(testQuery, 'testQuery is back!')
   };
 

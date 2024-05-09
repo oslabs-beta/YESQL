@@ -18,9 +18,11 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../build/index.htm
 
 app.get('/chart', (req, res) => res.redirect('/'));
 app.get('/formpage', (req, res) => res.redirect('/'));
+
+
+
 app.post('/testQuery', databaseController.getQueryResults, (req, res) => {
-  console.log('hey!', res.locals.testResults);
-  res.status(200).json(res.locals.testResults);
+  res.status(200).json(res.locals.queryResult);
 });
 // app.get('/chart', (req, res) => res.sendFile(path.join(__dirname, '../build/index.html')));
 // route for connecting to user's local db:
