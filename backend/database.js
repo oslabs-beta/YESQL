@@ -26,14 +26,11 @@ const connectDb = async (...credentials) => {
         });
       }
 
-      return pool;
-      // connect to the database because this method is not needed and caused
-      // issues when making query calls from dbQuery.
-      // await pool.connect();
+      await pool.connect();
       // execute a query
       // const res = await pool.query('SELECT * FROM people');
 
-      console.log('connected to database'); // access the rows
+      // console.log('connected to database'); // access the rows
 
       // release the client back to the pool
 
@@ -50,8 +47,8 @@ const connectDb = async (...credentials) => {
 module.exports = {
   connectDb,
   query: (text, params, callback) => {
-    console.log(information)
-    connectDb(information)
+    // console.log(information)
+    // connectDb(information);
     return pool.query(text, params, callback);
   },
 };

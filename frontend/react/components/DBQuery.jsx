@@ -11,7 +11,8 @@ import {
   addInput,
   removeInputWindow,
   removeValue,
-  addTestResults} from '../../querySlice';
+  addTestResults,
+} from '../../querySlice';
 import ClauseDropdown from './ClauseDropdown';
 import TestResults from './TestResults';
 
@@ -64,8 +65,9 @@ const DBQuery = () => {
       },
       body: JSON.stringify({query: query}),
     });
-    const testQuery = await response.json();
-    console.log(testQuery, 'testQuery is back!')
+    const data = await response.json();
+    console.log(data);
+    dispatch(addTestResults({data, query}));
   };
 
   const handleCopyToClipboard = () => {
@@ -120,7 +122,7 @@ const DBQuery = () => {
           onClick={handleCopyToClipboard}
         />
         <button
-          className="test-button"
+          className="test-button button"
           onClick={handleTestQuery}>
           Test
           <img src={playIconWhite} alt="" /> </button>

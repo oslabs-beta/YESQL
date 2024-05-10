@@ -47,7 +47,7 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  height: 100vh;
+  // height: 100vh;
   margin: 0px 50px;
 }
  h1, h2, h3, h4 {
@@ -330,7 +330,7 @@ label {
   border: 1px solid $primary-purple;
   width: 100%;
   color: white;
-  padding: 10px 30px 30px 30px;
+  padding: 10px 30px 0px 30px;
   margin: auto;
   p {
     margin: 5px;
@@ -355,13 +355,25 @@ label {
     .test-button {
       grid-area: testButton;
       color: white;
-      background: orange;
-      border-radius: 18px 0px 18px 18px;
-      padding: 5px 8px;
+      background: $primary-blue;
+      border-radius: 8px 0px 8px 8px;
+      font-size: 12px;
+      width: 60px;
+      padding: 6px 0px;
+      text-align: center;
+      margin: auto;
       img {
+        margin-left: 5px;
         width: 12px;
       }
+      &:hover {
+      transition: 0.1s ease-in;
+      letter-spacing: 0.02em;
+      border-radius: 0px 17.5px 17.5px 17.5px;
+      }
     }
+
+
     input {
       text-align: center;
       box-shadow: none;
@@ -505,7 +517,11 @@ ul {
   margin-left: 2px;
   padding-top: 5px;
   cursor: pointer;
-
+  &:hover {
+    transition: 0.1s ease-in;
+    letter-spacing: 0.02em;
+    border-radius: 8px 0px 8px 8px;
+  }
   ul {
     list-style: none;
     display: none;
@@ -551,6 +567,7 @@ ul {
   margin: 10px 0px;
   width: fit-content;
   padding: 5px 10px;
+  height: 30px;
   cursor: pointer;
   img {
     height: 12px;
@@ -558,33 +575,39 @@ ul {
 }
 .test-results-button-expanded {
   margin: 10px 0px;
-  // width: fit-content;
-  padding: 20px;
   cursor: pointer;
   list-style: none;
   color: black;
   background: #f1f0f0;
-  width: fit-content;
+  width: inherit;
   text-align: left;
   display: block;
   border-radius: 0px 18px 18px 18px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  div {
+    padding: 20px 20px 0px 20px;
+  }
   ol {
-    padding-left: 10px;
+    padding: 10px;
+    padding-top: 0px;
     li {
       justify-content: space-between;
       display: flex !important;
       flex-wrap: wrap;
+      padding: 5px;
+      margin: 5px 0px;
+      background: #eaeaea;
       span {
         display: inline-block;
         white-space: nowrap;
         overflow: hidden;
-        max-width: 300px;
         text-overflow: ellipsis;
       }
       &:hover {
         color: $primary-blue;
         border-radius: 18px;
+        background-color: #fafafa;
+        padding: 5px;
         span {
           transition: 0.2s;
           max-width: 100%;
@@ -760,4 +783,51 @@ ul {
 
 .label {
   text-align: right;
+}
+
+
+
+.notification-box {
+  position: relative;
+  z-index: 2;
+  align-self: flex-end;
+  animation-duration: 2s;
+  animation-iteration-count: 2;
+  font-family: $header-font;
+  transform-origin: bottom;
+}
+
+.notification {
+  animation-name: bounce-7;
+  animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+}
+
+@keyframes bounce-7 {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+
+  10% {
+    transform: scale(1.1, .9) translateY(0);
+  }
+
+  30% {
+    transform: scale(.9, 1.1) translateY(-10px);
+  }
+
+  50% {
+    transform: scale(1.05, .95) translateY(0);
+  }
+
+  57% {
+    transform: scale(1, 1) translateY(-2px);
+  }
+
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
 }

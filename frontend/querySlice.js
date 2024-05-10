@@ -198,10 +198,11 @@ const querySlice = createSlice({
       state.selectedJoin = action.payload;
     },
     addTestResults(state, action) {
-      const queryString = action.payload.query;
-      const time = action.payload.time;
+      console.log(action.payload, ' :action.payload');
+      const {query, time, data} = action.payload;
       state.testResults.push({
-        queryString,
+        query,
+        data,
         time,
       });
     },

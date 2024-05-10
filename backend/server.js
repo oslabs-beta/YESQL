@@ -20,7 +20,6 @@ app.get('/chart', (req, res) => res.redirect('/'));
 app.get('/formpage', (req, res) => res.redirect('/'));
 
 
-
 app.post('/testQuery', databaseController.getQueryResults, (req, res) => {
   res.status(200).json(res.locals.queryResult);
 });
@@ -34,7 +33,7 @@ app.post('/connect',
     });
 
 // error handling used when return next(error)
-
+//
 // app.use((err, req, res, next) => {
 //     const status = err.status || 500;
 //     const message = err.message || 'Internal Server Error';

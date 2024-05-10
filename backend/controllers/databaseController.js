@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const databaseController = {};
 const db = require('../database');
 
@@ -59,15 +60,19 @@ databaseController.query = async (req, res, next) => {
 };
 
 databaseController.getQueryResults = async (req, res, next) => {
-  console.log(db.query, 'db');
   try {
-    console.log(req.body, 'req.body');
+    const startTime = process.hrtime.bigint(); // Capture start time in nanoseconds
     const queryResult = await db.query(req.body.query);
 
-    console.log(queryResult);
+    const endTime = process.hrtime.bigint(); // Capture end time in nanoseconds
+    const executionTime = (endTime - startTime) / BigInt(1000000); // Calculate execution time in milliseconds
+    const executionTimeInSeconds = Number(executionTime) / 1000; // Convert milliseconds to seconds
 
+    res.locals.queryResult = {
+      queryResult: queryResult,
+      time: executionTimeInSeconds,
+    };
 
-    res.locals.queryResult = queryResult;
     return next();
   } catch (error) {
     console.log(error);
