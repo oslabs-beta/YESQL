@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import copyIcon from '../../assets/copy_icon.png';
 import playIconWhite from '../../assets/play_icon_white.png';
 import playIconBlack from '../../assets/play_icon_black.png';
+import copyIconCopied from '../../assets/copy_icon_copied.png';
 
 import {
   removeColumn,
@@ -17,12 +18,15 @@ import ClauseDropdown from './ClauseDropdown';
 import TestResults from './TestResults';
 
 const DBQuery = () => {
-  // accessing the Redux store in querySlice so that we can iterate
-  // and display it in the queryField
   const store = useSelector((state) => state.queryReducer);
-
+  const [copyClipboard, setCopyClipboard] = useState(false);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (copyClipboard) {
+      setCopyClipboard(false);
+    }
+  }, [store.query]);
   // handleClick is the function we're using for dispatching the remove
   // action and accessing the reducer function inside of querySlice.
   const handleClick = (element) => {
@@ -72,13 +76,8 @@ const DBQuery = () => {
 
   const handleCopyToClipboard = () => {
     const query = store.query.map((node) => node.string).join(' ');
-    const time = 1.05;
-    dispatch(addTestResults({
-      query,
-      time,
-    }));
     navigator.clipboard.writeText(query)
-        .then(() => alert('Query copied to clipboard'))
+        .then(() => setCopyClipboard(true))
         .catch((error) => console.error('Unable to copy query to clipboard: ', error));
   };
 
@@ -117,7 +116,8 @@ const DBQuery = () => {
           <ClauseDropdown className="clause-dropdown"/>
         </div>
         <img
-          src={copyIcon}
+          src={copyClipboard ? copyIconCopied : copyIcon}
+          className={copyClipboard ? 'copied' : ''}
           alt="copy query icon"
           onClick={handleCopyToClipboard}
         />

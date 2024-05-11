@@ -36,7 +36,7 @@ const TestResults = () => {
       <ol className="test-results" style={{display: 'none'}}>
         { testResults.map((result, index) => (
           <>
-            <li>
+            <li key={index}>
               <span>{result.query}</span>
               <span>{`${result.data.time}s`}</span>
             </li>

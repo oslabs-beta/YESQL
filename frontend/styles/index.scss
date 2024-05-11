@@ -351,6 +351,13 @@ label {
       width: 15px;
       grid-area: copyButton;
       justify-self: end;
+      &:hover {
+        width: 16px;
+      }
+    }
+    .copied {
+      width: 17px;
+      margin-right: -2px;
     }
     .test-button {
       grid-area: testButton;
@@ -406,7 +413,9 @@ label {
       -webkit-appearance: none;
     }
     .button {
-      letter-spacing: 0.02em;;
+      letter-spacing: 0.02em;
+      align-self: self-end;
+      margin: 0px;
     }
   }
 }
@@ -571,6 +580,9 @@ ul {
   cursor: pointer;
   img {
     height: 12px;
+  }
+  &:hover {
+    letter-spacing: 0.02em;
   }
 }
 .test-results-button-expanded {

@@ -7,6 +7,7 @@ const initialState = {
     hasComma: false,
   }],
   testResults: [],
+  testResultsToDisplay: '',
   removedNode: {},
   numOfClauses: 1,
   numOfColumns: 0,
@@ -189,13 +190,15 @@ const querySlice = createSlice({
       state.currentParent = state.query[indexOfFrom + 1].string;
       // updating value of addedParent to the parent value of the clicked node (aka the table of the clicked column)
       state.addedParent = action.payload.parent;
-      console.log('have we reached the dispatch???');
       // reassigning isModalOpen property to true so that the subscriber in DBFlowContainer can see that state has changed so it can open the modal
       state.isModalOpen = true;
     },
     openColumnModal(state, action) {
       state.isColumnModalOpen = true;
       state.selectedJoin = action.payload;
+    },
+    closeModal(state, action) {
+      state.isModalOpen = false;
     },
     addTestResults(state, action) {
       console.log(action.payload, ' :action.payload');
@@ -205,6 +208,10 @@ const querySlice = createSlice({
         data,
         time,
       });
+    },
+    testResultsToDisplay(state, action) {
+      console.log('this is what we want to display: ', action.payload)
+      state.testResultsToDisplay = action.payload;
     },
   },
 });
@@ -219,9 +226,11 @@ export const {
   removeInputWindow,
   removeValue,
   openModal,
+  closeModal,
   currentParent,
   addedParent,
   openColumnModal,
   addTestResults,
+  testResultsToDisplay,
 } = querySlice.actions;
 export default querySlice.reducer;
