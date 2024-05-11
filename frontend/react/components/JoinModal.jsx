@@ -84,15 +84,6 @@ const JoinModal = () => {
           </p>
         </>
       ))}
-
-      {/* <button className="button modalButton" value="FULL JOIN">Full Join<img src={infoIcon}/></button>
-            <p>{fullJoinText}</p>
-            <button className="button modalButton" value="LEFT JOIN">Left Join<img src={infoIcon}/></button>
-            <p>{leftJoinText}</p>
-            <button className="button modalButton" value="RIGHT JOIN">Right Join<img src={infoIcon}/></button>
-            <p>{rightJoinText}</p>
-            <button className="button modalButton" value="CROSS JOIN">Cross Join<img src={infoIcon}/></button>
-            <p>{crossJoinText}</p> */}
     </div>
   );
 };

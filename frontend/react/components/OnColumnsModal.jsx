@@ -4,7 +4,11 @@ import {addJoin} from '../../querySlice';
 
 const OnColumnsModal = () => {
   const dispatch = useDispatch();
-  const {currentParent, addedParent, selectedJoin, isOpen} = useSelector((state) => state.queryReducer);
+  const {
+    currentParent,
+    addedParent,
+    selectedJoin,
+    isOpen} = useSelector((state) => state.queryReducer);
   const tableOne = useSelector((state) => state.api.mutations.databaseSchema.data[currentParent]);
   const tableTwo = useSelector((state) => state.api.mutations.databaseSchema.data[addedParent]);
   const [selectedColumnOne, setSelectedColumnOne] = useState();
