@@ -8,6 +8,7 @@ $dark-blue: #0b002d;
 $table-blue: #a3bdff;
 $primary-purple: #7300ff;
 $primary-purple-pale: #eedfff;
+$button-2-background: #a3bdff;
 $modal-gradient: linear-gradient(323deg, rgba(219, 224, 255, 1) 0%, rgba(247, 248, 255, 1) 100%);
 // $gray: linear-gradient(160deg, rgba(255, 255, 255, 1) 60%, rgb(230, 233, 255) 91%, rgb(219, 223, 255) 100%);
 
@@ -21,10 +22,10 @@ $h1-weight: 400;
 $h1-letter-spacing: 0.02em;
 $h2-size: 36px;
 $h2-weight: 600;
-$h3-size: 18px;
-$h3-weight: 400;
+$h3-size: 24px;
+$h3-weight: 700;
 $h4-size: 18px;
-$h4-weight: 100;
+$h4-weight: 400;
 $h6-size: 14px;
 $h6-weight: 100;
 $p-size: 12px;
@@ -46,7 +47,7 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  height: 100%;
+  // height: 100vh;
   margin: 0px 50px;
 }
  h1, h2, h3, h4 {
@@ -62,6 +63,11 @@ body {
 
  h3 {
   font-weight: $h3-weight;
+  font-size: $h3-size;
+ }
+
+ h4 {
+  font-weight: $h4-weight;
  }
 
 
@@ -77,10 +83,11 @@ body {
   margin: 10px 0px;
   font-family: $font;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  cursor: pointer;
   &:hover {
     transition: 0.1s ease-in;
     letter-spacing: 0.02em;
-    box-shadow: none;
+    border-radius: 16px;
   }
 }
 
@@ -92,6 +99,7 @@ body {
   border-radius: 18px;
   color: $primary-blue;
 }
+
 
 // navbar styling
 nav {
@@ -133,7 +141,9 @@ nav {
     }
 }
 .landing-page {
-  margin: 50px 0px;
+  background: white;
+  padding: 50px;
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   color: $primary-blue;
@@ -149,19 +159,15 @@ nav {
       font-weight: 600
     }
   }
-  h3 {
-    font-size: $h3-size;
-    font-weight: $h3-weight;
+  h4 {
     color: $dark-blue;
-    padding: 25px;
+    padding: 0px;
     letter-spacing: 0.04em;
-    // width: 700px;
-    position: relative;
-    z-index: 2;
-    span {
-      font-weight: 600;
-      font-size: 24px;
-    }
+    margin-top: 10px;
+  }
+  h3 {
+    margin-bottom: 10px;
+    font-size: 21px;
   }
   p {
     font-size: $p-size;
@@ -169,14 +175,12 @@ nav {
   }
   .button {
     width: 50%;
-      position: relative;
-        z-index: 1;
   }
 }
 
 .landing-page section {
   position: relative;
-  display: grid;
+  // display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: auto;
   grid-template-areas: 
@@ -187,7 +191,7 @@ nav {
   ;
   row-gap: 20px;
   column-gap: 10px;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.2;
   padding: 20px 50px;
   div {
@@ -255,13 +259,20 @@ nav {
   flex-direction: column;
   align-items: center;
   .button-2 {
-    background-color: $primary-blue;
+    background-color: $button-2-background;
     color: #fff;
   }
 }
 
 
 // form styling 
+
+.form-container {
+  background: white;
+  padding: 50px;
+  border-radius: 18px;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -273,8 +284,10 @@ form {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   color: $dark-blue;
+  background: #fff;
   input, label {
     margin: 0px 20px;
+    font-family: $font;
   }
 
 input {
@@ -286,6 +299,7 @@ input {
   }
   h3 {
     text-align: center;
+    font-weight: 400;
   }
   .button {
     margin: 25px auto;
@@ -311,28 +325,72 @@ label {
 
 .db-query-container {
   background: $primary-purple;
-  border-radius: 18px;
+  border-radius: 18px 18px 0px 0px;
   box-sizing: border-box;
+  border: 1px solid $primary-purple;
   width: 100%;
   color: white;
-  padding: 10px 30px 30px 30px;
+  padding: 10px 30px 0px 30px;
   margin: auto;
+  p {
+    margin: 5px;
+  }
   section {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    'query query query copyButton'
+    'query query query testButton'
+    ;
+    align-items: center;
     background: $white;
     color: black;
-    padding: 20px;
+    padding: 10px;
     img {
-      float: right;
       width: 15px;
+      grid-area: copyButton;
+      justify-self: end;
+      &:hover {
+        width: 16px;
+      }
     }
+    .copied {
+      width: 17px;
+      margin-right: -2px;
+    }
+    .test-button {
+      grid-area: testButton;
+      color: white;
+      background: $primary-blue;
+      border-radius: 8px 0px 8px 8px;
+      font-size: 12px;
+      width: 60px;
+      padding: 6px 0px;
+      text-align: center;
+      margin: auto;
+      img {
+        margin-left: 5px;
+        width: 12px;
+      }
+      &:hover {
+      transition: 0.1s ease-in;
+      letter-spacing: 0.02em;
+      border-radius: 0px 17.5px 17.5px 17.5px;
+      }
+    }
+
+
     input {
       text-align: center;
-      font-family: $font;
       box-shadow: none;
       background: transparent;
-      padding: 0px;
+      padding-top: 1px;
+      padding-bottom: 3px;
       margin: 0px;
+      font-family: $font;
       font-size: 16px;
+      border: 2px solid #dadada;
     }
     form {
       display: flex;
@@ -354,19 +412,27 @@ label {
       -moz-appearance: none;
       -webkit-appearance: none;
     }
+    .button {
+      letter-spacing: 0.02em;
+      align-self: self-end;
+      margin: 0px;
+    }
   }
+}
+
+
+.queryAndButton {
+  grid-area: query;
 }
 
 //reactflow custom styling
 .react-flow {
   // background: #fafafa;
-  background-image:
-      radial-gradient(rgb(217, 215, 215) 5%, transparent 0%);
-    background-position: 24px 24px;
-    background-size: 50px 50px;
+    background-image:
+    radial-gradient(#dadada 6%, transparent 0%);
+    background-position: 12px 12px;
+    background-size: 25px 25px;
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(217, 215, 215);
-    margin-top: 50px;
 }
 
 .custom-node {
@@ -399,7 +465,7 @@ label {
 }
 
 .react-flow__node {
-  background: #fafafa;
+  background: #fff;
 }
 
 .flowButton {
@@ -408,10 +474,12 @@ label {
   border: none;
   text-align: left;
   padding: 0px 10px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .clicked {
-  background: #556aff2e;
+  background: #efefef;
 }
 
 .db-query-container button {
@@ -427,10 +495,8 @@ label {
   font-size: 18px;
   text-align: center;
   padding: none;
-  margin-left: 10px;
   letter-spacing: 0.02em;
   border-radius: 18px 18px 0px 0px;
-  border-bottom: 2px solid #dadada;
 }
 
 
@@ -450,16 +516,21 @@ ul {
 
 .queryBuilder {
   background: $primary-blue;
-  height: 20px;
-  width: 20px;
   border-radius: 0px 8px 8px 8px;
   color: $white;
-  margin: auto;
   text-align: center;
-  position: relative;
+  font-size: 12px;
+  height: 20px;
+  width: 50px;
+  margin-top: 3px;
+  margin-left: 2px;
+  padding-top: 5px;
   cursor: pointer;
-  margin: 5px;
-
+  &:hover {
+    transition: 0.1s ease-in;
+    letter-spacing: 0.02em;
+    border-radius: 8px 0px 8px 8px;
+  }
   ul {
     list-style: none;
     display: none;
@@ -468,12 +539,25 @@ ul {
     z-index: 2;
     position: relative;
     padding: 20px;
-    margin: 5px;
     min-width: 200px;
     text-align: left;
     font-size: 12px;
     border-radius: 0px 18px 18px 18px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    ul {
+      box-shadow: none;
+      // background: #fff;
+      margin-top:5px;
+      margin: auto;
+      li {
+        text-align: left;
+        padding-left: 20px;
+        &:hover {
+          background: #dadada;
+
+        }
+      }
+    }
     li {
       transition: 0.1s ease-out;
       padding: 5px 0px;
@@ -486,6 +570,82 @@ ul {
       }
     }
   }
+}
+
+.test-results-button {
+  margin: 10px 0px;
+  width: fit-content;
+  padding: 5px 10px;
+  height: 30px;
+  cursor: pointer;
+  img {
+    height: 12px;
+  }
+  &:hover {
+    letter-spacing: 0.02em;
+  }
+}
+.test-results-button-expanded {
+  margin: 10px 0px;
+  cursor: pointer;
+  list-style: none;
+  color: black;
+  background: #f1f0f0;
+  width: inherit;
+  text-align: left;
+  display: block;
+  border-radius: 0px 18px 18px 18px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  div {
+    padding: 20px 20px 0px 20px;
+  }
+  ol {
+    padding: 10px;
+    padding-top: 0px;
+    li {
+      justify-content: space-between;
+      display: flex !important;
+      flex-wrap: wrap;
+      padding: 5px;
+      margin: 5px 0px;
+      background: #eaeaea;
+      span {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &:hover {
+        color: $primary-blue;
+        border-radius: 18px;
+        background-color: #fafafa;
+        padding: 5px;
+        span {
+          transition: 0.2s;
+          max-width: 100%;
+          letter-spacing: 0.02em;
+          margin-right: 10px;
+        }
+        // overflow: visible;
+        // white-space: normal;
+        // text-overflow: ellipsis;
+      }
+    }
+  }
+  img {
+    height: 12px;
+  }
+}
+
+.test-results-icon {
+  margin: 0px 5px;
+  transition: 0.5s;
+}
+
+.test-results-icon-expanded {
+  margin: 0px 0px -2px 5px;
+  transition: 0.5s;
+  transform: rotate(180deg);
 }
 
 .top10 {
@@ -506,17 +666,20 @@ ul {
   height: 0.7em;
 }
 
-.queryAndButton {
-  display: inline-flex;
-}
-
 .modal {
   display: grid;
   grid-template-rows: repeat(5, auto);
+  padding-bottom: 30px;
+  p {
+    padding: 0px 20px;
+  }
 
   .button {
     padding: 10px 20px;
     cursor: pointer;
+    position: relative;
+    margin: 10px auto;
+    width: 75%;
   }
 
   p {
@@ -534,21 +697,20 @@ ul {
   img {
     float: right;
     cursor: help;
+    position: relative;
   }
 }
 
 .overlay {
   margin: auto;
-  margin-top: 12%;
-  overflow: scroll;
-  height: 400px;
+  margin-top: 8%;
+  overflow: auto;
   width: 600px;
   background: $modal-gradient;
   opacity: 1;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
   border-radius: 18px;
   outline: none;
-  padding: 50px;
 }
 
 
@@ -562,8 +724,15 @@ ul {
   "title title title"
   "tableOne on tableTwo"
   "buttonModal buttonModal buttonModal";
+  padding: 20px;
   button {
+    font-size: 12px;
+  }
+  .button {
     grid-area: buttonModal;
+    padding: 10px 20px;
+    margin-top: 30px;
+    
   }
   h3 {
       grid-area: title;
@@ -587,6 +756,8 @@ ul {
     }
     button {
       padding: 10px 10px;
+      display: flex;
+      justify-content: space-between;
       &:hover {
         // background: #f4f4f4;
         letter-spacing: 0.02em;
@@ -605,22 +776,72 @@ ul {
   .tableTwo {
     grid-area: tableTwo;
   }
-  @media (max-width: $large-screen) {
-    grid-template-rows: repeat(4, auto);
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    "title"
-    "tableOne"
-    "on"
-    "tableTwo";
-    justify-items: center;
-    
-  }
 }
 
 .nodeGrid {
-  display: grid;
-  grid-template-columns: 2fr .5fr 2fr;
+  display: flex;
+  justify-content: space-between;
+}
+
+.FKPK {
+  color: #b0b0b0;
+  margin-left: 5px;
+}
+
+.dataType {
+  color: #b0b0b0;
+  text-align: right;
+}
+
+.label {
+  text-align: right;
+}
+
+
+
+.notification-box {
+  position: relative;
+  z-index: 2;
+  align-self: flex-end;
+  animation-duration: 2s;
+  animation-iteration-count: 2;
+  font-family: $header-font;
+  transform-origin: bottom;
+}
+
+.notification {
+  animation-name: bounce-7;
+  animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+}
+
+@keyframes bounce-7 {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+
+  10% {
+    transform: scale(1.1, .9) translateY(0);
+  }
+
+  30% {
+    transform: scale(.9, 1.1) translateY(-10px);
+  }
+
+  50% {
+    transform: scale(1.05, .95) translateY(0);
+  }
+
+  57% {
+    transform: scale(1, 1) translateY(-2px);
+  }
+
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
 }
 
 .border {

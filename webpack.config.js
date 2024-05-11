@@ -13,7 +13,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './frontend/index.html',
-    })
+    }),
   ],
   resolve: {
     extensions: ['.jsx', '.js'],
@@ -23,9 +23,9 @@ module.exports = {
     open: true,
     hot: true,
     proxy: [{
-        context: ['/connect', '/', '/chart'],
-        target: 'http://localhost:3000',
-      }],
+      context: ['/connect', '/', '/chart'],
+      target: 'http://localhost:3000',
+    }],
     static: {
       directory: path.resolve(__dirname, 'build'),
       publicPath: '/',
@@ -40,8 +40,8 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-          }
-        }
+          },
+        },
       },
       {
         test: /\.css$/,
@@ -58,7 +58,7 @@ module.exports = {
             loader: 'file-loader',
           },
         ],
-      }
-    ]
-  }
+      },
+    ],
+  },
 };

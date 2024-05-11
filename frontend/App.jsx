@@ -10,7 +10,7 @@ const App = () => {
     //wrap in browserRouter
     <BrowserRouter>   
     <Navbar/>
-      <div className="container">
+      <div>
         <Routes> 
           <Route
             //endPoint and element for ReactRouter:
