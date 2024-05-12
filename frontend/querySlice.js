@@ -210,7 +210,7 @@ const querySlice = createSlice({
       });
     },
     testResultsToDisplay(state, action) {
-      console.log('this is what we want to display: ', action.payload)
+      console.log('this is what we want to display: ', action.payload);
       state.testResultsToDisplay = action.payload;
     },
   },

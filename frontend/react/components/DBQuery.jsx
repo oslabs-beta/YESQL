@@ -61,7 +61,7 @@ const DBQuery = () => {
 
   const handleTestQuery = async () => {
     const query = store.query.map((node) => node.string).join(' ');
-    console.log(query)
+    console.log(query);
     const response = await fetch('/testQuery', {
       method: 'POST',
       headers: {
