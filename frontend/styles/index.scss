@@ -848,3 +848,21 @@ ul {
   border-style: solid;
   border-radius: 1em;
 }
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 2px solid;
+}
+
+th, td {
+  border: 1px solid;
+  text-align: center;
+}
+
+th {
+  font-size: 1.5em;
+  font-weight: bold;
+}
