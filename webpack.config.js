@@ -12,7 +12,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   plugins: [
     new HtmlWebpackPlugin({
-      template: './frontend/index.html',
+      template: './index.html',
     }),
   ],
   resolve: {
