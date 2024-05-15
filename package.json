@@ -2,7 +2,7 @@
   "name": "yesql",
   "version": "1.0.0",
   "description": "",
-  "main": "./frontend/index.js",
+  "main": "./build/bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node backend/server.js",
