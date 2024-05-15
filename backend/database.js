@@ -1,46 +1,54 @@
 // require dot env
-const dotenv = require("dotenv") 
-
-dotenv.config() 
-
-const { Pool } = require("pg");
+const dotenv = require('dotenv');
+dotenv.config();
+const {Pool} = require('pg');
 
 let pool;
 
+let information;
+
 const connectDb = async (...credentials) => {
+
+  information = credentials;
+
+  if (!pool) {
     try {
-        if (credentials.length === 1) {
-            pool = new Pool({
-                connectionString: credentials[0]
-            });
-        } else {
-            pool = new Pool({
-                user: credentials[0],
-                host: credentials[1],
-                database: credentials[2],
-                port: credentials[3],
-            }); 
-        }
-        // connect to the database 
-        await pool.connect(); 
-        //execute a query
-        // const res = await pool.query('SELECT * FROM people'); 
+      if (credentials.length === 1) {
+        pool = new Pool({
+          connectionString: credentials[0],
+        });
+      } else {
+        pool = new Pool({
+          user: credentials[0],
+          host: credentials[1],
+          database: credentials[2],
+          port: credentials[3],
+        });
+      }
 
-        console.log("connected to database"); // access the rows  
+      await pool.connect();
+      // execute a query
+      // const res = await pool.query('SELECT * FROM people');
 
-        //release the client back to the pool 
+      // console.log('connected to database'); // access the rows
 
-        // await pool.end();
+      // release the client back to the pool
+
+    // await pool.end();
     } catch (error) {
-        console.log(error)
+      console.log(error);
+      pool = null;
     }
-}
- 
+  }
+};
+
 // connectDb()
 
 module.exports = {
-    connectDb,
-    query: (text, params, callback) => {
-        return pool.query(text, params, callback)
-    }
-}
+  connectDb,
+  query: (text, params, callback) => {
+    // console.log(information)
+    // connectDb(information);
+    return pool.query(text, params, callback);
+  },
+};
