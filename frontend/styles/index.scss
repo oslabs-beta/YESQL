@@ -854,7 +854,8 @@ table {
   margin-right: auto;
   border-collapse: collapse;
   border-spacing: 0;
-  border: 2px solid;
+  border-radius: 30px 30px 0px 0px;
+  border: 10px solid #7300ff;
 }
 
 th, td {
