@@ -8,25 +8,25 @@ import HostedFormPage from './react/containers/HostedFormPage.jsx';
 const App = () => {
   return ( 
     //wrap in browserRouter
-    <BrowserRouter basename={'/'}>   
+    <BrowserRouter>   
     <Navbar/>
       <div>
         <Routes> 
           <Route
             //endPoint and element for ReactRouter:
-            path=''
+            path='/'
             element={<Landing/>} 
           />
           <Route 
-            path='chart'
+            path='/chart'
             element={<DBFlowContainer/>} 
           />
           <Route 
-            path='formpage' 
+            path='/formpage' 
             element={<FormPage/>}
           />
           <Route 
-            path='hostedFormPage' 
+            path='/hostedFormPage' 
             element={<HostedFormPage/>}
           />
         </Routes>
