@@ -43,6 +43,7 @@ If everything looks the way you want, congrats! Just click that clipboard to cop
 
 ## Useful Docs
 Here are some useful documentation links that can help you with PostgreSQL databases and more: 
+- https://www.postgresql.org/docs/current/intro-whatis.html
 
 
 ## How to Contribute
@@ -60,11 +61,11 @@ Here are some stretch features that would make awesome contributions:
 - Expanding beyond "SELECT" queries to "INSERT," "UPDATE," and "DELETE." (Note that these queries require modifying the database, so these features will require the application to copy the user's database and run test queries on that copy, so as not to mutate the source data.)
 
 ## Contributor Information
-- Eleanor Christopher https://www.linkedin.com/in/eleanor-christopher/ 
-- Ben Jackson https://www.linkedin.com/in/benjaminreidjackson/
-- Sara Kalkstein https://www.linkedin.com/in/sarakalkstein/
-- Nina Skyttmo https://www.linkedin.com/in/ninaskyttmo/
-- Brian Taylor https://www.linkedin.com/in/brian-c-taylor/
+- Eleanor Christopher https://www.linkedin.com/in/eleanor-christopher/; https://github.com/LNRtopher
+- Ben Jackson https://www.linkedin.com/in/benjaminreidjackson/; https://github.com/Hubbisand
+- Sara Kalkstein https://www.linkedin.com/in/sarakalkstein/; https://github.com/RococoKid
+- Nina Skyttmo https://www.linkedin.com/in/ninaskyttmo/; https://github.com/NinaSkyttis
+- Brian Taylor https://www.linkedin.com/in/brian-c-taylor/; https://github.com/TaylorBC
 
 
 
