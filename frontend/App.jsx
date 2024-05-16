@@ -14,19 +14,19 @@ const App = () => {
         <Routes> 
           <Route
             //endPoint and element for ReactRouter:
-            path='/'
+            path=''
             element={<Landing/>} 
           />
           <Route 
-            path='/chart'
+            path='chart'
             element={<DBFlowContainer/>} 
           />
           <Route 
-            path='/formpage' 
+            path='formpage' 
             element={<FormPage/>}
           />
           <Route 
-            path='/hostedFormPage' 
+            path='hostedFormPage' 
             element={<HostedFormPage/>}
           />
         </Routes>
