@@ -1,1 +1,9 @@
-{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/backend" }], "installCommand": "npm install", "outputDirectory": "build"}
+{ "version": 2,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ], 
+  "installCommand": "npm install", 
+  "outputDirectory": "build"}
