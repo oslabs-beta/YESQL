@@ -60,6 +60,11 @@ Here are some stretch features that would make awesome contributions:
 - Expanding beyond "SELECT" queries to "INSERT," "UPDATE," and "DELETE." (Note that these queries require modifying the database, so these features will require the application to copy the user's database and run test queries on that copy, so as not to mutate the source data.)
 
 ## Contributor Information
+- Eleanor Christopher https://www.linkedin.com/in/eleanor-christopher/ 
+- Ben Jackson https://www.linkedin.com/in/benjaminreidjackson/
+- Sara Kalkstein https://www.linkedin.com/in/sarakalkstein/
+- Nina Skyttmo https://www.linkedin.com/in/ninaskyttmo/
+- Brian Taylor https://www.linkedin.com/in/brian-c-taylor/
 
 
 
