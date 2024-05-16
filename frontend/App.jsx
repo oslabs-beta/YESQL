@@ -8,7 +8,7 @@ import HostedFormPage from './react/containers/HostedFormPage.jsx';
 const App = () => {
   return ( 
     //wrap in browserRouter
-    <HashRouter>   
+    <>
     <Navbar/>
       <div>
         <Routes> 
@@ -31,7 +31,7 @@ const App = () => {
           />
         </Routes>
       </div>
-     </HashRouter>
+    </>
   )
 };
 
