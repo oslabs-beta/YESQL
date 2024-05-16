@@ -2,13 +2,13 @@ import React from 'react';
 import Landing from './react/containers/Landing.jsx';
 import Navbar from './react/components/Navbar.jsx'; 
 import DBFlowContainer from './react/containers/DBFlowContainer.jsx';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormPage from './react/containers/FormPage.jsx';
 import HostedFormPage from './react/containers/HostedFormPage.jsx';
 const App = () => {
   return ( 
     //wrap in browserRouter
-    <>
+    <BrowserRouter basename={'/'}>   
     <Navbar/>
       <div>
         <Routes> 
@@ -31,7 +31,7 @@ const App = () => {
           />
         </Routes>
       </div>
-    </>
+     </BrowserRouter>
   )
 };
 
