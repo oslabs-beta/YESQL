@@ -6,7 +6,7 @@ const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
-const databaseController = require('./controllers/databaseController.js');
+const databaseController = require('../backend/controllers/databaseController.js');
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -43,3 +43,5 @@ app.post('/connect',
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });
+
+module.exports = app;
