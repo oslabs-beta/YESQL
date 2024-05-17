@@ -1,7 +1,7 @@
-# YESQL
+# Yesql
 ![main logo](./frontend/assets/yesql_logo.png)
 
-Welcome to YeSQL! This application allows you to connect your own PostgreSQL database and optimize your SQL select queries by rendering your database into an interactive entity-relationship diagram (ERD) and testing your results for speed and accuracy. With the confidence that comes from visualizing your entire database and the connections between tables, you will now be able to intuitively craft queries that return precisely the data you need without slowing down your process, and you can copy that query directly into your own codebase. 
+Welcome to Yesql! This application allows you to connect your own PostgreSQL database and optimize your SQL select queries by rendering your database into an interactive entity-relationship diagram (ERD) and testing your results for speed and accuracy. With the confidence that comes from visualizing your entire database and the connections between tables, you will now be able to intuitively craft queries that return precisely the data you need without slowing down your process, and you can copy that query directly into your own codebase. 
 
 ## Getting Started
 
@@ -47,7 +47,7 @@ Here are some useful documentation links that can help you with PostgreSQL datab
 
 
 ## How to Contribute
-YeSQL is proud to be an open-source product and we welcome contributions! 
+Yesql is proud to be an open-source product and we welcome contributions! 
 
 To contribute, please follow the following guidelines:
 1. Fork and clone this repository.
