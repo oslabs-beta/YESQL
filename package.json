@@ -1,12 +1,13 @@
 {
   "name": "yesql",
+  "homepage": "https://oslabs-beta.github.io/YESQL/",
   "version": "1.0.0",
   "description": "",
-  "main": "./frontend/index.js",
+  "main": "./build/bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node backend/server.js",
-    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve --open\" \"nodemon backend/server.js\"",
+    "start": "NODE_ENV=production node api/index.js",
+    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve --open\" \"nodemon api/index.js\"",
     "build": "NODE_ENV=production webpack"
   },
   "author": "",
@@ -52,6 +53,7 @@
     "react-router-dom": "^6.22.2",
     "reactflow": "^11.10.4",
     "sass": "^1.71.1",
+    "ts-node": "^10.9.2",
     "url-loader": "^4.1.1"
   }
 }
